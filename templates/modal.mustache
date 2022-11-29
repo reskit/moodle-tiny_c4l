@@ -1,0 +1,68 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template tiny_c4l/modal
+
+    Modal to manage components within the Tiny Editor.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+
+    Example context (json):
+    {
+        "elementid": "exampleId"
+        "buttons": [
+          {"id": "randomid"},
+          {"imageClass": "c4l-classname"}
+          {"name": "component name"}
+          {"htmlcode": "<div>Text</div>"}
+        ],
+    }
+}}
+
+{{< core/modal }}
+    {{$title}}
+        {{#str}} pluginname, tiny_c4l {{/str}}
+    {{/title}}
+    {{$body}}
+        <div id="{{elementid}}" class="c4l-plugin-container">
+            <div class="c4l-buttons-grid">
+                {{#buttons}}
+                    <button class="c4l-dialog-button {{imageClass}}" data-id="{{id}}">
+                        {{name}}
+                        {{#preview}}
+                            <span class="c4l-eye-preview" role="presentation" aria-controls="code-preview-{{id}}"></span>
+                        {{/preview}}
+                    </button>
+                {{/buttons}}
+            </div>
+        </div>
+        {{#preview}}
+            <div class="c4l-text-preview">{{textpreview}}</div>
+            <div class="c4l-code-preview">
+                {{#buttons}}
+                    <div data-id="code-preview-{{id}}" class="c4l-component-code c4l-hidden" role="presentation">{{{htmlcode}}}</div>
+                {{/buttons}}
+            </div>
+        {{/preview}}
+    {{/body}}
+{{/ core/modal }}

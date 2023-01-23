@@ -34,18 +34,39 @@ class plugininfo extends plugin implements
     plugin_with_menuitems,
     plugin_with_configuration {
 
+    /**
+     * Get the editor buttons for this plugins
+     *
+     * @return array
+     */
     public static function get_available_buttons(): array {
         return [
             'tiny_c4l/c4l',
         ];
     }
-
+    /**
+     * Get the dropdown menu items for this plugin
+     *
+     * @return array
+     */
     public static function get_available_menuitems(): array {
         return [
             'tiny_c4l/c4l',
         ];
     }
 
+    /**
+     * Get the configuration for the plugin, capabilities and
+     * config (from settings.php)
+     *
+     * @param context $context
+     * @param array $options
+     * @param array $fpoptions
+     * @param \editor_tiny\editor|null $editor
+     * @return void
+     *
+     * @return array
+     */
     public static function get_plugin_configuration_for_context(
         context $context,
         array $options,

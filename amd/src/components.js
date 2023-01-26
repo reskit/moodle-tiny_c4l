@@ -47,14 +47,6 @@ const components = [
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales."
     },
     {
-        name: "attention",
-        type: "contextual",
-        imageClass: "c4l-attention-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-attention\">" +
-            "{{PLACEHOLDER}}</div><p><br></p>",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales."
-    },
-    {
         name: "quote",
         type: "contextual",
         imageClass: "c4l-quote-icon",
@@ -97,7 +89,7 @@ const components = [
         type: "contextual",
         imageClass: "c4l-example-icon",
         code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-example\">" +
-            "<h1>Lorem impsum dolor sit amet</h1>" +
+            "<h1>Lorem ipsum dolor sit amet</h1>" +
             "<p>{{PLACEHOLDER}}</p></div><p><br></p>",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
             " Phasellus a posuere nibh, eu mollis lacus." +
@@ -109,7 +101,7 @@ const components = [
         type: "contextual",
         imageClass: "c4l-figure-icon",
         code: "<p class=\"c4l-spacer\"></p><figure class=\"c4l-figure\">" +
-            "<img src=\"https://source.unsplash.com/random/800x600\" alt=\"Lorem impsum dolor sit amet\">" +
+            "<img src=\"https://source.unsplash.com/random/800x600\" alt=\"Lorem ipsum dolor sit amet\">" +
             "<figcaption><em class=\"c4l-figure-footer\">{{PLACEHOLDER}}</em><span class=\"c4l-figure-caption\">" +
             "<strong>Font: </strong>Phasellus a posuere nibh.</span>" +
             "</figcaption></figure><p><br></p>",
@@ -121,6 +113,14 @@ const components = [
         imageClass: "c4l-tag-icon",
         code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-display-left\"><div class=\"c4l-tag\">{{PLACEHOLDER}}</div></div>",
         text: "Lorem ipsum"
+    },
+    {
+        name: "attention",
+        type: "contextual",
+        imageClass: "c4l-attention-icon",
+        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-attention\">" +
+            "{{PLACEHOLDER}}</div><p><br></p>",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales."
     },
     {
         name: "estimatedtime",

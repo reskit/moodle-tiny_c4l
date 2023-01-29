@@ -115,8 +115,15 @@ const components = [
         text: "Lorem ipsum"
     },
     {
-        name: "attention",
+        name: "inlinetag",
         type: "contextual",
+        imageClass: "c4l-inlinetag-icon",
+        code: "<span class=\"c4l-inlinetag\">{{PLACEHOLDER}}</span>",
+        text: "Text"
+    },
+    {
+        name: "attention",
+        type: "procedural",
         imageClass: "c4l-attention-icon",
         code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-attention\">" +
             "{{PLACEHOLDER}}</div><p><br></p>",
@@ -174,13 +181,6 @@ const components = [
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus." +
             " Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
-    },
-    {
-        name: "inlinetag",
-        type: "helper",
-        imageClass: "c4l-inlinetag-icon",
-        code: "<span class=\"c4l-inlinetag\">{{PLACEHOLDER}}</span>",
-        text: "Text"
     },
 ];
 

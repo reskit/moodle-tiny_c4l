@@ -30,12 +30,18 @@
     Example context (json):
     {
         "elementid": "exampleId",
+        "filters" : [
+            {"name": "Contextual"},
+            {"type": "contextual"},
+            {"filterClass": ""}
+        ],
         "buttons": [
           {"id": "randomid"},
           {"imageClass": "c4l-classname"},
           {"name": "component name"},
           {"htmlcode": "<div>Text</div>"}
-        ]
+        ],
+        "preview": "true"
     }
 }}
 {{< core/modal }}
@@ -44,24 +50,40 @@
     {{/title}}
     {{$body}}
         <div id="{{elementid}}" class="c4l-plugin-container">
-            <div class="c4l-buttons-grid">
-                {{#buttons}}
-                    <button class="c4l-dialog-button {{imageClass}}" data-id="{{id}}">
-                        {{name}}
-                        {{#preview}}
-                            <span class="c4l-eye-preview" role="presentation" aria-controls="code-preview-{{id}}"></span>
-                        {{/preview}}
+            <div class="c4l-select-filters">
+                <select class="c4l-select-filter" aria-controls="c4l-buttons-grid">
+                    {{#filters}}
+                        <option value="{{type}}">{{name}}</option>
+                    {{/filters}}
+                </select>
+            </div>
+            <div class="c4l-buttons-filters">
+                {{#filters}}
+                    <button class="c4l-button-filter {{filterClass}}" data-filter="{{type}}" aria-controls="c4l-buttons-grid">
+                            {{name}}
                     </button>
-                {{/buttons}}
+                {{/filters}}
+            </div>
+            <div class="c4l-buttons-preview {{^preview}}c4l-no-preview{{/preview}}">
+                <div id="c4l-buttons-grid" class="c4l-buttons-grid">
+                    {{#buttons}}
+                        <button class="c4l-dialog-button {{imageClass}}" data-id="{{id}}" data-type="{{type}}">
+                            {{name}}
+                        </button>
+                    {{/buttons}}
+                </div>
+                {{#preview}}
+                    <div class="c4l-code-preview">
+                        <div class="c4l-text-preview">{{#str}} preview, tiny_c4l {{/str}}</div>
+                        <div data-id="code-preview-default">
+                            <div class="c4l-preview-default">{{#str}} previewdefault, tiny_c4l {{/str}}</div>
+                        </div>
+                        {{#buttons}}
+                            <div data-id="code-preview-{{id}}" class="c4l-component-code c4l-hidden" role="presentation">{{{htmlcode}}}</div>
+                        {{/buttons}}
+                    </div>
+                {{/preview}}
             </div>
         </div>
-        {{#preview}}
-            <div class="c4l-text-preview">{{textpreview}}</div>
-            <div class="c4l-code-preview">
-                {{#buttons}}
-                    <div data-id="code-preview-{{id}}" class="c4l-component-code c4l-hidden" role="presentation">{{{htmlcode}}}</div>
-                {{/buttons}}
-            </div>
-        {{/preview}}
     {{/body}}
 {{/ core/modal }}

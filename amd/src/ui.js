@@ -26,13 +26,13 @@ import C4LModal from './modal';
 import ModalFactory from 'core/modal_factory';
 import {components as Components} from './components';
 import {
-    get_string as getString,
     get_strings as getStrings
 } from 'core/str';
 import {showPreview} from './options';
 import ModalEvents from 'core/modal_events';
 
 let previewC4L = true;
+let Contexts = [];
 
 /**
  * Handle action
@@ -43,6 +43,10 @@ export const handleAction = (editor) => {
     displayDialogue(editor);
 };
 
+/**
+ * Display modal
+ * @param  {TinyMCE} editor
+ */
 const displayDialogue = async(editor) => {
     const data = Object.assign({}, {});
 
@@ -53,10 +57,9 @@ const displayDialogue = async(editor) => {
         large: true,
     });
 
-    // Disable scroll on preview.
-    if (previewC4L) {
-        editor.targetElm.closest('body').classList.add('c4l-modal-open');
-        modal.setScrollable(false);
+    // Set modal size when no preview.
+    if (!previewC4L) {
+        editor.targetElm.closest('body').classList.add('c4l-modal-no-preview');
     }
     modal.show();
 
@@ -83,7 +86,7 @@ const displayDialogue = async(editor) => {
  * @param {obj} editor
  */
 const handleModalHidden = (editor) => {
-    editor.targetElm.closest('body').classList.remove('c4l-modal-open');
+    editor.targetElm.closest('body').classList.remove('c4l-modal-no-preview');
 };
 
 /**
@@ -95,12 +98,14 @@ const handleModalHidden = (editor) => {
  */
 const handleModalClick = (event, editor, modal) => {
     const button = event.target.closest('button');
+    const select = event.target.closest('select');
 
     if (button) {
-        const sel = editor.selection.getContent();
         const selectedButton = button.dataset.id;
 
+        // Component button.
         if (Components?.[selectedButton]) {
+            const sel = editor.selection.getContent();
             let componentCode = Components[selectedButton].code;
             const placeholder = (sel.length > 0 ? sel : Components[selectedButton].text);
 
@@ -121,10 +126,37 @@ const handleModalClick = (event, editor, modal) => {
                 editor.selection.select(nodeSel[0]);
             }
 
+            modal.destroy();
             editor.focus();
-        }
+        } else {
+            const currentContext = button.dataset.filter;
+            // Filter button.
+            if (Contexts.indexOf(currentContext) !== -1) {
+                // Select current button.
+                const buttons = modal.getRoot()[0].querySelectorAll('.c4l-buttons-filters button');
+                buttons.forEach(node => node.classList.remove('c4l-button-filter-enabled'));
+                button.classList.add('c4l-button-filter-enabled');
 
-        modal.destroy();
+                // Select current option in select.
+                const select = modal.getRoot()[0].querySelector('.c4l-select-filter');
+                select.selectedIndex = Contexts.indexOf(currentContext);
+
+                // Show/hide component buttons.
+                showContextButtons(modal, currentContext);
+            }
+        }
+    } else if (select) {
+        const currentContext = select.value;
+        if (Contexts.indexOf(currentContext) !== -1) {
+            // Select current button.
+            const buttons = modal.getRoot()[0].querySelectorAll('.c4l-buttons-filters button');
+            buttons.forEach(node => node.classList.remove('c4l-button-filter-enabled'));
+            const button = modal.getRoot()[0].querySelector('.c4l-button-filter[data-filter="' + currentContext + '"]');
+            button.classList.add('c4l-button-filter-enabled');
+
+            // Show/hide component buttons.
+            showContextButtons(modal, currentContext);
+        }
     }
 };
 
@@ -136,24 +168,21 @@ const handleModalClick = (event, editor, modal) => {
  * @param {bool} show
  */
 const handleModalMouseEvent = (event, modal, show) => {
-    const isPreview = event.target.className == 'c4l-eye-preview';
+    const isPreview = event.target.classList.contains('c4l-dialog-button');
     const button = event.target.closest('button');
 
     if (isPreview && button) {
         const selectedButton = button.dataset.id;
         const node = modal.getRoot()[0].querySelector('div[data-id="code-preview-' + selectedButton + '"]');
+        const previewDefault = modal.getRoot()[0].querySelector('div[data-id="code-preview-default"]');
 
         if (node) {
             if (show) {
-                node.parentElement.classList.remove('c4l-hidden');
-                node.parentElement.classList.add('c4l-visible');
-                node.classList.remove('c4l-hidden');
-                node.classList.add('c4l-visible');
+                previewDefault.classList.toggle('c4l-hidden');
+                node.classList.toggle('c4l-hidden');
             } else {
-                node.parentElement.classList.remove('c4l-visible');
-                node.parentElement.classList.add('c4l-hidden');
-                node.classList.remove('c4l-visible');
-                node.classList.add('c4l-hidden');
+                node.classList.toggle('c4l-hidden');
+                previewDefault.classList.toggle('c4l-hidden');
             }
         }
     }
@@ -166,13 +195,34 @@ const handleModalMouseEvent = (event, modal, show) => {
  * @param {object} data
  * @returns {object} data
  */
-const getTemplateContext = async (editor, data) => {
+const getTemplateContext = async(editor, data) => {
     return Object.assign({}, {
         elementid: editor.id,
         buttons: await getButtons(editor),
+        filters: await getFilters(),
         preview: previewC4L,
-        textpreview: await getString('preview', component),
     }, data);
+};
+
+/**
+ * Get the C4L filters for the dialogue.
+ *
+ * @returns {object} data
+ */
+const getFilters = async() => {
+    const filters = [];
+    const stringValues = await getStrings(Contexts.map((key) => ({key, component})));
+
+    // Iterate over contexts.
+    Contexts.map((context, index) => {
+        filters.push({
+            name: stringValues[index],
+            type: context,
+            filterClass: index === 0 ? 'c4l-button-filter-enabled' : '',
+        });
+    });
+
+    return filters;
 };
 
 /**
@@ -196,15 +246,39 @@ const getButtons = async(editor) => {
             componentCode = componentCode.replace('{{PLACEHOLDER}}', placeholder);
         }
 
+        // Save contexts.
+        if (Contexts.indexOf(component.type) === -1) {
+            Contexts.push(component.type);
+        }
+
         buttons.push({
             id: index,
             name: strings.get(component.name),
+            type: component.type,
             imageClass: component.imageClass,
             htmlcode: componentCode,
         });
+
+        // Add class to hide button.
+        if (Contexts.indexOf(component.type) !== 0) {
+            buttons[index].imageClass += ' c4l-hidden';
+        }
     });
 
     return buttons;
+};
+
+/**
+ * Show/hide buttons depend on selected context.
+ * @param  {object} modal
+ * @param  {String} context
+ */
+const showContextButtons = (modal, context) => {
+    const showNodes = modal.getRoot()[0].querySelectorAll('button[data-type="' + context + '"]');
+    const hideNodes = modal.getRoot()[0].querySelectorAll('button[data-type]:not([data-type="' + context + '"])');
+
+    showNodes.forEach(node => node.classList.remove('c4l-hidden'));
+    hideNodes.forEach(node => node.classList.add('c4l-hidden'));
 };
 
 /**
@@ -215,9 +289,7 @@ const getButtons = async(editor) => {
 const getAllStrings = async() => {
     const keys = [];
 
-    Components.map((element) => {
-        keys.push(element.name);
-    });
+    Components.map(element => keys.push(element.name));
 
     const stringValues = await getStrings(keys.map((key) => ({key, component})));
     return new Map(keys.map((key, index) => ([key, stringValues[index]])));

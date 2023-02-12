@@ -28,4 +28,4 @@ $plugin->component = 'tiny_c4l';
 $plugin->release = '1.1.0';
 $plugin->requires  = 2022112800;
 $plugin->maturity = MATURITY_STABLE;
-$plugin->version = 2023012900;
+$plugin->version = 2023012901;

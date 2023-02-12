@@ -70,6 +70,9 @@ const displayDialogue = async(editor) => {
     modal.getRoot().on(ModalEvents.hidden, () => {
         handleModalHidden(editor);
     });
+    modal.getRoot()[0].querySelector('.c4l-select-filter').addEventListener('change', (event) => {
+       handleModalChange(event, modal);
+    });
     if (previewC4L) {
         modal.getRoot()[0].addEventListener('mouseover', (event) => {
             handleModalMouseEvent(event, modal, true);
@@ -77,6 +80,30 @@ const displayDialogue = async(editor) => {
         modal.getRoot()[0].addEventListener('mouseout', (event) => {
             handleModalMouseEvent(event, modal, false);
         });
+    }
+};
+
+/**
+ * Handle a change within filter select.
+ *
+ * @param {MouseEvent} event The change event
+ * @param {obj} modal
+ */
+const handleModalChange = (event, modal) => {
+    const select = event.target.closest('select');
+
+    if (select) {
+        const currentContext = select.value;
+        if (Contexts.indexOf(currentContext) !== -1) {
+            // Select current button.
+            const buttons = modal.getRoot()[0].querySelectorAll('.c4l-buttons-filters button');
+            buttons.forEach(node => node.classList.remove('c4l-button-filter-enabled'));
+            const button = modal.getRoot()[0].querySelector('.c4l-button-filter[data-filter="' + currentContext + '"]');
+            button.classList.add('c4l-button-filter-enabled');
+
+            // Show/hide component buttons.
+            showContextButtons(modal, currentContext);
+        }
     }
 };
 
@@ -98,7 +125,6 @@ const handleModalHidden = (editor) => {
  */
 const handleModalClick = (event, editor, modal) => {
     const button = event.target.closest('button');
-    const select = event.target.closest('select');
 
     if (button) {
         const selectedButton = button.dataset.id;
@@ -144,18 +170,6 @@ const handleModalClick = (event, editor, modal) => {
                 // Show/hide component buttons.
                 showContextButtons(modal, currentContext);
             }
-        }
-    } else if (select) {
-        const currentContext = select.value;
-        if (Contexts.indexOf(currentContext) !== -1) {
-            // Select current button.
-            const buttons = modal.getRoot()[0].querySelectorAll('.c4l-buttons-filters button');
-            buttons.forEach(node => node.classList.remove('c4l-button-filter-enabled'));
-            const button = modal.getRoot()[0].querySelector('.c4l-button-filter[data-filter="' + currentContext + '"]');
-            button.classList.add('c4l-button-filter-enabled');
-
-            // Show/hide component buttons.
-            showContextButtons(modal, currentContext);
         }
     }
 };

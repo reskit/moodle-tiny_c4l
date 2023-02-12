@@ -29,6 +29,13 @@
     padding: 17px;
     width: 100%;
     text-transform: capitalize;
+       -moz-appearance: none;
+    -webkit-appearance: none;
+            appearance: none;
+    background-image: url([[pix:t/dropdown]]);
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: center;
 }
 
 .c4l-button-filter {

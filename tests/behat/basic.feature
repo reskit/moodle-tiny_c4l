@@ -1,7 +1,7 @@
 @editor  @tiny @editor_tiny  @tiny_c4l
 Feature: Tiny editor components for learning
   Write text with the c4l editor plugin
-        Background:
+    Background:
     Given the following "courses" exist:
         | shortname | fullname |
         | C1        | Course 1 |

@@ -18,7 +18,7 @@
     margin-bottom: 0;
     width: 100%;
     justify-content: center;
-    margin: 7px 0 36px;
+    margin: 7px 0 36px 0;
 }
 
 .c4l-select-filter {
@@ -29,9 +29,9 @@
     padding: 17px;
     width: 100%;
     text-transform: capitalize;
-       -moz-appearance: none;
+    -moz-appearance: none;
     -webkit-appearance: none;
-            appearance: none;
+    appearance: none;
     background-image: url([[pix:t/dropdown]]);
     background-repeat: no-repeat;
     background-position-x: 95%;
@@ -128,8 +128,8 @@
 
 .c4l-code-preview .c4l-component-code {
     -webkit-transform: scale(0.6);
-        -ms-transform: scale(0.6);
-            transform: scale(0.6);
+    -ms-transform: scale(0.6);
+    transform: scale(0.6);
     width: 160%;
     margin-top: 35px;
 }
@@ -962,8 +962,8 @@
         width: 60%;
         margin: 0 auto;
         -webkit-user-select: none;
-            -ms-user-select: none;
-                user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
 
     .c4l-text-preview {
@@ -975,7 +975,7 @@
         line-height: 11px;
         letter-spacing: 0.06em;
         color: #fff;
-        background-color: #535D76;
+        background-color: #535d76;
         border-radius: 6px;
         padding: 5px;
         text-transform: uppercase;

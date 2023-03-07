@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $capabilities = [
     'tiny/c4l:viewplugin' => [
-        'captype'      => 'write',
+        'captype' => 'write',
         'contextlevel' => CONTEXT_MODULE,
         'archetypes' => [
             'student' => CAP_ALLOW,

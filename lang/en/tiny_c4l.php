@@ -25,6 +25,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['aimedatstudents'] = 'Aimed at Students';
+$string['aimedatstudents_desc'] = 'By default, only selected components will be available for users with student capabilities when using the editor. To change the default setting, just check or uncheck you own preferred selection.';
 $string['allpurposecard'] = 'All-purpose card';
 $string['attention'] = 'Attention';
 $string['button_c4l'] = 'C4L';
@@ -43,7 +45,10 @@ $string['gradingvalue'] = 'Grading value';
 $string['helper'] = 'Helper';
 $string['inlinetag'] = 'Inline tag';
 $string['keyconcept'] = 'Key concept';
+$string['learningoutcomes'] = 'Learning outcomes';
 $string['menuitem_c4l'] = 'Components for Learning (C4L)';
+$string['notintendedforstudents'] = 'Not intended for Students ';
+$string['notintendedforstudents_desc'] = 'By default, evaluative and procedural components are not intended for users with student capabilities to use in the editor. To change the default setting, check the components you would like to make available to the students.';
 $string['pluginname'] = 'Components for Learning (C4L)';
 $string['preview'] = 'Preview';
 $string['previewdefault'] = 'Place the pointer on any component to see its preview.';

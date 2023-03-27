@@ -75,8 +75,17 @@ class plugininfo extends plugin implements
     ): array {
         $viewc4l = has_capability('tiny/c4l:viewplugin', $context);
         $showpreview = get_config('tiny_c4l', 'enablepreview');
+        $isstudent = !has_capability('gradereport/grader:view', $context);
+        $allowedcomps = [];
+        if ($isstudent) {
+            $aimedcomps = explode(',', get_config('tiny_c4l', 'aimedatstudents'));
+            $notintendedcomps = explode(',', get_config('tiny_c4l', 'notintendedforstudents'));
+            $allowedcomps = array_merge($aimedcomps, $notintendedcomps);
+        }
 
         return [
+            'isstudent' => $isstudent,
+            'allowedcomps' => $allowedcomps,
             'showpreview' => ($showpreview == '1'),
             'viewc4l' => $viewc4l,
         ];

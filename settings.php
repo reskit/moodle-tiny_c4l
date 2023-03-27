@@ -34,5 +34,40 @@ if ($hassiteconfig) {
         $default = 1;
         $setting = new admin_setting_configcheckbox('tiny_c4l/enablepreview', $name, $desc, $default);
         $settings->add($setting);
+
+        // Configure available students' components.
+        $components = [
+            'keyconcept' => get_string('keyconcept', 'tiny_c4l'),
+            'tip' => get_string('tip', 'tiny_c4l'),
+            'reminder' => get_string('reminder', 'tiny_c4l'),
+            'quote' => get_string('quote', 'tiny_c4l'),
+            'dodontcards' => get_string('dodontcards', 'tiny_c4l'),
+            'readingcontext' => get_string('readingcontext', 'tiny_c4l'),
+            'example' => get_string('example', 'tiny_c4l'),
+            'figure' => get_string('figure', 'tiny_c4l'),
+            'tag' => get_string('tag', 'tiny_c4l'),
+            'inlinetag' => get_string('inlinetag', 'tiny_c4l'),
+            'attention' => get_string('attention', 'tiny_c4l'),
+            'allpurposecard' => get_string('allpurposecard', 'tiny_c4l')
+        ];
+        $name = get_string('aimedatstudents', 'tiny_c4l');
+        $desc = get_string('aimedatstudents_desc', 'tiny_c4l');
+        $setting = new admin_setting_configmulticheckbox('tiny_c4l/aimedatstudents', $name, $desc, $components, $components);
+        $settings->add($setting);
+
+
+        // Configure not intended students' components.
+        $components = [
+            'estimatedtime' => get_string('estimatedtime', 'tiny_c4l'),
+            'duedate' => get_string('duedate', 'tiny_c4l'),
+            'proceduralcontext' => get_string('proceduralcontext', 'tiny_c4l'),
+            'gradingvalue' => get_string('gradingvalue', 'tiny_c4l'),
+            'expectedfeedback' => get_string('expectedfeedback', 'tiny_c4l'),
+            'learningoutcomes' => get_string('learningoutcomes', 'tiny_c4l'),
+        ];
+        $name = get_string('notintendedforstudents', 'tiny_c4l');
+        $desc = get_string('notintendedforstudents_desc', 'tiny_c4l');
+        $setting = new admin_setting_configmulticheckbox('tiny_c4l/notintendedforstudents', $name, $desc, [], $components);
+        $settings->add($setting);
     }
 }

@@ -25,13 +25,17 @@ import {component} from './common';
 import C4LModal from './modal';
 import ModalFactory from 'core/modal_factory';
 import {components as Components} from './components';
+import {get_strings as getStrings} from 'core/str';
 import {
-    get_strings as getStrings
-} from 'core/str';
-import {showPreview} from './options';
+    isStudent,
+    getallowedComponents,
+    showPreview
+} from './options';
 import ModalEvents from 'core/modal_events';
 
+let userStudent = false;
 let previewC4L = true;
+let allowedComponents = [];
 let Contexts = [];
 
 /**
@@ -39,7 +43,9 @@ let Contexts = [];
  * @param {TinyMCE} editor
  */
 export const handleAction = (editor) => {
+    userStudent = isStudent(editor);
     previewC4L = showPreview(editor);
+    allowedComponents = getallowedComponents(editor);
     displayDialogue(editor);
 };
 
@@ -254,28 +260,30 @@ const getButtons = async(editor) => {
 
     // Iterate over components.
     Components.map((component, index) => {
-        if (previewC4L) {
-            placeholder = (sel.length > 0 ? sel : component.text);
-            componentCode = component.code;
-            componentCode = componentCode.replace('{{PLACEHOLDER}}', placeholder);
-        }
+        if (!userStudent || (userStudent && allowedComponents.includes(component.name))) {
+            if (previewC4L) {
+                placeholder = (sel.length > 0 ? sel : component.text);
+                componentCode = component.code;
+                componentCode = componentCode.replace('{{PLACEHOLDER}}', placeholder);
+            }
 
-        // Save contexts.
-        if (Contexts.indexOf(component.type) === -1) {
-            Contexts.push(component.type);
-        }
+            // Save contexts.
+            if (Contexts.indexOf(component.type) === -1) {
+                Contexts.push(component.type);
+            }
 
-        buttons.push({
-            id: index,
-            name: strings.get(component.name),
-            type: component.type,
-            imageClass: component.imageClass,
-            htmlcode: componentCode,
-        });
+            buttons.push({
+                id: index,
+                name: strings.get(component.name),
+                type: component.type,
+                imageClass: component.imageClass,
+                htmlcode: componentCode,
+            });
 
-        // Add class to hide button.
-        if (Contexts.indexOf(component.type) !== 0) {
-            buttons[index].imageClass += ' c4l-hidden';
+            // Add class to hide button.
+            if (Contexts.indexOf(component.type) !== 0) {
+                buttons[buttons.length - 1].imageClass += ' c4l-hidden';
+            }
         }
     });
 

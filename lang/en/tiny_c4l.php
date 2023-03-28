@@ -43,6 +43,7 @@ $string['expectedfeedback'] = 'Expected feedback';
 $string['figure'] = 'Figure';
 $string['gradingvalue'] = 'Grading value';
 $string['helper'] = 'Helper';
+$string['helplinktext'] = 'C4L helper';
 $string['inlinetag'] = 'Inline tag';
 $string['keyconcept'] = 'Key concept';
 $string['learningoutcomes'] = 'Learning outcomes';

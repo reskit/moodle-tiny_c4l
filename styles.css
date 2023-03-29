@@ -74,6 +74,7 @@
 .c4l-buttons-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, 90px);
+    grid-template-rows: min-content;
     grid-gap: 9px;
     margin-bottom: 0;
     width: 100%;
@@ -133,6 +134,12 @@
     transform: scale(0.6);
     width: 160%;
     margin-top: 35px;
+}
+
+.c4l-code-preview .c4l-component-code .c4l-learningoutcomes {
+    -webkit-transform: translateY(-15px);
+    -ms-transform: translateY(-15px);
+    transform: translateY(-15px);
 }
 
 /* Contextual components buttons */

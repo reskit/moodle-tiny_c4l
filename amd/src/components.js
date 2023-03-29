@@ -156,6 +156,20 @@ const components = [
             " fermentum dolor ac, venenatis turpis."
     },
     {
+        name: "learningoutcomes",
+        type: "procedural",
+        imageClass: "c4l-learningoutcomes-icon",
+        code: "<p class=\"c4l-spacer\"></p>" +
+            "<div class=\"c4l-learningoutcomes\"><h6 class=\"c4l-learningoutcomes-title\">Learning Outcomes</h6>" +
+            "<ul class=\"c4l-learningoutcomes-list\"><li>{{PLACEHOLDER}}</li><li>Curabitur non nulla sit amet " +
+            "nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</li>" +
+            "<li>Nulla porttitor accumsan tincidunt. " +
+            "Curabitur aliquet quam id dui posuere blandit. Curabitur non nulla sit amet nisl tempus convallis " +
+            "quis ac lectus.</li></ul></div>",
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta, neque id feugiat consectetur, " +
+            "enim ipsum tincidunt nunc, id suscipit mauris urna sit amet lectus."
+    },
+    {
         name: "gradingvalue",
         type: "evaluative",
         imageClass: "c4l-gradingvalue-icon",

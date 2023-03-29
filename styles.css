@@ -191,6 +191,10 @@
     content: url([[pix:tiny_c4l|c4l_proceduralcontext_icon]]);
 }
 
+.c4l-learningoutcomes-icon::before {
+    content: url([[pix:tiny_c4l|c4l_learningoutcomes_icon]]);
+}
+
 /* Evaluative components buttons */
 
 .c4l-gradingvalue-icon::before {
@@ -794,6 +798,87 @@
     margin-right: 4px;
 }
 
+
+/* Learning Outcomes */
+
+.c4l-learningoutcomes {
+    min-width: 200px;
+    max-width: 99%;
+    background-color: #f2f5fd;
+    padding: 24px 48px 30px 36px;
+    border: none;
+    margin: 36px auto;
+    position: relative;
+    border-radius: 0;
+}
+
+.c4l-spacer + .c4l-learningoutcomes {
+    margin: 0 auto;
+}
+
+.c4l-learningoutcomes p:last-of-type {
+    margin-bottom: 0;
+}
+
+.c4l-learningoutcomes-title {
+    position: relative;
+    top: -11px;
+    left: -39px;
+    padding: 6px 14px 5px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: .7px;
+    color: #fff;
+    background-color: #497ae9;
+    text-transform: uppercase;
+    font-family: inherit;
+    display: inline-block;
+    margin-top: 0;
+    filter: drop-shadow(0 1.55601px 3.11202px rgba(0, 0, 0, 7%));
+}
+
+.c4l-learningoutcomes-title::before {
+    content: url([[pix:tiny_c4l|c4l_learningoutcomes_shadow]]);
+    position: absolute;
+    width: 3px;
+    height: 2px;
+    top: 15.5px;
+    left: 0.5px;
+}
+
+.c4l-learningoutcomes-list {
+    margin-top: 18px;
+    margin-bottom: 18px;
+    padding-left: 32px;
+}
+
+.c4l-learningoutcomes-list > li {
+    position: relative;
+}
+
+.c4l-learningoutcomes-list > li:not(:last-child) {
+    margin-bottom: 21px;
+}
+
+.c4l-learningoutcomes-list li::before {
+    background-image: url([[pix:tiny_c4l|c4l_learningoutcomes_list_item]]);
+    background-size: 9px 11px;
+    display: inline-block;
+    width: 9px;
+    height: 11px;
+    content: "";
+    justify-self: center;
+    position: absolute;
+    left: -32px;
+    top: 7px;
+}
+
+.c4l-learningoutcomes-list li::marker {
+    color: transparent;
+}
+
 /* Media queries */
 
 @media only screen and (min-width: 576px) {
@@ -813,7 +898,8 @@
     .c4l-spacer + .c4l-tip,
     .c4l-spacer + .c4l-reminder,
     .c4l-spacer + .c4l-attention,
-    .c4l-spacer + .c4l-expectedfeedback {
+    .c4l-spacer + .c4l-expectedfeedback,
+    .c4l-spacer + .c4l-learningoutcomes {
         margin: 24px auto 8px auto;
     }
 
@@ -879,7 +965,8 @@
     .c4l-dodontcards-dont,
     .c4l-readingcontext,
     .c4l-expectedfeedback,
-    .c4l-allpurposecard {
+    .c4l-allpurposecard,
+    .c4l-learningoutcomes {
         max-width: 75%;
     }
 

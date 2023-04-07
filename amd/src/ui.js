@@ -188,7 +188,7 @@ const handleModalClick = (event, editor, modal) => {
  * @param {bool} show
  */
 const handleModalMouseEvent = (event, modal, show) => {
-    const isPreview = event.target.classList.contains('c4l-dialog-button');
+    const isPreview = event.target.classList.contains('c4lt-dialog-button');
     const button = event.target.closest('button');
 
     if (isPreview && button) {

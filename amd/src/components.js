@@ -28,7 +28,8 @@ const components = [
         imageClass: "c4l-keyconcept-icon",
         code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-keyconcept\">" +
             "{{PLACEHOLDER}}</div><p><br></p>",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales."
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
+        variants: ['full-width']
     },
     {
         name: "tip",
@@ -36,7 +37,8 @@ const components = [
         imageClass: "c4l-tip-icon",
         code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-tip\">" +
             "{{PLACEHOLDER}}</div><p><br></p>",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales."
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
+        variants: ['full-width']
     },
     {
         name: "reminder",
@@ -44,7 +46,8 @@ const components = [
         imageClass: "c4l-reminder-icon",
         code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-reminder\">" +
             "{{PLACEHOLDER}}</div><p><br></p>",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales."
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
+        variants: ['full-width']
     },
     {
         name: "quote",
@@ -56,7 +59,8 @@ const components = [
             "</div></div><div class=\"c4l-quote-caption\"><span>Marcus Tullius Cicero</span>" +
             "De Finibus Bonorum et Malorum</div></div><p><br></p>",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
-            " Praesent dictum in velit sed dapibus."
+            " Praesent dictum in velit sed dapibus.",
+        variants: ['full-width', 'quote']
     },
     {
         name: "dodontcards",
@@ -70,7 +74,8 @@ const components = [
             " nascetur ridiculus mus.</div></div><p><br></p>",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus." +
-            "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+            "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+        variants: ['full-width', 'dont-card-only']
     },
     {
         name: "readingcontext",
@@ -82,7 +87,8 @@ const components = [
             "De Finibus Bonorum et Malorum</div></div><p><br></p>",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus leo, hendrerit ac sem vitae," +
             " posuere egestas nisi. Lorem ipsum dolor sit amet. " +
-            "Phasellus leo, hendrerit ac sem vitae, posuere egestas nisi."
+            "Phasellus leo, hendrerit ac sem vitae, posuere egestas nisi.",
+        variants: ['full-width', 'comfort-reading']
     },
     {
         name: "example",
@@ -94,7 +100,8 @@ const components = [
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
             " Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus. Orci varius natoque penatibus et magnis dis parturient montes," +
-            " nascetur ridiculus mus."
+            " nascetur ridiculus mus.",
+        variants: ['full-width', 'quote', 'caption']
     },
     {
         name: "figure",
@@ -105,21 +112,24 @@ const components = [
             "<figcaption><em class=\"c4l-figure-footer\">{{PLACEHOLDER}}</em><span class=\"c4l-figure-caption\">" +
             "<strong>Font: </strong>Phasellus a posuere nibh.</span>" +
             "</figcaption></figure><p><br></p>",
-        text: "Consectetur adipiscing elit."
+        text: "Consectetur adipiscing elit.",
+        variants: ['full-width', 'quote', 'caption']
     },
     {
         name: "tag",
         type: "contextual",
         imageClass: "c4l-tag-icon",
         code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-display-left\"><div class=\"c4l-tag\">{{PLACEHOLDER}}</div></div>",
-        text: "Lorem ipsum"
+        text: "Lorem ipsum",
+        variants: ['align-left', 'align-center', 'align-right']
     },
     {
         name: "inlinetag",
         type: "contextual",
         imageClass: "c4l-inlinetag-icon",
         code: "<span class=\"c4l-inlinetag\">{{PLACEHOLDER}}</span>",
-        text: "Text"
+        text: "Text",
+        variants: ['align-left', 'align-center', 'align-right']
     },
     {
         name: "attention",
@@ -127,7 +137,8 @@ const components = [
         imageClass: "c4l-attention-icon",
         code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-attention\">" +
             "{{PLACEHOLDER}}</div><p><br></p>",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales."
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
+        variants: ['full-width']
     },
     {
         name: "estimatedtime",
@@ -135,14 +146,16 @@ const components = [
         imageClass: "c4l-estimatedtime-icon",
         code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-inline-group\"><div class=\"c4l-estimatedtime\">" +
             "{{PLACEHOLDER}} <span>min</span></div></div>",
-        text: "15"
+        text: "15",
+        variants: ['align-left', 'align-center', 'align-right']
     },
     {
         name: "duedate",
         type: "procedural",
         imageClass: "c4l-duedate-icon",
         code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-inline-group\"><div class=\"c4l-duedate\">{{PLACEHOLDER}}</div></div>",
-        text: "November 17th"
+        text: "November 17th",
+        variants: ['align-left', 'align-center', 'align-right']
     },
     {
         name: "proceduralcontext",
@@ -153,7 +166,8 @@ const components = [
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus." +
             " Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla quis lorem aliquet," +
-            " fermentum dolor ac, venenatis turpis."
+            " fermentum dolor ac, venenatis turpis.",
+        variants: ['full-width']
     },
     {
         name: "learningoutcomes",
@@ -167,7 +181,8 @@ const components = [
             "Curabitur aliquet quam id dui posuere blandit. Curabitur non nulla sit amet nisl tempus convallis " +
             "quis ac lectus.</li></ul></div>",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta, neque id feugiat consectetur, " +
-            "enim ipsum tincidunt nunc, id suscipit mauris urna sit amet lectus."
+            "enim ipsum tincidunt nunc, id suscipit mauris urna sit amet lectus.",
+        variants: ['full-width', 'ordered-list']
     },
     {
         name: "gradingvalue",
@@ -175,7 +190,8 @@ const components = [
         imageClass: "c4l-gradingvalue-icon",
         code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-inline-group\"><div class=\"c4l-gradingvalue\">" +
             "<span>Grading value: </span>{{PLACEHOLDER}}</div></div>",
-        text: "33.3%"
+        text: "33.3%",
+        variants: ['align-left', 'align-center', 'align-right']
     },
     {
         name: "expectedfeedback",
@@ -184,7 +200,8 @@ const components = [
         code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-expectedfeedback\">" +
             "<p>{{PLACEHOLDER}}</p></div><p><br></p>",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
-            " Praesent dictum in velit sed dapibus."
+            " Praesent dictum in velit sed dapibus.",
+        variants: ['full-width']
     },
     {
         name: "allpurposecard",
@@ -194,7 +211,8 @@ const components = [
             "<p>{{PLACEHOLDER}}</p></div><p><br></p>",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus." +
-            " Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
+            " Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+        variants: ['full-width']
     },
 ];
 

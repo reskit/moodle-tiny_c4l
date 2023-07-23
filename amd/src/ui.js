@@ -69,24 +69,54 @@ const displayDialogue = async(editor) => {
     }
     modal.show();
 
-    // Event listeners.
-    modal.getRoot()[0].addEventListener('click', (event) => {
-        handleModalClick(event, editor, modal);
-    });
+    // Event modal listener.
     modal.getRoot().on(ModalEvents.hidden, () => {
         handleModalHidden(editor);
     });
-    modal.getRoot()[0].querySelector('.c4l-select-filter').addEventListener('change', (event) => {
-       handleModalChange(event, modal);
+
+    // Event filters listener.
+    const filters = modal.getRoot()[0].querySelectorAll('.c4l-button-filter');
+    filters.forEach(node => {
+        node.addEventListener('click', (event) => {
+            handleButtonFilterClick(event, modal);
+        });
     });
-    if (previewC4L) {
-        modal.getRoot()[0].addEventListener('mouseover', (event) => {
-            handleModalMouseEvent(event, modal, true);
+
+    modal.getRoot()[0].querySelector('.c4l-select-filter').addEventListener('change', (event) => {
+       handleSelectFilterChange(event, modal);
+    });
+
+    // Event buttons listeners.
+    const buttons = modal.getRoot()[0].querySelectorAll('.c4lt-dialog-button');
+    buttons.forEach(node => {
+        node.addEventListener('click', (event) => {
+            handleButtonClick(event, editor, modal);
         });
-        modal.getRoot()[0].addEventListener('mouseout', (event) => {
-            handleModalMouseEvent(event, modal, false);
+        if (previewC4L) {
+            node.addEventListener('mouseenter', (event) => {
+                handleButtonMouseEvent(event, modal, true);
+            });
+            node.addEventListener('mouseleave', (event) => {
+                handleButtonMouseEvent(event, modal, false);
+            });
+        }
+    });
+
+    // Event variants listeners.
+    const variants = modal.getRoot()[0].querySelectorAll('.c4l-button-variant');
+    variants.forEach(node => {
+        node.addEventListener('click', (event) => {
+            handleVariantClick(event, modal);
         });
-    }
+        if (previewC4L) {
+            node.addEventListener('mouseenter', (event) => {
+                handleVariantMouseEvent(event, modal, true);
+            });
+            node.addEventListener('mouseleave', (event) => {
+                handleVariantMouseEvent(event, modal, false);
+            });
+        }
+    });
 };
 
 /**
@@ -95,21 +125,49 @@ const displayDialogue = async(editor) => {
  * @param {MouseEvent} event The change event
  * @param {obj} modal
  */
-const handleModalChange = (event, modal) => {
+const handleSelectFilterChange = (event, modal) => {
     const select = event.target.closest('select');
 
     if (select) {
         const currentContext = select.value;
         if (Contexts.indexOf(currentContext) !== -1) {
             // Select current button.
-            const buttons = modal.getRoot()[0].querySelectorAll('.c4l-buttons-filters button');
+            const buttons = modal.getRoot()[0]
+                .querySelectorAll('.c4l-buttons-filters button');
             buttons.forEach(node => node.classList.remove('c4l-button-filter-enabled'));
-            const button = modal.getRoot()[0].querySelector('.c4l-button-filter[data-filter="' + currentContext + '"]');
+            const button = modal.getRoot()[0]
+                .querySelector('.c4l-button-filter[data-filter="' + currentContext + '"]');
             button.classList.add('c4l-button-filter-enabled');
 
             // Show/hide component buttons.
             showContextButtons(modal, currentContext);
         }
+    }
+};
+
+/**
+ * Handle a click within filter button.
+ *
+ * @param {MouseEvent} event The change event
+ * @param {obj} modal
+ */
+const handleButtonFilterClick = (event, modal) => {
+    const button = event.target.closest('button');
+
+    const currentContext = button.dataset.filter;
+    // Filter button.
+    if (Contexts.indexOf(currentContext) !== -1) {
+        // Select current button.
+        const buttons = modal.getRoot()[0].querySelectorAll('.c4l-buttons-filters button');
+        buttons.forEach(node => node.classList.remove('c4l-button-filter-enabled'));
+        button.classList.add('c4l-button-filter-enabled');
+
+        // Select current option in select.
+        const select = modal.getRoot()[0].querySelector('.c4l-select-filter');
+        select.selectedIndex = Contexts.indexOf(currentContext);
+
+        // Show/hide component buttons.
+        showContextButtons(modal, currentContext);
     }
 };
 
@@ -120,91 +178,128 @@ const handleModalChange = (event, modal) => {
  */
 const handleModalHidden = (editor) => {
     editor.targetElm.closest('body').classList.remove('c4l-modal-no-preview');
+    // SAVE VARIANT STATES.
 };
 
 /**
- * Handle a click within the Modal.
+ * Handle a click in a component button.
  *
  * @param {MouseEvent} event The click event
  * @param {obj} editor
  * @param {obj} modal
  */
-const handleModalClick = (event, editor, modal) => {
-    const button = event.target.closest('button');
+const handleButtonClick = (event, editor, modal) => {
+    const selectedButton = event.target.closest('button').dataset.id;
 
-    if (button) {
-        const selectedButton = button.dataset.id;
+    // Component button.
+    if (Components?.[selectedButton]) {
+        const sel = editor.selection.getContent();
+        let componentCode = Components[selectedButton].code;
+        const placeholder = (sel.length > 0 ? sel : Components[selectedButton].text);
 
-        // Component button.
-        if (Components?.[selectedButton]) {
-            const sel = editor.selection.getContent();
-            let componentCode = Components[selectedButton].code;
-            const placeholder = (sel.length > 0 ? sel : Components[selectedButton].text);
+        // Create a new node to replace the placeholder.
+        const timestamp = new Date().getTime();
+        const randomId = Math.round(Math.random() * 100000) + '-' + timestamp;
+        const newNode = document.createElement('span');
+        newNode.dataset.id = randomId;
+        newNode.innerHTML = placeholder;
+        componentCode = componentCode.replace('{{PLACEHOLDER}}', newNode.outerHTML);
 
-            // Create a new node to replace the placeholder.
-            const timestamp = new Date().getTime();
-            const randomId = Math.round(Math.random() * 100000) + '-' + timestamp;
-            const newNode = document.createElement('span');
-            newNode.dataset.id = randomId;
-            newNode.innerHTML = placeholder;
-            componentCode = componentCode.replace('{{PLACEHOLDER}}', newNode.outerHTML);
+        // RETURN VARIANTS ACTIVE FOR THIS BUTTON.
+        // APPLY VARIANTS TO HTML COMPONENT.
 
-            // Sets new content.
-            editor.selection.setContent(componentCode);
+        // Sets new content.
+        editor.selection.setContent(componentCode);
 
-            // Select text.
-            const nodeSel = editor.dom.select('span[data-id="' + randomId + '"]');
-            if (nodeSel?.[0]) {
-                editor.selection.select(nodeSel[0]);
-            }
-
-            modal.destroy();
-            editor.focus();
-        } else {
-            const currentContext = button.dataset.filter;
-            // Filter button.
-            if (Contexts.indexOf(currentContext) !== -1) {
-                // Select current button.
-                const buttons = modal.getRoot()[0].querySelectorAll('.c4l-buttons-filters button');
-                buttons.forEach(node => node.classList.remove('c4l-button-filter-enabled'));
-                button.classList.add('c4l-button-filter-enabled');
-
-                // Select current option in select.
-                const select = modal.getRoot()[0].querySelector('.c4l-select-filter');
-                select.selectedIndex = Contexts.indexOf(currentContext);
-
-                // Show/hide component buttons.
-                showContextButtons(modal, currentContext);
-            }
+        // Select text.
+        const nodeSel = editor.dom.select('span[data-id="' + randomId + '"]');
+        if (nodeSel?.[0]) {
+            editor.selection.select(nodeSel[0]);
         }
+
+        modal.destroy();
+        editor.focus();
     }
 };
 
 /**
- * Handle a mouse event within the Modal.
+ * Handle a mouse events mouseenter/mouseleave in a component button.
  *
  * @param {MouseEvent} event The click event
  * @param {obj} modal
  * @param {bool} show
  */
-const handleModalMouseEvent = (event, modal, show) => {
-    const isPreview = event.target.classList.contains('c4lt-dialog-button');
-    const button = event.target.closest('button');
+const handleButtonMouseEvent = (event, modal, show) => {
+    const selectedButton = event.target.closest('button').dataset.id;
+    const node = modal.getRoot()[0].querySelector('div[data-id="code-preview-' + selectedButton + '"]');
+    const previewDefault = modal.getRoot()[0].querySelector('div[data-id="code-preview-default"]');
 
-    if (isPreview && button) {
-        const selectedButton = button.dataset.id;
-        const node = modal.getRoot()[0].querySelector('div[data-id="code-preview-' + selectedButton + '"]');
-        const previewDefault = modal.getRoot()[0].querySelector('div[data-id="code-preview-default"]');
-
-        if (node) {
-            if (show) {
-                previewDefault.classList.toggle('c4l-hidden');
-                node.classList.toggle('c4l-hidden');
-            } else {
-                node.classList.toggle('c4l-hidden');
-                previewDefault.classList.toggle('c4l-hidden');
-            }
+    if (node) {
+        if (show) {
+            previewDefault.classList.toggle('c4l-hidden');
+            node.classList.toggle('c4l-hidden');
+        } else {
+            node.classList.toggle('c4l-hidden');
+            previewDefault.classList.toggle('c4l-hidden');
         }
+    }
+};
+
+/**
+ * Handle a mouse events mouseenter/mouseleave in a variant button.
+ *
+ * @param {MouseEvent} event The mouseenter/mouseleave event
+ * @param {obj} modal
+ * @param {bool} show
+ */
+const handleVariantMouseEvent = (event, modal, show) => {
+    const variant = event.target.closest('span');
+    const selectedVariant = 'c4l-' + variant.dataset.variant + '-variant';
+    const variantEnabled = variant.dataset.state == 'on';
+    const button = event.target.closest('button');
+    const selectedButton = button.dataset.id;
+    const componentClass = button.dataset.classcomponent;
+    const previewComponent = modal.getRoot()[0]
+        .querySelector('div[data-id="code-preview-' + selectedButton + '"] .' + componentClass);
+
+    if (previewComponent && !variantEnabled) {
+        if (show) {
+            previewComponent.classList.add(selectedVariant);
+        } else {
+            previewComponent.classList.remove(selectedVariant);
+        }
+    }
+};
+
+
+/**
+ * Handle a mouse event within the variant buttons.
+ *
+ * @param {MouseEvent} event The mouseenter/mouseleave event
+ * @param {obj} modal
+ */
+const handleVariantClick = (event, modal) => {
+    event.stopPropagation();
+    const variant = event.target.closest('span');
+    const selectedVariant = 'c4l-' + variant.dataset.variant + '-variant';
+    const button = event.target.closest('button');
+    const selectedButton = button.dataset.id;
+    const componentClass = button.dataset.classcomponent;
+    const previewComponent = modal.getRoot()[0]
+        .querySelector('div[data-id="code-preview-' + selectedButton + '"] .' + componentClass);
+
+    if (variant.dataset.state == 'on') {
+        variant.dataset.state = 'off';
+        variant.classList.remove(variant.dataset.variant + '-variant-on');
+        variant.classList.add(variant.dataset.variant + '-variant-off');
+        variant.classList.remove('on');
+        previewComponent.classList.remove(selectedVariant);
+    } else {
+        variant.dataset.state = 'on';
+        variant.classList.remove(variant.dataset.variant + '-variant-off');
+        variant.classList.add(variant.dataset.variant + '-variant-on');
+        variant.classList.add('on');
+        previewComponent.classList.add(selectedVariant);
     }
 };
 
@@ -249,7 +344,7 @@ const getFilters = async() => {
  * Get the C4L buttons for the dialogue.
  *
  * @param {Editor} editor
- * @returns {object} data
+ * @returns {object} buttons
  */
 const getButtons = async(editor) => {
     const buttons = [];
@@ -277,7 +372,9 @@ const getButtons = async(editor) => {
                 name: strings.get(component.name),
                 type: component.type,
                 imageClass: component.imageClass,
+                classComponent: component.imageClass.replace('-icon', ''),
                 htmlcode: componentCode,
+                variants: getVariantsState(component.variants, strings),
             });
 
             // Add class to hide button.
@@ -288,6 +385,33 @@ const getButtons = async(editor) => {
     });
 
     return buttons;
+};
+
+/**
+ * Get variants for the dialogue.
+ * @param  {object} elements
+ * @param  {object} strings
+ * @return {object} Variants for a component
+ */
+const getVariantsState = (elements, strings) => {
+    const variants = [];
+
+    // Max 3 variants.
+    if (elements.length > 3) {
+        elements = elements.slice(0, 2);
+    }
+
+    elements.map((variant, index) => {
+         variants.push({
+            id: index,
+            name: variant,
+            state: 'off',
+            imageClass: variant + '-variant-' + 'off',
+            title: strings.get(variant),
+        });
+    });
+
+    return variants;
 };
 
 /**
@@ -311,7 +435,14 @@ const showContextButtons = (modal, context) => {
 const getAllStrings = async() => {
     const keys = [];
 
-    Components.map(element => keys.push(element.name));
+    Components.map(element => {
+        keys.push(element.name);
+        element.variants.map(variant => {
+            if (keys.indexOf(variant) === -1) {
+                keys.push(variant);
+            }
+        });
+    });
 
     const stringValues = await getStrings(keys.map((key) => ({key, component})));
     return new Map(keys.map((key, index) => ([key, stringValues[index]])));

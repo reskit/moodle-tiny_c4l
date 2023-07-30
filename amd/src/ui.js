@@ -32,6 +32,14 @@ import {
     showPreview
 } from './options';
 import ModalEvents from 'core/modal_events';
+import {
+    addVariant,
+    getVariants,
+    loadVariantPreferences,
+    removeVariant,
+    saveVariantPreferences,
+    variantExists
+} from './variants';
 
 let userStudent = false;
 let previewC4L = true;
@@ -46,7 +54,7 @@ export const handleAction = (editor) => {
     userStudent = isStudent(editor);
     previewC4L = showPreview(editor);
     allowedComponents = getallowedComponents(editor);
-    displayDialogue(editor);
+    loadVariantPreferences().then(displayDialogue(editor));
 };
 
 /**
@@ -178,7 +186,7 @@ const handleButtonFilterClick = (event, modal) => {
  */
 const handleModalHidden = (editor) => {
     editor.targetElm.closest('body').classList.remove('c4l-modal-no-preview');
-    // SAVE VARIANT STATES.
+    saveVariantPreferences();
 };
 
 /**
@@ -205,8 +213,15 @@ const handleButtonClick = (event, editor, modal) => {
         newNode.innerHTML = placeholder;
         componentCode = componentCode.replace('{{PLACEHOLDER}}', newNode.outerHTML);
 
-        // RETURN VARIANTS ACTIVE FOR THIS BUTTON.
-        // APPLY VARIANTS TO HTML COMPONENT.
+        // Return active variants for current component.
+        const variants = getVariants(Components[selectedButton].name);
+
+        // Apply variants to html component.
+        if (variants.length > 0) {
+            componentCode = componentCode.replace('{{VARIANTS}}', variants.join(' '));
+        } else {
+            componentCode = componentCode.replace('{{VARIANTS}}', '');
+        }
 
         // Sets new content.
         editor.selection.setContent(componentCode);
@@ -254,20 +269,11 @@ const handleButtonMouseEvent = (event, modal, show) => {
  */
 const handleVariantMouseEvent = (event, modal, show) => {
     const variant = event.target.closest('span');
-    const selectedVariant = 'c4l-' + variant.dataset.variant + '-variant';
     const variantEnabled = variant.dataset.state == 'on';
     const button = event.target.closest('button');
-    const selectedButton = button.dataset.id;
-    const componentClass = button.dataset.classcomponent;
-    const previewComponent = modal.getRoot()[0]
-        .querySelector('div[data-id="code-preview-' + selectedButton + '"] .' + componentClass);
 
-    if (previewComponent && !variantEnabled) {
-        if (show) {
-            previewComponent.classList.add(selectedVariant);
-        } else {
-            previewComponent.classList.remove(selectedVariant);
-        }
+    if (!variantEnabled) {
+        updateVariantComponentState(variant, button, modal, show, false);
     }
 };
 
@@ -281,26 +287,8 @@ const handleVariantMouseEvent = (event, modal, show) => {
 const handleVariantClick = (event, modal) => {
     event.stopPropagation();
     const variant = event.target.closest('span');
-    const selectedVariant = 'c4l-' + variant.dataset.variant + '-variant';
     const button = event.target.closest('button');
-    const selectedButton = button.dataset.id;
-    const componentClass = button.dataset.classcomponent;
-    const previewComponent = modal.getRoot()[0]
-        .querySelector('div[data-id="code-preview-' + selectedButton + '"] .' + componentClass);
-
-    if (variant.dataset.state == 'on') {
-        variant.dataset.state = 'off';
-        variant.classList.remove(variant.dataset.variant + '-variant-on');
-        variant.classList.add(variant.dataset.variant + '-variant-off');
-        variant.classList.remove('on');
-        previewComponent.classList.remove(selectedVariant);
-    } else {
-        variant.dataset.state = 'on';
-        variant.classList.remove(variant.dataset.variant + '-variant-off');
-        variant.classList.add(variant.dataset.variant + '-variant-on');
-        variant.classList.add('on');
-        previewComponent.classList.add(selectedVariant);
-    }
+    updateVariantComponentState(variant, button, modal, false, true);
 };
 
 /**
@@ -352,6 +340,7 @@ const getButtons = async(editor) => {
     const sel = editor.selection.getContent();
     let componentCode = '';
     let placeholder = '';
+    let variants = [];
 
     // Iterate over components.
     Components.map((component, index) => {
@@ -360,6 +349,15 @@ const getButtons = async(editor) => {
                 placeholder = (sel.length > 0 ? sel : component.text);
                 componentCode = component.code;
                 componentCode = componentCode.replace('{{PLACEHOLDER}}', placeholder);
+                // Return active variants for component.
+                variants = getVariants(component.name);
+
+                // Apply class variants to html component.
+                if (variants.length > 0) {
+                    componentCode = componentCode.replace('{{VARIANTS}}', variants.join(' '));
+                } else {
+                    componentCode = componentCode.replace('{{VARIANTS}}', '');
+                }
             }
 
             // Save contexts.
@@ -374,7 +372,7 @@ const getButtons = async(editor) => {
                 imageClass: component.imageClass,
                 classComponent: component.imageClass.replace('-icon', ''),
                 htmlcode: componentCode,
-                variants: getVariantsState(component.variants, strings),
+                variants: getVariantsState(component.name, component.variants, strings),
             });
 
             // Add class to hide button.
@@ -389,12 +387,15 @@ const getButtons = async(editor) => {
 
 /**
  * Get variants for the dialogue.
+ * @param  {string} component
  * @param  {object} elements
  * @param  {object} strings
  * @return {object} Variants for a component
  */
-const getVariantsState = (elements, strings) => {
+const getVariantsState = (component, elements, strings) => {
     const variants = [];
+    let variantState = '';
+    let variantClass = '';
 
     // Max 3 variants.
     if (elements.length > 3) {
@@ -402,16 +403,67 @@ const getVariantsState = (elements, strings) => {
     }
 
     elements.map((variant, index) => {
-         variants.push({
+        if (variantExists(component, variant)) {
+            variantState = 'on';
+            variantClass = 'on ';
+        } else {
+            variantState = 'off';
+            variantClass = '';
+        }
+        variantClass += variant + '-variant-' + variantState;
+        variants.push({
             id: index,
             name: variant,
-            state: 'off',
-            imageClass: variant + '-variant-' + 'off',
+            state: variantState,
+            imageClass: variantClass,
             title: strings.get(variant),
         });
     });
 
     return variants;
+};
+
+/**
+ * Update a variant component UI.
+ *
+ * @param {obj} variant
+ * @param {obj} button
+ * @param {obj} modal
+ * @param {bool} show
+ * @param {bool} updateHtml
+ */
+const updateVariantComponentState = (variant, button, modal, show, updateHtml) => {
+    const selectedVariant = 'c4l-' + variant.dataset.variant + '-variant';
+    const selectedButton = button.dataset.id;
+    const componentClass = button.dataset.classcomponent;
+    const previewComponent = modal.getRoot()[0]
+        .querySelector('div[data-id="code-preview-' + selectedButton + '"] .' + componentClass);
+
+    if (previewComponent) {
+        if (updateHtml) {
+            if (variant.dataset.state == 'on') {
+                removeVariant(Components[selectedButton].name, variant.dataset.variant);
+                variant.dataset.state = 'off';
+                variant.classList.remove(variant.dataset.variant + '-variant-on');
+                variant.classList.add(variant.dataset.variant + '-variant-off');
+                variant.classList.remove('on');
+                previewComponent.classList.remove(selectedVariant);
+            } else {
+                addVariant(Components[selectedButton].name, variant.dataset.variant);
+                variant.dataset.state = 'on';
+                variant.classList.remove(variant.dataset.variant + '-variant-off');
+                variant.classList.add(variant.dataset.variant + '-variant-on');
+                variant.classList.add('on');
+                previewComponent.classList.add(selectedVariant);
+            }
+        } else {
+            if (show) {
+                previewComponent.classList.add(selectedVariant);
+            } else {
+                previewComponent.classList.remove(selectedVariant);
+            }
+        }
+    }
 };
 
 /**

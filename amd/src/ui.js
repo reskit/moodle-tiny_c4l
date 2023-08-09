@@ -34,12 +34,14 @@ import {
 import ModalEvents from 'core/modal_events';
 import {
     addVariant,
-    getVariants,
+    getVariantsClass,
+    getVariantHtml,
+    getVariantsHtml,
     loadVariantPreferences,
     removeVariant,
     saveVariantPreferences,
     variantExists
-} from './variants';
+} from './variantslib';
 
 let userStudent = false;
 let previewC4L = true;
@@ -48,6 +50,7 @@ let Contexts = [];
 
 /**
  * Handle action
+ *
  * @param {TinyMCE} editor
  */
 export const handleAction = (editor) => {
@@ -59,6 +62,7 @@ export const handleAction = (editor) => {
 
 /**
  * Display modal
+ *
  * @param  {TinyMCE} editor
  */
 const displayDialogue = async(editor) => {
@@ -214,13 +218,15 @@ const handleButtonClick = (event, editor, modal) => {
         componentCode = componentCode.replace('{{PLACEHOLDER}}', newNode.outerHTML);
 
         // Return active variants for current component.
-        const variants = getVariants(Components[selectedButton].name);
+        const variants = getVariantsClass(Components[selectedButton].name);
 
         // Apply variants to html component.
         if (variants.length > 0) {
             componentCode = componentCode.replace('{{VARIANTS}}', variants.join(' '));
+            componentCode = componentCode.replace('{{VARIANTSHTML}}', getVariantsHtml(Components[selectedButton].name));
         } else {
             componentCode = componentCode.replace('{{VARIANTS}}', '');
+            componentCode = componentCode.replace('{{VARIANTSHTML}}', '');
         }
 
         // Sets new content.
@@ -350,13 +356,18 @@ const getButtons = async(editor) => {
                 componentCode = component.code;
                 componentCode = componentCode.replace('{{PLACEHOLDER}}', placeholder);
                 // Return active variants for component.
-                variants = getVariants(component.name);
+                variants = getVariantsClass(component.name);
 
-                // Apply class variants to html component.
+                // Apply class variants and html to html component.
+                const variantsNode = document.createElement('span');
+                variantsNode.dataset.id = 'variantHTML-' + component.id;
                 if (variants.length > 0) {
                     componentCode = componentCode.replace('{{VARIANTS}}', variants.join(' '));
+                    variantsNode.innerHTML = getVariantsHtml(component.name);
+                    componentCode = componentCode.replace('{{VARIANTSHTML}}', variantsNode.outerHTML);
                 } else {
                     componentCode = componentCode.replace('{{VARIANTS}}', '');
+                    componentCode = componentCode.replace('{{VARIANTSHTML}}', variantsNode.outerHTML);
                 }
             }
 
@@ -387,6 +398,7 @@ const getButtons = async(editor) => {
 
 /**
  * Get variants for the dialogue.
+ *
  * @param  {string} component
  * @param  {object} elements
  * @param  {object} strings
@@ -438,6 +450,9 @@ const updateVariantComponentState = (variant, button, modal, show, updateHtml) =
     const componentClass = button.dataset.classcomponent;
     const previewComponent = modal.getRoot()[0]
         .querySelector('div[data-id="code-preview-' + selectedButton + '"] .' + componentClass);
+    const variantPreview = modal.getRoot()[0]
+        .querySelector('span[data-id="variantHTML-' + selectedButton + '"]');
+    let variantsHtml = '';
 
     if (previewComponent) {
         if (updateHtml) {
@@ -456,11 +471,23 @@ const updateVariantComponentState = (variant, button, modal, show, updateHtml) =
                 variant.classList.add('on');
                 previewComponent.classList.add(selectedVariant);
             }
+
+            // Update variant preview HTML.
+            if (variantPreview) {
+                variantPreview.innerHTML = getVariantsHtml(Components[selectedButton].name);
+            }
         } else {
+            variantsHtml = getVariantsHtml(Components[selectedButton].name);
             if (show) {
                 previewComponent.classList.add(selectedVariant);
+                variantsHtml += getVariantHtml(variant.dataset.variant);
             } else {
                 previewComponent.classList.remove(selectedVariant);
+            }
+
+            // Update variant preview HTML.
+            if (variantPreview) {
+                variantPreview.innerHTML = variantsHtml;
             }
         }
     }
@@ -468,6 +495,7 @@ const updateVariantComponentState = (variant, button, modal, show, updateHtml) =
 
 /**
  * Show/hide buttons depend on selected context.
+ *
  * @param  {object} modal
  * @param  {String} context
  */

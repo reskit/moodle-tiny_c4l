@@ -18,7 +18,7 @@
  * Tiny C4L library functions.
  *
  * @package   tiny_c4l
- * @copyright 2023 Marc Català
+ * @copyright 2023 Marc Català <reskit@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

@@ -67,8 +67,25 @@
             <div class="c4l-buttons-preview {{^preview}}c4l-no-preview{{/preview}}">
                 <div id="c4l-buttons-grid" class="c4l-buttons-grid">
                     {{#buttons}}
-                        <button class="c4lt-dialog-button {{imageClass}}" data-id="{{id}}" data-type="{{type}}">
-                            {{{name}}}
+                        <button
+                            class="c4lt-dialog-button {{imageClass}}"
+                            data-id="{{id}}"
+                            data-type="{{type}}"
+                            data-classcomponent="{{classComponent}}"
+                        >
+                            <span class="c4l-button-text">{{{name}}}</span>
+                            <span class="c4l-button-variants">
+                            {{#variants}}
+                                <span
+                                    class="c4l-button-variant {{imageClass}}"
+                                    data-variant="{{name}}"
+                                    data-state="{{state}}"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="{{title}}"
+                                ></span>
+                            {{/variants}}
+                            </span>
                         </button>
                     {{/buttons}}
                 </div>
@@ -87,3 +104,8 @@
         </div>
     {{/body}}
 {{/ core/modal }}
+{{#js}}
+    require(['jquery'], function($) {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+{{/js}}

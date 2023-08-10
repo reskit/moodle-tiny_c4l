@@ -27,212 +27,237 @@ const components = [
         name: "keyconcept",
         type: "contextual",
         imageClass: "c4l-keyconcept-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-keyconcept {{VARIANTS}}\">" +
+        code:
+            '<p class="c4l-spacer"></p><div class="c4lv-keyconcept {{VARIANTS}}">' +
             "{{PLACEHOLDER}}</div><p><br></p>",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
-        variants: ['full-width']
+        variants: ["full-width"],
     },
     {
         id: "1",
         name: "tip",
         type: "contextual",
         imageClass: "c4l-tip-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-tip {{VARIANTS}}\">" +
+        code:
+            '<p class="c4l-spacer"></p><div class="c4lv-tip {{VARIANTS}}">' +
             "{{PLACEHOLDER}}</div><p><br></p>",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
-        variants: ['full-width']
+        variants: ["full-width"],
     },
     {
         id: "2",
         name: "reminder",
         type: "contextual",
         imageClass: "c4l-reminder-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-reminder {{VARIANTS}}\">" +
+        code:
+            '<p class="c4l-spacer"></p><div class="c4lv-reminder {{VARIANTS}}">' +
             "{{PLACEHOLDER}}</div><p><br></p>",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
-        variants: ['full-width']
+        variants: ["full-width"],
     },
     {
         id: "3",
         name: "quote",
         type: "contextual",
         imageClass: "c4l-quote-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-quote {{VARIANTS}}\">" +
-            "<div class=\"c4l-quote-body\"><div class=\"c4l-quote-line\"></div><div class=\"c4l-quote-text\">" +
+        code:
+            '<p class="c4l-spacer"></p><div class="c4lv-quote {{VARIANTS}}">' +
+            '<div class="c4l-quote-body"><div class="c4l-quote-line"></div><div class="c4l-quote-text">' +
             "<p>{{PLACEHOLDER}}</p>" +
-            "</div></div><div class=\"c4l-quote-caption\"><span>Marcus Tullius Cicero</span>" +
+            '</div></div><div class="c4l-quote-caption"><span>Marcus Tullius Cicero</span>' +
             "De Finibus Bonorum et Malorum</div></div><p><br></p>",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
+        text:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus.",
-        variants: ['full-width', 'quote']
+        variants: ["full-width", "quote"],
     },
     {
         id: "4",
         name: "dodontcards",
         type: "contextual",
         imageClass: "c4l-dodontcards-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-dodontcards {{VARIANTS}}\">" +
-            "<div class=\"c4l-dodontcards-do\">{{PLACEHOLDER}}</div>" +
-            "<div class=\"c4l-dodontcards-dont\">Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
+        code:
+            '<p class="c4l-spacer"></p><div class="c4lv-dodontcards {{VARIANTS}}">' +
+            '<div class="c4l-dodontcards-do">{{PLACEHOLDER}}</div>' +
+            '<div class="c4l-dodontcards-dont">Lorem ipsum dolor sit amet, consectetur adipiscing elit.' +
             " Phasellus a posuere nibh, eu mollis lacus. " +
             "Praesent dictum in velit sed dapibus. Orci varius natoque penatibus et magnis dis parturient montes," +
             " nascetur ridiculus mus.</div></div><p><br></p>",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
+        text:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus." +
             "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-        variants: ['full-width', 'dont-card-only']
+        variants: ["full-width", "dont-card-only"],
     },
     {
         id: "5",
         name: "readingcontext",
         type: "contextual",
         imageClass: "c4l-readingcontext-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-readingcontext {{VARIANTS}}\">" +
+        code:
+            '<p class="c4l-spacer"></p><div class="c4lv-readingcontext {{VARIANTS}}">' +
             "<p>{{PLACEHOLDER}}</p>" +
-            "<div class=\"c4l-readingcontext-caption\"><span>Marcus Tullius Cicero</span>" +
+            '<div class="c4l-readingcontext-caption"><span>Marcus Tullius Cicero</span>' +
             "De Finibus Bonorum et Malorum</div></div><p><br></p>",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus leo, hendrerit ac sem vitae," +
+        text:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus leo, hendrerit ac sem vitae," +
             " posuere egestas nisi. Lorem ipsum dolor sit amet. " +
             "Phasellus leo, hendrerit ac sem vitae, posuere egestas nisi.",
-        variants: ['full-width', 'comfort-reading']
+        variants: ["full-width", "comfort-reading"],
     },
     {
         id: "6",
         name: "example",
         type: "contextual",
         imageClass: "c4l-example-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-example {{VARIANTS}}\">" +
+        code:
+            '<p class="c4l-spacer"></p><div class="c4lv-example {{VARIANTS}}">' +
             "<h1>Lorem ipsum dolor sit amet</h1>" +
             "<p>{{PLACEHOLDER}}</p></div><p><br></p>",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
+        text:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
             " Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus. Orci varius natoque penatibus et magnis dis parturient montes," +
             " nascetur ridiculus mus.",
-        variants: ['full-width', 'quote', 'caption']
+        variants: ["full-width", "quote", "caption"],
     },
     {
         id: "7",
         name: "figure",
         type: "contextual",
         imageClass: "c4l-figure-icon",
-        code: "<p class=\"c4l-spacer\"></p><figure class=\"c4l-figure {{VARIANTS}}\">" +
-            "<img src=\"https://source.unsplash.com/random/800x600\" alt=\"Lorem ipsum dolor sit amet\">" +
-            "<figcaption><em class=\"c4l-figure-footer\">{{PLACEHOLDER}}</em><span class=\"c4l-figure-caption\">" +
+        code:
+            '<p class="c4l-spacer"></p><figure class="c4lv-figure {{VARIANTS}}">' +
+            '<img src="https://source.unsplash.com/random/800x600" alt="Lorem ipsum dolor sit amet">' +
+            '<figcaption><em class="c4l-figure-footer">{{PLACEHOLDER}}</em><span class="c4l-figure-caption">' +
             "<strong>Font: </strong>Phasellus a posuere nibh.</span>" +
             "</figcaption></figure><p><br></p>",
         text: "Consectetur adipiscing elit.",
-        variants: ['full-width', 'quote', 'caption']
+        variants: ["full-width", "quote", "caption"],
     },
     {
         id: "8",
         name: "tag",
         type: "contextual",
         imageClass: "c4l-tag-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-display-left\">" +
-            "<div class=\"c4l-tag {{VARIANTS}}\">{{PLACEHOLDER}}</div></div>",
+        code:
+            '<p class="c4l-spacer"></p><div class="c4l-display-left">' +
+            '<div class="c4lv-tag {{VARIANTS}}">{{PLACEHOLDER}}</div></div>',
         text: "Lorem ipsum",
-        variants: ['align-left', 'align-center', 'align-right']
+        variants: ["align-left", "align-center", "align-right"],
     },
     {
         id: "9",
         name: "inlinetag",
         type: "contextual",
         imageClass: "c4l-inlinetag-icon",
-        code: "<span class=\"c4l-inlinetag {{VARIANTS}}\">{{PLACEHOLDER}}</span>",
+        code: '<span class="c4lv-inlinetag {{VARIANTS}}">{{PLACEHOLDER}}</span>',
         text: "Text",
-        variants: ['align-left', 'align-center', 'align-right']
+        variants: ["align-left", "align-center", "align-right"],
     },
     {
         id: "10",
         name: "attention",
         type: "procedural",
         imageClass: "c4l-attention-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-attention {{VARIANTS}}\">" +
+        code:
+            '<p class="c4l-spacer"></p><div class="c4lv-attention {{VARIANTS}}">' +
             "{{PLACEHOLDER}}</div><p><br></p>",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
-        variants: ['full-width']
+        variants: ["full-width"],
     },
     {
         id: "11",
         name: "estimatedtime",
         type: "procedural",
         imageClass: "c4l-estimatedtime-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-inline-group\"><div class=\"c4l-estimatedtime {{VARIANTS}}\">" +
+        code:
+            '<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-estimatedtime {{VARIANTS}}">' +
             "{{PLACEHOLDER}} <span>min</span></div></div>",
         text: "15",
-        variants: ['align-left', 'align-center', 'align-right']
+        variants: ["align-left", "align-center", "align-right"],
     },
     {
         id: "12",
         name: "duedate",
         type: "procedural",
         imageClass: "c4l-duedate-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-inline-group\"><div class=\"c4l-duedate {{VARIANTS}}\">" +
+        code:
+            '<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-duedate {{VARIANTS}}">' +
             "{{PLACEHOLDER}}</div></div>",
         text: "November 17th",
-        variants: ['align-left', 'align-center', 'align-right']
+        variants: ["align-left", "align-center", "align-right"],
     },
     {
         id: "13",
         name: "proceduralcontext",
         type: "procedural",
         imageClass: "c4l-proceduralcontext-icon",
-        code: "<p class=\"c4l-spacer\"></p><p class=\"c4l-proceduralcontext {{VARIANTS}}\">" +
+        code:
+            '<p class="c4l-spacer"></p><p class="c4lv-proceduralcontext {{VARIANTS}}">' +
             "{{PLACEHOLDER}}</p><p><br></p>",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
+        text:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus." +
             " Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla quis lorem aliquet," +
             " fermentum dolor ac, venenatis turpis.",
-        variants: ['full-width']
+        variants: ["full-width"],
     },
     {
         id: "14",
         name: "learningoutcomes",
         type: "procedural",
         imageClass: "c4l-learningoutcomes-icon",
-        code: "<p class=\"c4l-spacer\"></p>" +
-            "<div class=\"c4l-learningoutcomes {{VARIANTS}}\"><h6 class=\"c4l-learningoutcomes-title\">Learning Outcomes</h6>" +
-            "<ul class=\"c4l-learningoutcomes-list\"><li>{{PLACEHOLDER}}</li><li>Curabitur non nulla sit amet " +
+        code:
+            '<p class="c4l-spacer"></p>' +
+            '<div class="c4lv-learningoutcomes {{VARIANTS}}"><h6 class="c4l-learningoutcomes-title">Learning Outcomes</h6>' +
+            '<ul class="c4l-learningoutcomes-list"><li>{{PLACEHOLDER}}</li><li>Curabitur non nulla sit amet ' +
             "nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</li>" +
             "<li>Nulla porttitor accumsan tincidunt. " +
             "Curabitur aliquet quam id dui posuere blandit. Curabitur non nulla sit amet nisl tempus convallis " +
-            "quis ac lectus.</li></ul></div>",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta, neque id feugiat consectetur, " +
+            "quis ac lectus.</li></ul></div><p><br></p>",
+        text:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta, neque id feugiat consectetur, " +
             "enim ipsum tincidunt nunc, id suscipit mauris urna sit amet lectus.",
-        variants: ['full-width', 'ordered-list']
+        variants: ["full-width", "ordered-list"],
     },
     {
         id: "15",
         name: "gradingvalue",
         type: "evaluative",
         imageClass: "c4l-gradingvalue-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-inline-group\"><div class=\"c4l-gradingvalue {{VARIANTS}}\">" +
+        code:
+            '<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-gradingvalue {{VARIANTS}}">' +
             "<span>Grading value: </span>{{PLACEHOLDER}}</div></div>",
         text: "33.3%",
-        variants: ['align-left', 'align-center', 'align-right']
+        variants: ["align-left", "align-center", "align-right"],
     },
     {
         id: "16",
         name: "expectedfeedback",
         type: "evaluative",
         imageClass: "c4l-expectedfeedback-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-expectedfeedback {{VARIANTS}}\">" +
+        code:
+            '<p class="c4l-spacer"></p><div class="c4lv-expectedfeedback {{VARIANTS}}">' +
             "<p>{{PLACEHOLDER}}</p></div><p><br></p>",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
+        text:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus.",
-        variants: ['full-width']
+        variants: ["full-width"],
     },
     {
         id: "17",
         name: "allpurposecard",
         type: "helper",
         imageClass: "c4l-allpurposecard-icon",
-        code: "<p class=\"c4l-spacer\"></p><div class=\"c4l-allpurposecard {{VARIANTS}}\">" +
+        code:
+            '<p class="c4l-spacer"></p><div class="c4lv-allpurposecard {{VARIANTS}}">' +
             "<p>{{PLACEHOLDER}}</p></div><p><br></p>",
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
+        text:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus." +
             " Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-        variants: ['full-width']
+        variants: ["full-width"],
     },
 ];
 

@@ -381,7 +381,7 @@ const getButtons = async(editor) => {
                 name: strings.get(component.name),
                 type: component.type,
                 imageClass: component.imageClass,
-                classComponent: component.imageClass.replace('-icon', ''),
+                classComponent: 'c4lv-' + component.name,
                 htmlcode: componentCode,
                 variants: getVariantsState(component.name, component.variants, strings),
             });
@@ -458,17 +458,11 @@ const updateVariantComponentState = (variant, button, modal, show, updateHtml) =
         if (updateHtml) {
             if (variant.dataset.state == 'on') {
                 removeVariant(Components[selectedButton].name, variant.dataset.variant);
-                variant.dataset.state = 'off';
-                variant.classList.remove(variant.dataset.variant + '-variant-on');
-                variant.classList.add(variant.dataset.variant + '-variant-off');
-                variant.classList.remove('on');
+                updateVariantButtonState(variant, false);
                 previewComponent.classList.remove(selectedVariant);
             } else {
                 addVariant(Components[selectedButton].name, variant.dataset.variant);
-                variant.dataset.state = 'on';
-                variant.classList.remove(variant.dataset.variant + '-variant-off');
-                variant.classList.add(variant.dataset.variant + '-variant-on');
-                variant.classList.add('on');
+                updateVariantButtonState(variant, true);
                 previewComponent.classList.add(selectedVariant);
             }
 
@@ -490,6 +484,35 @@ const updateVariantComponentState = (variant, button, modal, show, updateHtml) =
                 variantPreview.innerHTML = variantsHtml;
             }
         }
+    } else {
+        // Update variants preferences.
+        if (variant.dataset.state == 'on') {
+            removeVariant(Components[selectedButton].name, variant.dataset.variant);
+            updateVariantButtonState(variant, false);
+        } else {
+            addVariant(Components[selectedButton].name, variant.dataset.variant);
+            updateVariantButtonState(variant, true);
+        }
+    }
+};
+
+/**
+ * Update a variant button UI.
+ *
+ * @param {obj} variant
+ * @param {bool} activate
+ */
+const updateVariantButtonState = (variant, activate) => {
+    if (activate) {
+        variant.dataset.state = 'on';
+        variant.classList.remove(variant.dataset.variant + '-variant-off');
+        variant.classList.add(variant.dataset.variant + '-variant-on');
+        variant.classList.add('on');
+    } else {
+        variant.dataset.state = 'off';
+        variant.classList.remove(variant.dataset.variant + '-variant-on');
+        variant.classList.add(variant.dataset.variant + '-variant-off');
+        variant.classList.remove('on');
     }
 };
 

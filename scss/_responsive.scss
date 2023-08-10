@@ -1,7 +1,6 @@
 /* Media queries */
 
 @media only screen and (min-width: 576px) {
-
     .c4l-select-filters {
         display: none;
     }
@@ -13,118 +12,165 @@
         margin: 16px 0 37px;
     }
 
-    .c4l-spacer + .c4l-keyconcept,
-    .c4l-spacer + .c4l-tip,
-    .c4l-spacer + .c4l-reminder,
-    .c4l-spacer + .c4l-attention,
-    .c4l-spacer + .c4l-expectedfeedback,
-    .c4l-spacer + .c4l-learningoutcomes {
-        margin: 24px auto 8px auto;
+    .c4l-spacer {
+        + .c4l-keyconcept,
+        + .c4lv-keyconcept,
+        + .c4l-tip,
+        + .c4lv-tip,
+        + .c4l-reminder,
+        + .c4lv-reminder,
+        + .c4l-attention,
+        + .c4lv-attention,
+        + .c4l-expectedfeedback,
+        + .c4lv-expectedfeedback,
+        + .c4l-learningoutcomes,
+        + .c4lv-learningoutcomes {
+            margin: 24px auto 8px auto;
+        }
+
+        + .c4l-quote,
+        + .c4lv-quote {
+            margin: 12px auto 0 auto;
+        }
+
+        + .c4l-dodontcards .c4l-dodontcards-do,
+        + .c4lv-dodontcards .c4l-dodontcards-do {
+            margin-top: 0;
+        }
+
+        + .c4l-dodontcards .c4l-dodontcards-dont,
+        + .c4lv-dodontcards .c4l-dodontcards-dont {
+            margin-bottom: 0;
+        }
+
+        + .c4l-example,
+        + .c4lv-example {
+            margin: 12px auto 6px auto;
+            padding: 36px 48px;
+        }
     }
 
-    .c4l-quote {
+    .c4l-quote,
+    .c4lv-quote {
         margin: 36px auto;
         max-width: 90%;
     }
 
-    .c4l-spacer + .c4l-quote {
-        margin: 12px auto 0 auto;
+    .c4l-quote,
+    .c4lv-quote {
+        .c4l-quote-caption {
+            margin-top: 24px;
+        }
     }
 
-    .c4l-quote-caption {
-        margin-top: 24px;
+    .c4l-dodontcards,
+    .c4lv-dodontcards {
+        .c4l-dodontcards-do,
+        .c4l-dodontcards-dont {
+            max-width: 90%;
+            margin: 24px auto;
+        }
     }
 
-    .c4l-dodontcards-do,
-    .c4l-dodontcards-dont {
-        max-width: 90%;
-        margin: 24px auto;
-    }
-
-    .c4l-spacer + .c4l-dodontcards .c4l-dodontcards-do {
-        margin-top: 0;
-    }
-
-    .c4l-spacer + .c4l-dodontcards .c4l-dodontcards-dont {
-        margin-bottom: 0;
-    }
-
-    .c4l-readingcontext {
+    .c4l-readingcontext,
+    .c4lv-readingcontext {
         max-width: 88%;
     }
 
-    .c4l-example {
+    .c4l-example,
+    .c4lv-example {
         max-width: 88%;
         padding: 36px 48px;
     }
 
-    .c4l-spacer + .c4l-example {
-        margin: 12px auto 6px auto;
-        padding: 36px 48px;
-    }
-
-    .c4l-expectedfeedback {
+    .c4l-expectedfeedback,
+    .c4lv-expectedfeedback {
         max-width: 88%;
         margin: 48px auto;
     }
 
-    .c4l-allpurposecard {
+    .c4l-allpurposecard,
+    .c4lv-allpurposecard {
         margin: 36px auto;
         max-width: 90%;
     }
 }
 
 @media only screen and (min-width: 768px) {
-
     .c4l-keyconcept,
+    .c4lv-keyconcept,
     .c4l-tip,
+    .c4lv-tip,
     .c4l-reminder,
+    .c4lv-reminder,
     .c4l-attention,
+    .c4lv-attention,
     .c4l-dodontcards-do,
+    .c4lv-dodontcards-do,
     .c4l-dodontcards-dont,
+    .c4lv-dodontcards-dont,
     .c4l-readingcontext,
+    .c4lv-readingcontext,
     .c4l-expectedfeedback,
+    .c4lv-expectedfeedback,
     .c4l-allpurposecard,
-    .c4l-learningoutcomes {
+    .c4lv-allpurposecard,
+    .c4l-learningoutcomes,
+    .c4lv-learningoutcomes {
         max-width: 75%;
     }
 
     .c4l-keyconcept.c4l-full-width-variant,
+    .c4lv-keyconcept.c4l-full-width-variant,
     .c4l-tip.c4l-full-width-variant,
+    .c4lv-tip.c4l-full-width-variant,
     .c4l-reminder.c4l-full-width-variant,
+    .c4lv-reminder.c4l-full-width-variant,
     .c4l-attention.c4l-full-width-variant,
+    .c4lv-attention.c4l-full-width-variant,
     .c4l-dodontcards.c4l-full-width-variant .c4l-dodontcards-do,
+    .c4lv-dodontcards.c4l-full-width-variant .c4l-dodontcards-do,
     .c4l-dodontcards.c4l-full-width-variant .c4l-dodontcards-dont,
+    .c4lv-dodontcards.c4l-full-width-variant .c4l-dodontcards-dont,
     .c4l-readingcontext.c4l-full-width-variant,
+    .c4lv-readingcontext.c4l-full-width-variant,
     .c4l-expectedfeedback.c4l-full-width-variant,
+    .c4lv-expectedfeedback.c4l-full-width-variant,
     .c4l-allpurposecard.c4l-full-width-variant,
+    .c4lv-allpurposecard.c4l-full-width-variant,
     .c4l-learningoutcomes.c4l-full-width-variant,
+    .c4lv-learningoutcomes.c4l-full-width-variant,
     .c4l-quote.c4l-full-width-variant,
-    .c4l-example.c4l-full-width-variant {
+    .c4lv-quote.c4l-full-width-variant,
+    .c4l-example.c4l-full-width-variant,
+    .c4lv-example.c4l-full-width-variant {
         max-width: 100%;
     }
 
-    .c4l-quote {
+    .c4l-quote,
+    .c4lv-quote {
         margin: 48px auto;
         max-width: 75%;
     }
 
-    .c4l-spacer + .c4l-quote {
+    .c4l-spacer + .c4l-quote,
+    .c4l-spacer + .c4lv-quote {
         margin: 24px auto 14px auto;
     }
 
-    .c4l-example {
+    .c4l-example,
+    .c4lv-example {
         margin: 48px auto;
         max-width: 75%;
     }
 
-    .c4l-spacer + .c4l-example {
+    .c4l-spacer + .c4l-example,
+    .c4l-spacer + .c4lv-example {
         margin: 24px auto 12px auto;
     }
 }
 
 @media only screen and (min-width: 992px) {
-
     .c4l-modal-no-preview.modal-open .modal-dialog {
         max-width: 500px;
     }
@@ -214,7 +260,6 @@
     .c4lt-dialog-button:active .c4l-button-variants .c4l-button-variant {
         border-bottom: 1px solid #ecf3ff;
     }
-
 
     .c4lt-dialog-button .c4l-button-variants .c4l-button-variant:first-child,
     .c4lt-dialog-button .c4l-button-variants .c4l-button-variant:nth-child(2) {

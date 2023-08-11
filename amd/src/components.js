@@ -143,7 +143,7 @@ const components = [
       '<p class="c4l-spacer"></p><div class="c4l-display-left">' +
       '<div class="c4lv-tag {{VARIANTS}}">{{PLACEHOLDER}}</div></div>',
     text: "Lorem ipsum",
-    variants: ["align-left"],
+    variants: ["align-right"],
   },
   {
     id: "9",

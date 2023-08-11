@@ -448,6 +448,10 @@
   letter-spacing: 0.2px;
 }
 
+.c4lv-tag.c4l-align-right-variant {
+  margin-left: auto;
+}
+
 /* Estimated Time */
 .c4l-estimatedtime,
 .c4lv-estimatedtime {
@@ -476,6 +480,11 @@
   left: 12px;
 }
 
+.c4lv-estimatedtime.c4l-align-left-variant {
+  margin-right: auto;
+  margin-left: 0;
+}
+
 /* Due date */
 .c4l-duedate,
 .c4lv-duedate {
@@ -497,6 +506,11 @@
   content: url([[pix:tiny_c4l|noun_project_icons/c4l_duedate]]);
   position: absolute;
   left: 12px;
+}
+
+.c4lv-duedate.c4l-align-left-variant {
+  margin-right: auto;
+  margin-left: 0;
 }
 
 /* Procedural Context */
@@ -537,6 +551,11 @@
   position: absolute;
   left: 12px;
   top: 6px;
+}
+
+.c4lv-gradingvalue.c4l-align-left-variant {
+  margin-right: auto;
+  margin-left: 0;
 }
 
 /* Expected Feedback */
@@ -685,6 +704,20 @@
 .c4l-learningoutcomes .c4l-learningoutcomes-list li::marker,
 .c4lv-learningoutcomes .c4l-learningoutcomes-list li::marker {
   color: transparent;
+}
+
+.c4lv-learningoutcomes.c4l-ordered-list-variant .c4l-learningoutcomes-list {
+  counter-reset: section;
+}
+.c4lv-learningoutcomes.c4l-ordered-list-variant .c4l-learningoutcomes-list li::before {
+  background-image: none;
+  position: absolute;
+  left: -32px;
+  top: 0;
+  counter-increment: section;
+  content: counter(section) ". ";
+  font-weight: 700;
+  color: #497ae9;
 }
 
 /* Media queries */

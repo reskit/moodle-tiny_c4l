@@ -74,6 +74,21 @@
     margin-top: 0;
 }
 
+.c4l-embedded-caption {
+    font-size: 13px;
+    margin-top: 12px;
+    text-align: right;
+
+    span {
+      text-transform: uppercase;
+      font-size: 14px;
+    }
+
+    span::after {
+      content: ", ";
+    }
+}
+
 /* Key concept */
 
 .c4l-keyconcept,
@@ -233,7 +248,9 @@
     .c4l-quote-text p:last-of-type {
         margin-bottom: 0;
     }
+}
 
+.c4l-quote {
     .c4l-quote-caption {
         font-size: 13px;
         margin-top: 12px;
@@ -319,19 +336,22 @@
 .c4lv-readingcontext {
     min-width: 200px;
     max-width: 75%;
-    padding: 30px 40px 19px 40px;
     background-color: #fff;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
     box-sizing: border-box;
     margin: 36px auto;
-    font-family: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman,
-        Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji,
-        Segoe UI Emoji, Segoe UI Symbol;
 
     p {
         font-size: 16px;
         line-height: 23px;
     }
+}
+
+.c4l-readingcontext {
+    padding: 30px 40px 19px 40px;
+    font-family: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman,
+    Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, serif;
 
     .c4l-readingcontext-caption {
         font-size: 16px;
@@ -350,6 +370,27 @@
     .c4l-readingcontext-caption span::after {
         content: ", ";
     }
+}
+
+.c4lv-readingcontext {
+  padding: 30px 40px 32px 40px;
+  font-family: sans-serif;
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .c4l-embedded-caption {
+    margin-top: 1rem;
+    font-size: 16px;
+    font-style: italic;
+  }
+
+  &.c4l-comfort-reading-variant {
+    font-family: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman,
+      Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji,
+      Segoe UI Emoji, Segoe UI Symbol, serif;
+  }
 }
 
 /* Example */
@@ -415,6 +456,14 @@
     figcaption span strong {
         font-weight: 700;
     }
+}
+
+.c4l-figure {
+    max-width: 100%;
+}
+
+.c4lv-figure {
+    max-width: 75%;
 }
 
 /* Tag */

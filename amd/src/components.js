@@ -64,8 +64,9 @@ const components = [
             '<p class="c4l-spacer"></p><div class="c4lv-quote {{VARIANTS}}">' +
             '<div class="c4l-quote-body"><div class="c4l-quote-line"></div><div class="c4l-quote-text">' +
             "<p>{{PLACEHOLDER}}</p>" +
-            '</div></div><div class="c4l-quote-caption"><span>Marcus Tullius Cicero</span>' +
-            "De Finibus Bonorum et Malorum</div></div><p><br></p>",
+            "</div></div>" +
+            "{{VARIANTSHTML}}" +
+            "<p><br></p>",
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus.",
@@ -87,7 +88,7 @@ const components = [
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus." +
             "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-        variants: ["full-width", "dont-card-only"],
+        variants: ["full-width"],
     },
     {
         id: "5",
@@ -97,13 +98,13 @@ const components = [
         code:
             '<p class="c4l-spacer"></p><div class="c4lv-readingcontext {{VARIANTS}}">' +
             "<p>{{PLACEHOLDER}}</p>" +
-            '<div class="c4l-readingcontext-caption"><span>Marcus Tullius Cicero</span>' +
-            "De Finibus Bonorum et Malorum</div></div><p><br></p>",
+            "{{VARIANTSHTML}}</div>" +
+            "<p><br></p>",
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus leo, hendrerit ac sem vitae," +
             " posuere egestas nisi. Lorem ipsum dolor sit amet. " +
             "Phasellus leo, hendrerit ac sem vitae, posuere egestas nisi.",
-        variants: ["full-width", "comfort-reading"],
+        variants: ["full-width", "quote", "comfort-reading"],
     },
     {
         id: "6",
@@ -119,7 +120,7 @@ const components = [
             " Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus. Orci varius natoque penatibus et magnis dis parturient montes," +
             " nascetur ridiculus mus.",
-        variants: ["full-width", "quote", "caption"],
+        variants: ["full-width"],
     },
     {
         id: "7",
@@ -129,11 +130,9 @@ const components = [
         code:
             '<p class="c4l-spacer"></p><figure class="c4lv-figure {{VARIANTS}}">' +
             '<img src="https://source.unsplash.com/random/800x600" alt="Lorem ipsum dolor sit amet">' +
-            '<figcaption><em class="c4l-figure-footer">{{PLACEHOLDER}}</em><span class="c4l-figure-caption">' +
-            "<strong>Font: </strong>Phasellus a posuere nibh.</span>" +
-            "</figcaption></figure><p><br></p>",
+            "{{VARIANTSHTML}}</figure><p><br></p>",
         text: "Consectetur adipiscing elit.",
-        variants: ["full-width", "quote", "caption"],
+        variants: ["full-width", "caption"],
     },
     {
         id: "8",
@@ -144,7 +143,7 @@ const components = [
             '<p class="c4l-spacer"></p><div class="c4l-display-left">' +
             '<div class="c4lv-tag {{VARIANTS}}">{{PLACEHOLDER}}</div></div>',
         text: "Lorem ipsum",
-        variants: ["align-left", "align-center", "align-right"],
+        variants: ["align-left"],
     },
     {
         id: "9",
@@ -153,7 +152,7 @@ const components = [
         imageClass: "c4l-inlinetag-icon",
         code: '<span class="c4lv-inlinetag {{VARIANTS}}">{{PLACEHOLDER}}</span>',
         text: "Text",
-        variants: ["align-left", "align-center", "align-right"],
+        variants: [],
     },
     {
         id: "10",
@@ -175,7 +174,7 @@ const components = [
             '<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-estimatedtime {{VARIANTS}}">' +
             "{{PLACEHOLDER}} <span>min</span></div></div>",
         text: "15",
-        variants: ["align-left", "align-center", "align-right"],
+        variants: ["align-left"],
     },
     {
         id: "12",
@@ -186,7 +185,7 @@ const components = [
             '<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-duedate {{VARIANTS}}">' +
             "{{PLACEHOLDER}}</div></div>",
         text: "November 17th",
-        variants: ["align-left", "align-center", "align-right"],
+        variants: ["align-left"],
     },
     {
         id: "13",
@@ -230,7 +229,7 @@ const components = [
             '<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-gradingvalue {{VARIANTS}}">' +
             "<span>Grading value: </span>{{PLACEHOLDER}}</div></div>",
         text: "33.3%",
-        variants: ["align-left", "align-center", "align-right"],
+        variants: ["align-left"],
     },
     {
         id: "16",

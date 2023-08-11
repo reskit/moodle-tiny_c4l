@@ -66,7 +66,7 @@ const components = [
             "<p>{{PLACEHOLDER}}</p>" +
             "</div></div>" +
             "{{VARIANTSHTML}}" +
-            "<p><br></p>",
+            "</div><p><br></p>",
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus.",
@@ -143,7 +143,7 @@ const components = [
             '<p class="c4l-spacer"></p><div class="c4l-display-left">' +
             '<div class="c4lv-tag {{VARIANTS}}">{{PLACEHOLDER}}</div></div>',
         text: "Lorem ipsum",
-        variants: ["align-left"],
+        variants: ["align-right"],
     },
     {
         id: "9",

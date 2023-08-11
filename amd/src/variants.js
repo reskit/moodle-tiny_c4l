@@ -22,53 +22,57 @@
  */
 
 const variants = [
-    {
-        id: 0,
-        name: "align-center",
-        html: ""
-    },
-    {
-        id: 1,
-        name: "align-left",
-        html: ""
-    },
-    {
-        id: 2,
-        name: "align-right",
-        html: ""
-    },
-    {
-        id: 3,
-        name: "caption",
-        html: ""
-    },
-    {
-        id: 4,
-        name: "comfort-reading",
-        html: ""
-    },
-    {
-        id: 5,
-        name: "dont-card-only",
-        html: ""
-    },
-    {
-        id: 6,
-        name: "full-width",
-        html: ""
-    },
-    {
-        id: 7,
-        name: "ordered-list",
-        html: ""
-    },
-    {
-        id: 8,
-        name: "quote",
-        html: ""
-    },
+  {
+    id: 0,
+    name: "align-center",
+    html: "",
+  },
+  {
+    id: 1,
+    name: "align-left",
+    html: "",
+  },
+  {
+    id: 2,
+    name: "align-right",
+    html: "",
+  },
+  {
+    id: 3,
+    name: "caption",
+    html:
+      '<figcaption><em class="c4l-figure-footer">Consectetur adipiscing elit.</em><span class="c4l-figure-caption">' +
+      "<strong>Source: </strong>Phasellus a posuere nibh.</span></figcaption>",
+  },
+  {
+    id: 4,
+    name: "comfort-reading",
+    html: "",
+  },
+  {
+    id: 5,
+    name: "dont-card-only",
+    html: "",
+  },
+  {
+    id: 6,
+    name: "full-width",
+    html: "",
+  },
+  {
+    id: 7,
+    name: "ordered-list",
+    html: "",
+  },
+  {
+    id: 8,
+    name: "quote",
+    html:
+      '<div class="c4l-embedded-caption"><span>Marcus Tullius Cicero,</span>' +
+      " De Finibus Bonorum et Malorum</div></div>",
+  },
 ];
 
 export default {
-    variants,
+  variants,
 };

@@ -50,14 +50,17 @@
     }
   }
 
+  .c4l-embedded-caption {
+    margin-top: 24px;
+  }
+
   .c4l-quote,
   .c4lv-quote {
     margin: 36px auto;
     max-width: 90%;
   }
 
-  .c4l-quote,
-  .c4lv-quote {
+  .c4l-quote {
     .c4l-quote-caption {
       margin-top: 24px;
     }

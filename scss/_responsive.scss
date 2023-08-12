@@ -179,12 +179,12 @@
     }
 
     .c4l-buttons-preview {
-        max-height: 310px;
+        max-height: 314px;
     }
 
     .c4l-buttons-preview.c4l-no-preview {
         justify-content: center;
-        max-height: 320px;
+        max-height: 324px;
     }
 
     .c4l-buttons-preview.c4l-no-preview .c4l-buttons-grid {
@@ -203,7 +203,8 @@
         grid-template-rows: repeat(auto-fill, 100px);
         grid-gap: 4px;
         justify-content: flex-start;
-        width: 375px;
+        width: 377px;
+        padding: 3px 0 3px 3px;
     }
 
     .c4lt-dialog-button {
@@ -225,10 +226,6 @@
         border-right: none;
     }
 
-    .c4l-buttons-preview.c4l-no-preview .c4lt-dialog-button {
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-    }
-
     .c4lt-dialog-button .c4l-button-text {
         padding: 55px 8px 15px 8px;
         font-size: 12px;
@@ -245,9 +242,9 @@
         align-content: flex-start;
         justify-content: start;
         width: 36px;
-        height: 92px;
+        height: 99px;
         background-color: #ecf3ff;
-        margin: 3px 3px 3px 0;
+        margin: 0;
     }
 
     .c4lt-dialog-button .c4l-button-variants .c4l-button-variant {
@@ -255,8 +252,13 @@
         justify-content: center;
         align-items: center;
         color: #1679f9;
-        height: 30px;
+        height: 33px;
         width: 36px;
+    }
+
+    .c4lt-dialog-button:hover,
+    .c4lt-dialog-button:active {
+        box-shadow: 0 0 0 3px rgba(22, 121, 249, 0.3);
     }
 
     .c4lt-dialog-button:hover .c4l-button-variants .c4l-button-variant,
@@ -279,7 +281,7 @@
         display: flex;
         flex-direction: column;
         height: 300px;
-        width: 345px;
+        width: 343px;
         align-items: center;
         justify-content: center;
     }

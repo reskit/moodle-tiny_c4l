@@ -238,7 +238,7 @@
 
     .c4lt-dialog-button .c4l-button-variants {
         grid-auto-flow: row;
-        grid-gap: 1px;
+        grid-gap: 0;
         align-content: flex-start;
         justify-content: start;
         width: 36px;
@@ -261,11 +261,6 @@
         box-shadow: 0 0 0 3px rgba(22, 121, 249, 0.3);
     }
 
-    .c4lt-dialog-button:hover .c4l-button-variants .c4l-button-variant,
-    .c4lt-dialog-button:active .c4l-button-variants .c4l-button-variant {
-        border-bottom: 1px solid #ecf3ff;
-    }
-
     .c4lt-dialog-button .c4l-button-variants .c4l-button-variant:first-child,
     .c4lt-dialog-button .c4l-button-variants .c4l-button-variant:nth-child(2) {
         border-bottom: 1px solid #fff;
@@ -273,7 +268,6 @@
 
     .c4lt-dialog-button:hover .c4l-button-variants .c4l-button-variant {
         box-shadow: none;
-        border-bottom: 1px solid #ecf3ff;
     }
 
     .c4l-code-preview {

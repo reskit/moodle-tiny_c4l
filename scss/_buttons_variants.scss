@@ -1,11 +1,5 @@
 /* BUTTON VARIANTS */
 
-.c4lt-dialog-button:hover .c4l-button-variants .c4l-button-variant,
-.c4lt-dialog-button:active .c4l-button-variants .c4l-button-variant {
-    background: #fff;
-    box-shadow: 0 0 3px rgba(22, 121, 249, 0.3);
-}
-
 .c4lt-dialog-button .c4l-button-variants {
     display: grid;
     grid-auto-flow: column;

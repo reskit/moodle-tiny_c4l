@@ -323,7 +323,7 @@ const getFilters = async() => {
     const stringValues = await getStrings(Contexts.map((key) => ({key, component})));
 
     // Iterate over contexts.
-    Contexts.map((context, index) => {
+    Contexts.forEach((context, index) => {
         filters.push({
             name: stringValues[index],
             type: context,
@@ -349,7 +349,7 @@ const getButtons = async(editor) => {
     let variants = [];
 
     // Iterate over components.
-    Components.map((component, index) => {
+    Components.forEach((component, index) => {
         if (!userStudent || (userStudent && allowedComponents.includes(component.name))) {
             if (previewC4L) {
                 placeholder = (sel.length > 0 ? sel : component.text);
@@ -414,7 +414,7 @@ const getVariantsState = (component, elements, strings) => {
         elements = elements.slice(0, 2);
     }
 
-    elements.map((variant, index) => {
+    elements.forEach((variant, index) => {
         if (variantExists(component, variant)) {
             variantState = 'on';
             variantClass = 'on ';
@@ -538,9 +538,9 @@ const showContextButtons = (modal, context) => {
 const getAllStrings = async() => {
     const keys = [];
 
-    Components.map(element => {
+    Components.forEach(element => {
         keys.push(element.name);
-        element.variants.map(variant => {
+        element.variants.forEach(variant => {
             if (keys.indexOf(variant) === -1) {
                 keys.push(variant);
             }

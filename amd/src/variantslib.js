@@ -50,7 +50,7 @@ export const loadVariantPreferences = async() => {
             let variantObj = {};
             try {
                 rawPreferences = JSON.parse(result.preferences[0].value);
-            } catch(e) {
+            } catch (e) {
                 Notification.exception(e);
             }
 
@@ -59,7 +59,7 @@ export const loadVariantPreferences = async() => {
                     comp = COMPONENTS.find(component => component.id == preference);
                     if (comp != undefined) {
                         variantPreferences[comp.name] = [];
-                        rawPreferences[preference].map((variant) => {
+                        rawPreferences[preference].forEach((variant) => {
                             variantObj = VARIANTS.find(element => element.id == variant);
                             if (variantObj != undefined) {
                                 variantPreferences[comp.name].push(variantObj.name);
@@ -84,7 +84,7 @@ export const saveVariantPreferences = () => {
         comp = COMPONENTS.find(component => component.name == preference);
         if (comp != undefined) {
             rawPreferences[comp.id] = [];
-            variantPreferences[preference].map((variant) => {
+            variantPreferences[preference].forEach((variant) => {
                 variantObj = VARIANTS.find(element => element.name == variant);
                 if (variantObj != undefined) {
                     rawPreferences[comp.id].push(variantObj.id);
@@ -130,7 +130,7 @@ export const getVariantsClass = (component) => {
     let variants = [];
 
     if (variantPreferences?.[component]) {
-        variantPreferences[component].map(variant => {
+        variantPreferences[component].forEach(variant => {
             variants.push('c4l-' + variant + '-variant');
         });
     }
@@ -148,7 +148,7 @@ export const getVariantsHtml = (component) => {
     let variantObj = {};
 
     if (variantPreferences?.[component]) {
-        variantPreferences[component].map(variant => {
+        variantPreferences[component].forEach(variant => {
             variantObj = VARIANTS.find(element => element.name == variant);
             if (variantObj != undefined) {
                 variantsHtml += variantObj.html;

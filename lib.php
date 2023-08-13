@@ -24,6 +24,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Return a list of all the user preferences used by tiny_c4l.
+ *
+ * @return array
+ */
 function tiny_c4l_user_preferences() {
     $preferences = [];
 

@@ -129,7 +129,7 @@ const components = [
         imageClass: "c4l-figure-icon",
         code:
             '<p class="c4l-spacer"></p><figure class="c4lv-figure {{VARIANTS}}">' +
-            '<img src="https://source.unsplash.com/random/800x600" alt="Lorem ipsum dolor sit amet">' +
+            '<img src="" alt="Lorem ipsum dolor sit amet">' +
             "{{VARIANTSHTML}}</figure><p><br></p>",
         text: "Consectetur adipiscing elit.",
         variants: ["full-width", "caption"],

@@ -429,11 +429,14 @@
 .c4l-figure,
 .c4lv-figure {
     min-width: 200px;
-    max-width: 100%;
     margin: 48px auto;
 
     img {
         width: 100%;
+        &:not([src]),
+        &[src=""] {
+            content: url([[pix:tiny_c4l|c4l_figure_placeholder]]);
+        }
     }
 
     figcaption {

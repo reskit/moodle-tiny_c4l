@@ -23,7 +23,8 @@
 
 .c4l-readingcontext.c4l-full-width-variant,
 .c4l-example.c4l-full-width-variant,
-.c4l-expectedfeedback.c4l-full-width-variant {
+.c4l-expectedfeedback.c4l-full-width-variant,
+.c4l-hiddenanswer.c4l-full-width-variant .hiddenanswer-content {
     /* 100% - 6% due to the shadow */
     max-width: 94%;
 }
@@ -54,7 +55,8 @@
 
 .c4lv-readingcontext.c4l-full-width-variant,
 .c4lv-example.c4l-full-width-variant,
-.c4lv-expectedfeedback.c4l-full-width-variant {
+.c4lv-expectedfeedback.c4l-full-width-variant,
+.c4lv-hiddenanswer.c4l-full-width-variant .hiddenanswer-content {
     /* 100% - 6% due to the shadow */
     max-width: 94%;
 }

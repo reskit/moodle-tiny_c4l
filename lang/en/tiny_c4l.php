@@ -69,3 +69,4 @@ $string['readingcontext'] = 'Reading context';
 $string['reminder'] = 'Reminder';
 $string['tag'] = 'Tag';
 $string['tip'] = 'Tip';
+$string['hiddenanswer'] = 'Hidden answer';

@@ -246,6 +246,22 @@ const components = [
     },
     {
         id: "17",
+        name: "hiddenanswer",
+        type: "evaluative",
+        imageClass: "c4l-hiddenanswer-icon",
+        code:
+            '<p class="c4l-spacer"></p><div class="c4lv-hiddenanswer {{VARIANTS}}">' +
+            '<button class="btn btn-secondary show-hiddenanswer" type="button" data-toggle="collapse"' +
+            'data-target="#hiddenAnswer" aria-expanded="false" aria-controls="hiddenAnswer"> Show answer' +
+            '</button><div id="hiddenAnswer" class="collapse">' +
+            '<div class="card card-body hiddenanswer-content">{{PLACEHOLDER}}</div></div>',
+        text:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
+            " Praesent dictum in velit sed dapibus.",
+        variants: ["full-width"],
+    },
+    {
+        id: "18",
         name: "allpurposecard",
         type: "helper",
         imageClass: "c4l-allpurposecard-icon",

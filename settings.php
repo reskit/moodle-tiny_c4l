@@ -48,7 +48,8 @@ if ($hassiteconfig) {
             'tag' => get_string('tag', 'tiny_c4l'),
             'inlinetag' => get_string('inlinetag', 'tiny_c4l'),
             'attention' => get_string('attention', 'tiny_c4l'),
-            'allpurposecard' => get_string('allpurposecard', 'tiny_c4l')
+            'allpurposecard' => get_string('allpurposecard', 'tiny_c4l'),
+            'hiddenanswer' => get_string('hiddenanswer', 'tiny_c4l')
         ];
         $name = get_string('aimedatstudents', 'tiny_c4l');
         $desc = get_string('aimedatstudents_desc', 'tiny_c4l');

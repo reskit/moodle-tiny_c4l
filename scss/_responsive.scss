@@ -76,7 +76,8 @@
     }
 
     .c4l-readingcontext,
-    .c4lv-readingcontext {
+    .c4lv-readingcontext,
+    .c4lv-hiddenanswer .hiddenanswer-content {
         max-width: 88%;
     }
 
@@ -119,7 +120,8 @@
     .c4l-allpurposecard,
     .c4lv-allpurposecard,
     .c4l-learningoutcomes,
-    .c4lv-learningoutcomes {
+    .c4lv-learningoutcomes,
+    .c4lv-hiddenanswer .hiddenanswer-content {
         max-width: 75%;
     }
 
@@ -146,7 +148,8 @@
     .c4l-quote.c4l-full-width-variant,
     .c4lv-quote.c4l-full-width-variant,
     .c4l-example.c4l-full-width-variant,
-    .c4lv-example.c4l-full-width-variant {
+    .c4lv-example.c4l-full-width-variant,
+    .c4lv-hiddenanswer.c4l-full-width-variant .hiddenanswer-content {
         max-width: 100%;
     }
 

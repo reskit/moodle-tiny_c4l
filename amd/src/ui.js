@@ -59,7 +59,7 @@ export const handleAction = async(editor) => {
     previewC4L = showPreview(editor);
     langStrings = await getAllStrings();
     allowedComponents = getallowedComponents(editor);
-    loadVariantPreferences().then(displayDialogue(editor));
+    loadVariantPreferences().then(() => displayDialogue(editor));
 };
 
 /**

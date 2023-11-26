@@ -47,15 +47,17 @@ let userStudent = false;
 let previewC4L = true;
 let allowedComponents = [];
 let Contexts = [];
+let langStrings = {};
 
 /**
  * Handle action
  *
  * @param {TinyMCE} editor
  */
-export const handleAction = (editor) => {
+export const handleAction = async(editor) => {
     userStudent = isStudent(editor);
     previewC4L = showPreview(editor);
+    langStrings = await getAllStrings();
     allowedComponents = getallowedComponents(editor);
     loadVariantPreferences().then(displayDialogue(editor));
 };
@@ -229,6 +231,9 @@ const handleButtonClick = (event, editor, modal) => {
             componentCode = componentCode.replace('{{VARIANTSHTML}}', '');
         }
 
+        // Apply lang strings.
+        componentCode = applyLangStrings(componentCode);
+
         // Sets new content.
         editor.selection.setContent(componentCode);
 
@@ -340,9 +345,8 @@ const getFilters = async() => {
  * @param {Editor} editor
  * @returns {object} buttons
  */
-const getButtons = async(editor) => {
+const getButtons = (editor) => {
     const buttons = [];
-    const strings = await getAllStrings();
     const sel = editor.selection.getContent();
     let componentCode = '';
     let placeholder = '';
@@ -369,6 +373,9 @@ const getButtons = async(editor) => {
                     componentCode = componentCode.replace('{{VARIANTS}}', '');
                     componentCode = componentCode.replace('{{VARIANTSHTML}}', variantsNode.outerHTML);
                 }
+
+                // Apply lang strings.
+                componentCode = applyLangStrings(componentCode);
             }
 
             // Save contexts.
@@ -378,12 +385,12 @@ const getButtons = async(editor) => {
 
             buttons.push({
                 id: index,
-                name: strings.get(component.name),
+                name: langStrings.get(component.name),
                 type: component.type,
                 imageClass: component.imageClass,
                 classComponent: 'c4lv-' + component.name,
                 htmlcode: componentCode,
-                variants: getVariantsState(component.name, component.variants, strings),
+                variants: getVariantsState(component.name, component.variants),
             });
 
             // Add class to hide button.
@@ -401,10 +408,9 @@ const getButtons = async(editor) => {
  *
  * @param  {string} component
  * @param  {object} elements
- * @param  {object} strings
  * @return {object} Variants for a component
  */
-const getVariantsState = (component, elements, strings) => {
+const getVariantsState = (component, elements) => {
     const variants = [];
     let variantState = '';
     let variantClass = '';
@@ -428,7 +434,7 @@ const getVariantsState = (component, elements, strings) => {
             name: variant,
             state: variantState,
             imageClass: variantClass,
-            title: strings.get(variant),
+            title: langStrings.get(variant),
         });
     });
 
@@ -531,18 +537,41 @@ const showContextButtons = (modal, context) => {
 };
 
 /**
+ * Replace all localized strings.
+ *
+ * @param  {String} text
+ * @return {String} String with lang tags replaced with a localized string.
+ */
+const applyLangStrings = (text) => {
+    const compRegex = /{{#([^}]*)}}/g;
+
+    [...text.matchAll(compRegex)].forEach(strLang => {
+        text = text.replace('{{#' + strLang[1] +'}}', langStrings.get(strLang[1]));
+    });
+
+    return text;
+};
+
+/**
  * Get language strings.
  *
  * @return {object} Language strings
  */
 const getAllStrings = async() => {
     const keys = [];
+    const compRegex = /{{#([^}]*)}}/g;
 
     Components.forEach(element => {
         keys.push(element.name);
         element.variants.forEach(variant => {
             if (keys.indexOf(variant) === -1) {
                 keys.push(variant);
+            }
+        });
+        // Get lang strings from components.
+        [...element.code.matchAll(compRegex)].forEach(strLang => {
+            if (keys.indexOf(strLang[1]) === -1) {
+                keys.push(strLang[1]);
             }
         });
     });

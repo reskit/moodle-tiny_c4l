@@ -212,8 +212,7 @@ const handleButtonClick = (event, editor, modal) => {
         const placeholder = (sel.length > 0 ? sel : Components[selectedButton].text);
 
         // Create a new node to replace the placeholder.
-        const timestamp = new Date().getTime();
-        const randomId = Math.round(Math.random() * 100000) + '-' + timestamp;
+        const randomId = generateRandomID();
         const newNode = document.createElement('span');
         newNode.dataset.id = randomId;
         newNode.innerHTML = placeholder;
@@ -230,6 +229,9 @@ const handleButtonClick = (event, editor, modal) => {
             componentCode = componentCode.replace('{{VARIANTS}}', '');
             componentCode = componentCode.replace('{{VARIANTSHTML}}', '');
         }
+
+        // Apply random IDs.
+        componentCode = applyRandomID(componentCode);
 
         // Apply lang strings.
         componentCode = applyLangStrings(componentCode);
@@ -548,6 +550,30 @@ const applyLangStrings = (text) => {
     [...text.matchAll(compRegex)].forEach(strLang => {
         text = text.replace('{{#' + strLang[1] +'}}', langStrings.get(strLang[1]));
     });
+
+    return text;
+};
+
+/**
+ * Generates a random string.
+ * @return {string} A random string
+ */
+const generateRandomID = () => {
+    const timestamp = new Date().getTime();
+    return 'R' + Math.round(Math.random() * 100000) + '-' + timestamp;
+};
+
+/**
+ * Replace all ID tags with a random string.
+ * @param  {String} text
+ * @return {String} String with all ID tags replaced with a random string.
+ */
+const applyRandomID = (text) => {
+    const compRegex = /{{@ID}}/g;
+
+    if (text.match(compRegex)) {
+        text = text.replace(compRegex, generateRandomID());
+    }
 
     return text;
 };

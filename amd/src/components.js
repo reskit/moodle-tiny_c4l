@@ -28,7 +28,7 @@ const components = [
         type: "contextual",
         imageClass: "c4l-keyconcept-icon",
         code:
-            '<p class="c4l-spacer"></p><div class="c4lv-keyconcept {{VARIANTS}}">' +
+            '<p class="c4l-spacer"></p><div class="c4lv-keyconcept {{VARIANTS}}" aria-label="{{#keyconcept}}">' +
             "{{PLACEHOLDER}}</div><p><br></p>",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
         variants: ["full-width"],
@@ -39,8 +39,8 @@ const components = [
         type: "contextual",
         imageClass: "c4l-tip-icon",
         code:
-            '<p class="c4l-spacer"></p><div class="c4lv-tip {{VARIANTS}}">' +
-            "{{PLACEHOLDER}}</div><p><br></p>",
+            `<p class="c4l-spacer"></p><div class="c4lv-tip {{VARIANTS}}" aria-label="{{#tip}}">
+            {{PLACEHOLDER}}</div><p><br></p>`,
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
         variants: ["full-width"],
     },
@@ -50,8 +50,9 @@ const components = [
         type: "contextual",
         imageClass: "c4l-reminder-icon",
         code:
-            '<p class="c4l-spacer"></p><div class="c4lv-reminder {{VARIANTS}}">' +
-            "{{PLACEHOLDER}}</div><p><br></p>",
+            `<p class="c4l-spacer"></p><div class="c4lv-reminder {{VARIANTS}}" 
+            aria-label="{{#reminder}}">
+            {{PLACEHOLDER}}</div><p><br></p>`,
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
         variants: ["full-width"],
     },
@@ -61,12 +62,13 @@ const components = [
         type: "contextual",
         imageClass: "c4l-quote-icon",
         code:
-            '<p class="c4l-spacer"></p><div class="c4lv-quote {{VARIANTS}}">' +
-            '<div class="c4l-quote-body"><div class="c4l-quote-line"></div><div class="c4l-quote-text">' +
-            "<p>{{PLACEHOLDER}}</p>" +
-            "</div></div>" +
-            "{{VARIANTSHTML}}" +
-            "</div><p><br></p>",
+            `<p class="c4l-spacer"></p><div class="c4lv-quote {{VARIANTS}}"
+            aria-label="{{#quote}}">
+            <div class="c4l-quote-body"><div class="c4l-quote-line"></div><div class="c4l-quote-text">
+            <p>{{PLACEHOLDER}}</p>
+            </div></div>
+            {{VARIANTSHTML}}
+            </div><p><br></p>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus.",
@@ -78,12 +80,14 @@ const components = [
         type: "contextual",
         imageClass: "c4l-dodontcards-icon",
         code:
-            '<p class="c4l-spacer"></p><div class="c4lv-dodontcards {{VARIANTS}}">' +
-            '<div class="c4l-dodontcards-do">{{PLACEHOLDER}}</div>' +
-            '<div class="c4l-dodontcards-dont">Lorem ipsum dolor sit amet, consectetur adipiscing elit.' +
-            " Phasellus a posuere nibh, eu mollis lacus. " +
-            "Praesent dictum in velit sed dapibus. Orci varius natoque penatibus et magnis dis parturient montes," +
-            " nascetur ridiculus mus.</div></div><p><br></p>",
+            `<p class="c4l-spacer"></p><div class="c4lv-dodontcards {{VARIANTS}}"
+            aria-label="{{#dodontcards}}">
+            <div class="c4l-dodontcards-do" aria-label="{{#do-card}}">{{PLACEHOLDER}}</div>
+            <div class="c4l-dodontcards-dont" aria-label="{{#dont-card}}">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Phasellus a posuere nibh, eu mollis lacus.
+            Praesent dictum in velit sed dapibus. Orci varius natoque penatibus et magnis dis parturient montes,
+            nascetur ridiculus mus.</div></div><p><br></p>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus." +
@@ -96,10 +100,9 @@ const components = [
         type: "contextual",
         imageClass: "c4l-readingcontext-icon",
         code:
-            '<p class="c4l-spacer"></p><div class="c4lv-readingcontext {{VARIANTS}}">' +
-            "<p>{{PLACEHOLDER}}</p>" +
-            "{{VARIANTSHTML}}</div>" +
-            "<p><br></p>",
+            `<p class="c4l-spacer"></p><div class="c4lv-readingcontext {{VARIANTS}}"
+            aria-label="{{#readingcontext}}">
+            <p>{{PLACEHOLDER}}</p>{{VARIANTSHTML}}</div><p><br></p>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus leo, hendrerit ac sem vitae," +
             " posuere egestas nisi. Lorem ipsum dolor sit amet. " +
@@ -112,9 +115,9 @@ const components = [
         type: "contextual",
         imageClass: "c4l-example-icon",
         code:
-            '<p class="c4l-spacer"></p><div class="c4lv-example {{VARIANTS}}">' +
-            "<h1>Lorem ipsum dolor sit amet</h1>" +
-            "<p>{{PLACEHOLDER}}</p></div><p><br></p>",
+            `<p class="c4l-spacer"></p><div class="c4lv-example {{VARIANTS}}"
+            aria-label="{{#example}}"><h1>Lorem ipsum dolor sit amet</h1> 
+            <p>{{PLACEHOLDER}}</p></div><p><br></p>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
             " Phasellus a posuere nibh, eu mollis lacus." +
@@ -128,9 +131,9 @@ const components = [
         type: "contextual",
         imageClass: "c4l-figure-icon",
         code:
-            '<p class="c4l-spacer"></p><figure class="c4lv-figure {{VARIANTS}}">' +
-            '<img src="" alt="Lorem ipsum dolor sit amet">' +
-            "{{VARIANTSHTML}}</figure><p><br></p>",
+            `<p class="c4l-spacer"></p><figure class="c4lv-figure {{VARIANTS}}"
+            aria-label="{{#figure}}"><img src="" alt="Lorem ipsum dolor sit amet">
+            {{VARIANTSHTML}}</figure><p><br></p>`,
         text: "Consectetur adipiscing elit.",
         variants: ["full-width", "caption"],
     },
@@ -140,8 +143,8 @@ const components = [
         type: "contextual",
         imageClass: "c4l-tag-icon",
         code:
-            '<p class="c4l-spacer"></p><div class="c4l-display-left">' +
-            '<div class="c4lv-tag {{VARIANTS}}">{{PLACEHOLDER}}</div></div>',
+            `<p class="c4l-spacer"></p><div class="c4l-display-left" aria-label="{{#tag}}">
+            <div class="c4lv-tag {{VARIANTS}}">{{PLACEHOLDER}}</div></div>`,
         text: "Lorem ipsum",
         variants: ["align-right"],
     },
@@ -150,7 +153,7 @@ const components = [
         name: "inlinetag",
         type: "contextual",
         imageClass: "c4l-inlinetag-icon",
-        code: '<span class="c4lv-inlinetag {{VARIANTS}}">{{PLACEHOLDER}}</span>',
+        code: `<span class="c4lv-inlinetag {{VARIANTS}}" aria-label="{{#inlinetag}}">{{PLACEHOLDER}}</span>`,
         text: "Text",
         variants: [],
     },
@@ -160,8 +163,8 @@ const components = [
         type: "procedural",
         imageClass: "c4l-attention-icon",
         code:
-            '<p class="c4l-spacer"></p><div class="c4lv-attention {{VARIANTS}}">' +
-            "{{PLACEHOLDER}}</div><p><br></p>",
+            `<p class="c4l-spacer"></p><div class="c4lv-attention {{VARIANTS}}" aria-label="{{#attention}}">
+            "{{PLACEHOLDER}}</div><p><br></p>`,
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
         variants: ["full-width"],
     },
@@ -171,8 +174,8 @@ const components = [
         type: "procedural",
         imageClass: "c4l-estimatedtime-icon",
         code:
-            '<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-estimatedtime {{VARIANTS}}">' +
-            "{{PLACEHOLDER}} <span>min</span></div></div>",
+            `<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-estimatedtime {{VARIANTS}}"
+            aria-label="{{#estimatedtime}}">{{PLACEHOLDER}} <span>min</span></div></div>`,
         text: "15",
         variants: ["align-left"],
     },
@@ -182,8 +185,8 @@ const components = [
         type: "procedural",
         imageClass: "c4l-duedate-icon",
         code:
-            '<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-duedate {{VARIANTS}}">' +
-            "{{PLACEHOLDER}}</div></div>",
+            `<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-duedate {{VARIANTS}}"
+            aria-label="{{#duedate}}">{{PLACEHOLDER}}</div></div>`,
         text: "November 17th",
         variants: ["align-left"],
     },
@@ -193,8 +196,9 @@ const components = [
         type: "procedural",
         imageClass: "c4l-proceduralcontext-icon",
         code:
-            '<p class="c4l-spacer"></p><p class="c4lv-proceduralcontext {{VARIANTS}}">' +
-            "{{PLACEHOLDER}}</p><p><br></p>",
+            `<p class="c4l-spacer"></p><p class="c4lv-proceduralcontext {{VARIANTS}}"
+            aria-label="{{#proceduralcontext}}" >
+            {{PLACEHOLDER}}</p><p><br></p>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus." +
@@ -208,13 +212,13 @@ const components = [
         type: "procedural",
         imageClass: "c4l-learningoutcomes-icon",
         code:
-            '<p class="c4l-spacer"></p>' +
-            '<div class="c4lv-learningoutcomes {{VARIANTS}}"><h6 class="c4l-learningoutcomes-title">Learning Outcomes</h6>' +
-            '<ul class="c4l-learningoutcomes-list"><li>{{PLACEHOLDER}}</li><li>Curabitur non nulla sit amet ' +
-            "nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</li>" +
-            "<li>Nulla porttitor accumsan tincidunt. " +
-            "Curabitur aliquet quam id dui posuere blandit. Curabitur non nulla sit amet nisl tempus convallis " +
-            "quis ac lectus.</li></ul></div><p><br></p>",
+            `<p class="c4l-spacer"></p>
+            <div class="c4lv-learningoutcomes {{VARIANTS}}" aria-label="{{#learningoutcomes}}">
+            <h6 class="c4l-learningoutcomes-title">Learning Outcomes</h6>
+            <ul class="c4l-learningoutcomes-list"><li>{{PLACEHOLDER}}</li><li>Curabitur non nulla sit amet
+            nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</li>
+            <li> Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. 
+            Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</li></ul></div><p><br></p>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta, neque id feugiat consectetur, " +
             "enim ipsum tincidunt nunc, id suscipit mauris urna sit amet lectus.",
@@ -226,8 +230,8 @@ const components = [
         type: "evaluative",
         imageClass: "c4l-gradingvalue-icon",
         code:
-            '<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-gradingvalue {{VARIANTS}}">' +
-            "<span>Grading value: </span>{{PLACEHOLDER}}</div></div>",
+            `<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-gradingvalue {{VARIANTS}}" 
+            aria-label="{{#gradingvalue}}"><span>Grading value: </span>{{PLACEHOLDER}}</div></div>`,
         text: "33.3%",
         variants: ["align-left"],
     },
@@ -237,8 +241,9 @@ const components = [
         type: "evaluative",
         imageClass: "c4l-expectedfeedback-icon",
         code:
-            '<p class="c4l-spacer"></p><div class="c4lv-expectedfeedback {{VARIANTS}}">' +
-            "<p>{{PLACEHOLDER}}</p></div><p><br></p>",
+            `<p class="c4l-spacer"></p><div class="c4lv-expectedfeedback {{VARIANTS}}"
+            aria-label="{{#expectedfeedback}}">
+            <p>{{PLACEHOLDER}}</p></div><p><br></p>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus.",
@@ -250,8 +255,8 @@ const components = [
         type: "helper",
         imageClass: "c4l-allpurposecard-icon",
         code:
-            '<p class="c4l-spacer"></p><div class="c4lv-allpurposecard {{VARIANTS}}">' +
-            "<p>{{PLACEHOLDER}}</p></div><p><br></p>",
+            `<p class="c4l-spacer"></p><div class="c4lv-allpurposecard {{VARIANTS}}"
+            aria-label="{{#allpurposecard}}"><p>{{PLACEHOLDER}}</p></div><p><br></p>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus." +

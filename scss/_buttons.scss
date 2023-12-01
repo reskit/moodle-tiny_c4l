@@ -287,6 +287,14 @@
     content: url([[pix:tiny_c4l|noun_project_icons/c4l_expectedfeedback_icon]]);
 }
 
+.c4l-hiddenanswer-icon::before {
+    content: '';
+}
+
+.c4l-hiddenanswer-icon .c4l-button-text::before {
+    content: url([[pix:tiny_c4l|c4l_hiddenanswer_icon]]);
+}
+
 /* Helper components buttons */
 
 .c4l-allpurposecard-icon::before {

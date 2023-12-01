@@ -263,6 +263,22 @@ const components = [
             " Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
         variants: ["full-width"],
     },
+    {
+        id: "18",
+        name: "hiddenanswer",
+        type: "evaluative",
+        imageClass: "c4l-hiddenanswer-icon",
+        code:
+            `<p class="c4l-spacer"></p><div class="c4lv-hiddenanswer {{VARIANTS}}" aria-label="{{#hiddenanswer}}">
+            <button class="btn btn-secondary show-hiddenanswer" type="button"  data-toggle="collapse"
+            data-target="{{@ID}}" aria-expanded="false" aria-controls="{{@ID}}">{{#showanswer}}
+            </button><div id="{{@ID}}" class="collapse">
+            <div class="card card-body hiddenanswer-content">{{PLACEHOLDER}}</div></div>`,
+        text:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
+            " Praesent dictum in velit sed dapibus.",
+        variants: ["full-width"],
+    },
 ];
 
 export default {

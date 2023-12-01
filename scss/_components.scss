@@ -39,7 +39,8 @@
     }
 
     + .c4l-readingcontext,
-    + .c4lv-readingcontext {
+    + .c4lv-readingcontext,
+    + .c4lv-hiddenanswer {
         margin-top: 16px;
         margin-bottom: 4px;
     }
@@ -767,5 +768,49 @@
         content: counter(section) ". ";
         font-weight: 700;
         color: #497ae9;
+    }
+}
+
+/* Hidden answer */
+
+.c4lv-hiddenanswer {
+    .show-hiddenanswer {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 36px;
+    }
+
+    .btn-secondary.show-hiddenanswer {
+        color: #135FF8;
+        background-color: #EEF3FF;
+        font-weight: 500;
+    }
+
+    .btn-secondary.show-hiddenanswer:not(:disabled):not(.disabled):active,
+    .btn-secondary.show-hiddenanswer:not(:disabled):not(.disabled).active, 
+    .show>.btn-secondary.show-hiddenanswer.dropdown-toggle {
+        color: #135FF8;
+    }
+
+    .hiddenanswer-content {
+        min-width: 200px;
+        max-width: 75%;
+        background-color: #fff;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        box-sizing: border-box;
+        margin: 0 auto 36px auto;
+        padding: 30px 40px 32px 40px;
+        font-family: sans-serif;
+        border: none;
+
+        p {
+            font-size: 16px;
+            line-height: 23px;
+        }
+
+        p:last-of-type {
+            margin-bottom: 0;
+        }
     }
 }

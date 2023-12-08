@@ -175,7 +175,7 @@ const components = [
         imageClass: "c4l-estimatedtime-icon",
         code:
             `<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-estimatedtime {{VARIANTS}}"
-            aria-label="{{#estimatedtime}}">{{PLACEHOLDER}} <span>min</span></div></div>`,
+            aria-label="{{#estimatedtime}}">{{PLACEHOLDER}} <span>{{#min}}</span></div></div>`,
         text: "15",
         variants: ["align-left"],
     },
@@ -214,7 +214,7 @@ const components = [
         code:
             `<p class="c4l-spacer"></p>
             <div class="c4lv-learningoutcomes {{VARIANTS}}" aria-label="{{#learningoutcomes}}">
-            <h6 class="c4l-learningoutcomes-title">Learning Outcomes</h6>
+            <h6 class="c4l-learningoutcomes-title">{{#learningoutcomes}}</h6>
             <ul class="c4l-learningoutcomes-list"><li>{{PLACEHOLDER}}</li><li>Curabitur non nulla sit amet
             nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</li>
             <li> Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. 
@@ -231,7 +231,7 @@ const components = [
         imageClass: "c4l-gradingvalue-icon",
         code:
             `<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-gradingvalue {{VARIANTS}}" 
-            aria-label="{{#gradingvalue}}"><span>Grading value: </span>{{PLACEHOLDER}}</div></div>`,
+            aria-label="{{#gradingvalue}}"><span>{{#gradingvalue}}: </span>{{PLACEHOLDER}}</div></div>`,
         text: "33.3%",
         variants: ["align-left"],
     },

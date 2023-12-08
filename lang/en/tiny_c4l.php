@@ -57,6 +57,7 @@ $string['inlinetag'] = 'Inline tag';
 $string['keyconcept'] = 'Key concept';
 $string['learningoutcomes'] = 'Learning outcomes';
 $string['menuitem_c4l'] = 'Components for Learning (C4L)';
+$string['min'] = 'min';
 $string['notintendedforstudents'] = 'Not intended for Students ';
 $string['notintendedforstudents_desc'] = 'By default, evaluative and procedural components are not intended for users with student capabilities to use in the editor. To change the default setting, check the components you would like to make available to the students.';
 $string['ordered-list'] = 'Ordered items';

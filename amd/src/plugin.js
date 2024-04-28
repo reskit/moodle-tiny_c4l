@@ -29,7 +29,7 @@ import {register as registerOptions} from './options';
 import {getSetup as getCommandSetup} from './commands';
 import * as Configuration from './configuration';
 
-// Setup the tiny_c4l Plugin.
+// eslint-disable-next-line no-async-promise-executor
 export default new Promise(async(resolve) => {
     const [
         tinyMCE,

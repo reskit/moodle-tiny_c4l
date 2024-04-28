@@ -73,7 +73,12 @@
                             data-type="{{type}}"
                             data-classcomponent="{{classComponent}}"
                         >
-                            <span class="c4l-button-text">{{{name}}}</span>
+                            <span class="c4l-button-text">
+                                {{#icon}}
+                                    <i class="icon" style="background-image: url({{icon}});"></i>
+                                {{/icon}}
+                                {{{name}}}
+                            </span>
                             <span class="c4l-button-variants">
                             {{#variants}}
                                 <span
@@ -96,7 +101,7 @@
                             <div class="c4l-preview-default">{{#str}} previewdefault, tiny_c4l {{/str}}</div>
                         </div>
                         {{#buttons}}
-                            <div data-id="code-preview-{{id}}" class="c4l-component-code c4l-hidden" role="presentation">{{{htmlcode}}}</div>
+                            <div data-id="code-preview-{{id}}" class="c4l-component-code {{#css}}c4l-component-custom-code{{/css}} c4l-hidden" role="presentation" style="{{css}}">{{{htmlcode}}}</div>
                         {{/buttons}}
                     </div>
                 {{/preview}}

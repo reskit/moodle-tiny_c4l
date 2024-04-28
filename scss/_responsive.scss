@@ -1,6 +1,11 @@
 /* Media queries */
 
 @media only screen and (min-width: 576px) {
+    .c4l-modal.modal-open .modal-dialog,
+    .c4l-modal-no-preview.modal-open .modal-dialog {
+        min-width: 550px;
+    }
+
     .c4l-select-filters {
         display: none;
     }
@@ -175,7 +180,7 @@
 
 @media only screen and (min-width: 992px) {
     .c4l-modal-no-preview.modal-open .modal-dialog {
-        max-width: 500px;
+        max-width: 550px;
     }
 
     .c4l-buttons-preview {
@@ -205,6 +210,17 @@
         justify-content: flex-start;
         width: 377px;
         padding: 3px 0 3px 3px;
+    }
+
+    .c4lt-dialog-button.c4l-custom-icon .c4l-button-text i {
+        top: 20px;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        max-width: 25px;
+        min-width: 25px;
+        width: 100%;
+        border-right: none;
     }
 
     .c4lt-dialog-button {

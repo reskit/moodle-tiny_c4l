@@ -32,11 +32,54 @@ defined('MOODLE_INTERNAL') || die();
 function tiny_c4l_user_preferences() {
     $preferences = [];
 
-    $preferences['c4l_components_variants'] = array(
+    $preferences['c4l_components_variants'] = [
         'type' => PARAM_RAW,
         'null' => NULL_NOT_ALLOWED,
-        'default' => ''
-    );
+        'default' => '',
+    ];
 
     return $preferences;
+}
+
+/**
+ * Serves the tiny_c4l files.
+ *
+ * @param stdClass $course course object
+ * @param stdClass $cm course module object
+ * @param stdClass $context context object
+ * @param string $filearea file area
+ * @param array $args extra arguments
+ * @param bool $forcedownload whether or not force download
+ * @param array $options additional options affecting the file serving
+ * @return bool false if file not found, does not return if found - just send the file
+ */
+function tiny_c4l_pluginfile($course,
+    $cm,
+    $context,
+    $filearea,
+    $args,
+    $forcedownload,
+    array $options = []) {
+
+    $compicon = strpos($filearea, 'compicon') !== false;
+    $compimage = strpos($filearea, 'customimagesbank') !== false;
+
+    if ($context->contextlevel == CONTEXT_SYSTEM && ($compicon || $compimage)) {
+        // Get file.
+        $fs = get_file_storage();
+        $relativepath = implode('/', $args);
+        $fullpath = "/$context->id/tiny_c4l/$filearea/$relativepath";
+        $file = $fs->get_file_by_hash(sha1($fullpath));
+
+        if (!$file || $file->is_directory()) {
+            return false;
+        }
+
+        if (PHPUNIT_TEST) {
+            return $file;
+        }
+        send_stored_file($file, null, 0, false, $options);
+    } else {
+        send_file_not_found();
+    }
 }

@@ -50,8 +50,8 @@ const components = [
         type: "contextual",
         imageClass: "c4l-reminder-icon",
         code:
-            `<p class="c4l-spacer"></p><div class="c4lv-reminder {{VARIANTS}}" 
-            aria-label="{{#reminder}}">
+            `<p class="c4l-spacer"></p><div class="c4lv-reminder {{VARIANTS}}"
+             aria-label="{{#reminder}}">
             {{PLACEHOLDER}}</div><p><br></p>`,
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
         variants: ["full-width"],
@@ -116,8 +116,8 @@ const components = [
         imageClass: "c4l-example-icon",
         code:
             `<p class="c4l-spacer"></p><div class="c4lv-example {{VARIANTS}}"
-            aria-label="{{#example}}"><h1>Lorem ipsum dolor sit amet</h1> 
-            <p>{{PLACEHOLDER}}</p></div><p><br></p>`,
+            aria-label="{{#example}}"><h1>Lorem ipsum dolor sit amet</h1>
+             <p>{{PLACEHOLDER}}</p></div><p><br></p>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
             " Phasellus a posuere nibh, eu mollis lacus." +
@@ -217,8 +217,8 @@ const components = [
             <h6 class="c4l-learningoutcomes-title">{{#learningoutcomes}}</h6>
             <ul class="c4l-learningoutcomes-list"><li>{{PLACEHOLDER}}</li><li>Curabitur non nulla sit amet
             nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</li>
-            <li> Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit. 
-            Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</li></ul></div><p><br></p>`,
+            <li> Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit.
+             Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</li></ul></div><p><br></p>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta, neque id feugiat consectetur, " +
             "enim ipsum tincidunt nunc, id suscipit mauris urna sit amet lectus.",
@@ -230,8 +230,8 @@ const components = [
         type: "evaluative",
         imageClass: "c4l-gradingvalue-icon",
         code:
-            `<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-gradingvalue {{VARIANTS}}" 
-            aria-label="{{#gradingvalue}}"><span>{{#gradingvalue}}: </span>{{PLACEHOLDER}}</div></div>`,
+            `<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-gradingvalue {{VARIANTS}}"
+             aria-label="{{#gradingvalue}}"><span>{{#gradingvalue}}: </span>{{PLACEHOLDER}}</div></div>`,
         text: "33.3%",
         variants: ["align-left"],
     },

@@ -30,7 +30,10 @@ import {
     c4lMenuItemName,
     icon,
 } from './common';
-import {isC4LVisible} from './options';
+import {
+        isC4LVisible,
+        getpreviewCSS
+} from './options';
 
 export const getSetup = async() => {
     const [
@@ -62,6 +65,9 @@ export const getSetup = async() => {
                 text: c4lMenuItemNameTitle,
                 onAction: () => handleAction(editor),
             });
+
+            // Inject custom CSS.
+            editor.options.set('content_style', getpreviewCSS(editor));
         }
     };
 };

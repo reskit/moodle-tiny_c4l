@@ -23,7 +23,6 @@
 
 import Ajax from 'core/ajax';
 import Notification from 'core/notification';
-import {components as COMPONENTS} from './components';
 import {variants as VARIANTS} from './variants';
 
 const variantsPreferenceName = 'c4l_components_variants';
@@ -32,9 +31,10 @@ let variantPreferences = {};
 /**
  * Load user preferences.
  *
+ * @param  {object} components [description]
  * @returns {Promise}
  */
-export const loadVariantPreferences = async() => {
+export const loadVariantPreferences = async(components) => {
 
     const request = {
         methodname: 'core_user_get_user_preferences',
@@ -47,6 +47,7 @@ export const loadVariantPreferences = async() => {
         .then(result => {
             let comp = {};
             let rawPreferences = {};
+            let variantComp = {};
             let variantObj = {};
             try {
                 rawPreferences = JSON.parse(result.preferences[0].value);
@@ -56,13 +57,17 @@ export const loadVariantPreferences = async() => {
 
             if (rawPreferences !== null) {
                 Object.keys(rawPreferences).forEach(preference => {
-                    comp = COMPONENTS.find(component => component.id == preference);
+                    comp = components.find(component => component.id == preference);
                     if (comp != undefined) {
                         variantPreferences[comp.name] = [];
                         rawPreferences[preference].forEach((variant) => {
                             variantObj = VARIANTS.find(element => element.id == variant);
                             if (variantObj != undefined) {
-                                variantPreferences[comp.name].push(variantObj.name);
+                                // Avoid invalid variants saved previously.
+                                variantComp = comp.variants.find(element => element == variantObj.name);
+                                if (variantComp != undefined) {
+                                    variantPreferences[comp.name].push(variantObj.name);
+                                }
                             }
                         });
                     }
@@ -74,14 +79,15 @@ export const loadVariantPreferences = async() => {
 /**
  * Save user preferences.
  *
+ * @param  {object} components [description]
  * @returns {Promise}
  */
-export const saveVariantPreferences = () => {
+export const saveVariantPreferences = (components) => {
     let comp = {};
     let rawPreferences = {};
     let variantObj = {};
     Object.keys(variantPreferences).forEach(preference => {
-        comp = COMPONENTS.find(component => component.name == preference);
+        comp = components.find(component => component.name == preference);
         if (comp != undefined) {
             rawPreferences[comp.id] = [];
             variantPreferences[preference].forEach((variant) => {

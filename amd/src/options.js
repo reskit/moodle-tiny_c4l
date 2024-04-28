@@ -28,6 +28,8 @@ const isstudentName = getPluginOptionName(pluginName, 'isstudent');
 const allowedcompsName = getPluginOptionName(pluginName, 'allowedcomps');
 const showpreviewName = getPluginOptionName(pluginName, 'showpreview');
 const viewc4lName = getPluginOptionName(pluginName, 'viewc4l');
+const previewCSS = getPluginOptionName(pluginName, 'previewcss');
+const customComps = getPluginOptionName(pluginName, 'customcomps');
 
 export const register = (editor) => {
     const registerOption = editor.options.register;
@@ -50,6 +52,16 @@ export const register = (editor) => {
     registerOption(viewc4lName, {
         processor: 'boolean',
         "default":  true,
+    });
+
+    registerOption(previewCSS, {
+        processor: 'string',
+        "default": '',
+    });
+
+    registerOption(customComps, {
+        processor: 'array',
+        "default": [],
     });
 };
 
@@ -84,3 +96,19 @@ export const showPreview = (editor) => editor.options.get(showpreviewName);
  * @returns {object}
  */
 export const getallowedComponents = (editor) => editor.options.get(allowedcompsName);
+
+/**
+ * Get custom components configuration for the Tiny C4L plugin.
+ *
+ * @param {TinyMCE} editor
+ * @returns {object}
+ */
+export const getcustomComponents = (editor) => editor.options.get(customComps);
+
+/**
+ * Get custom preview CSS configuration for the Tiny C4L plugin.
+ *
+ * @param {TinyMCE} editor
+ * @returns {string}
+ */
+export const getpreviewCSS = (editor) => editor.options.get(previewCSS);

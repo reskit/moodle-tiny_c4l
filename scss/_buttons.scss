@@ -100,6 +100,18 @@
     margin-bottom: 8px;
 }
 
+.c4lt-dialog-button.c4l-custom-icon .c4l-button-text i {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    min-height: 23px;
+    min-width: 49px;
+    top: auto;
+    left: 0;
+    border-right: 1px solid #dce3f0;
+}
+
 .c4lt-dialog-button .c4l-button-text {
     display: flex;
     align-items: center;

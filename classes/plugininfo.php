@@ -73,6 +73,8 @@ class plugininfo extends plugin implements
         array $fpoptions,
         ?\editor_tiny\editor $editor = null
     ): array {
+
+        $config = get_config('tiny_c4l');
         $viewc4l = has_capability('tiny/c4l:viewplugin', $context);
         $showpreview = get_config('tiny_c4l', 'enablepreview');
         $isstudent = !has_capability('gradereport/grader:view', $context);
@@ -83,11 +85,115 @@ class plugininfo extends plugin implements
             $allowedcomps = array_merge($aimedcomps, $notintendedcomps);
         }
 
+        // Get CSS preview.
+        $previewcss = $config->custompreviewcss ?? '';
+
+        // Get custom components.
+        $customcomponents = self::get_custom_components($config);
+
         return [
             'isstudent' => $isstudent,
             'allowedcomps' => $allowedcomps,
             'showpreview' => ($showpreview == '1'),
             'viewc4l' => $viewc4l,
+            'previewcss' => $previewcss,
+            'customcomps' => $customcomponents,
         ];
+    }
+
+    /**
+     * Get the custom components.
+     *
+     * @param  stdClass $config tiny_c4l config
+     * @return array
+     */
+    public static function get_custom_components(\stdClass $config) {
+        global $OUTPUT;
+
+        $customcomponents = [];
+        if ($config->customcompcount > 0) {
+            $context = \context_system::instance();
+            if ($config->customimagesbank) {
+                // Get filearea.
+                $fs = get_file_storage();
+
+                // Get all files from filearea.
+                $files = $fs->get_area_files($context->id, 'tiny_c4l', 'customimagesbank',
+                        false, 'itemid', false);
+                $customfiles = [];
+                foreach ($files as $file) {
+                    $customfiles[$file->get_filename()] = $file;
+                }
+            }
+            for ($i = 1; $i <= $config->customcompcount; $i++) {
+                $compcode   = "customcompcode{$i}";
+                $compenable = "customcompenable{$i}";
+                $compname   = "customcompname{$i}";
+                if ($config->$compenable === '1'
+                    && !empty(trim($config->$compname))
+                    && !empty(trim($config->$compcode))) {
+
+                    // Component parameters.
+                    $compicon  = "customcompicon{$i}";
+                    $compimage = "customcompimage{$i}";
+                    $comptext  = "customcomptext{$i}";
+                    $compvar   = "customcompvariant{$i}";
+                    $compsort  = "customcompsortorder{$i}";
+
+                    if (!empty($config->$compicon)) {
+                        $icon = \moodle_url::make_pluginfile_url($context->id, 'tiny_c4l',
+                            "customcompicon{$i}", 0, '/', basename($config->$compicon));
+                    } else {
+                        $icon = $OUTPUT->image_url('c4l_customcomponent_icon', 'tiny_c4l');
+                    }
+
+                    // Replace {} before searching for images and cleaning code (FORMAT_HTML).
+                    $html = str_replace('{{CUSTOMCLASS}}', '~~CUSTOMCLASS~~', $config->$compcode);
+                    $html = str_replace('{{PLACEHOLDER}}', '~~PLACEHOLDER~~', $html);
+
+                    // Set url images.
+                    $html = preg_replace_callback('/{{([^}]*)}}/',
+                        function ($matches) use ($customfiles) {
+                            if (isset($matches[1]) && isset($customfiles[$matches[1]])) {
+                                $file = $customfiles[$matches[1]];
+                                $fileurl = \moodle_url::make_pluginfile_url($file->get_contextid(), $file->get_component(),
+                                    $file->get_filearea(), $file->get_itemid(), $file->get_filepath(),
+                                    $file->get_filename(), false)->out();
+
+                                return $fileurl;
+                            } else {
+                                return '';
+                            }
+                        },
+                        $html
+                    );
+
+                    // Clean HTML code.
+                    $html = format_text($html, FORMAT_HTML);
+                    $html = preg_replace('/ style=("|\')(.*?)("|\')/', '', $html);
+
+                    // Restore {}.
+                    $html = str_replace('~~CUSTOMCLASS~~', '{{CUSTOMCLASS}}', $html);
+                    $html = str_replace('~~PLACEHOLDER~~', '{{PLACEHOLDER}}', $html);
+
+                    $key = count($customcomponents);
+                    $customcomponents[$key]['id'] = $i;
+                    $customcomponents[$key]['name'] = 'customcomp' . $i;
+                    $customcomponents[$key]['buttonname'] = $config->$compname;
+                    $customcomponents[$key]['icon'] = $icon->out();
+                    $customcomponents[$key]['code'] = $html;
+                    $customcomponents[$key]['text'] = $config->$comptext ?? '';
+                    $customcomponents[$key]['variants'] = $config->$compvar === '1';
+                    $customcomponents[$key]['sortorder'] = $config->$compsort;
+                }
+            }
+
+            // Sort components.
+            usort($customcomponents, function($a, $b) {
+                return $a['sortorder'] <=> $b['sortorder'];
+            });
+        }
+
+        return $customcomponents;
     }
 }

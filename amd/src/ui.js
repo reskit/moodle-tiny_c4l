@@ -29,7 +29,9 @@ import {get_strings as getStrings} from 'core/str';
 import {
     isStudent,
     getallowedComponents,
-    showPreview
+    showPreview,
+    getpreviewCSS,
+    getcustomComponents
 } from './options';
 import ModalEvents from 'core/modal_events';
 import {
@@ -48,6 +50,9 @@ let previewC4L = true;
 let allowedComponents = [];
 let Contexts = [];
 let langStrings = {};
+let previewCSS = '';
+let customComponents = [];
+const compPrefix = 'c4lv-';
 
 /**
  * Handle action
@@ -57,9 +62,12 @@ let langStrings = {};
 export const handleAction = async(editor) => {
     userStudent = isStudent(editor);
     previewC4L = showPreview(editor);
-    langStrings = await getAllStrings();
+    customComponents = getcustomComponents(editor);
+    addCustomComponents();
     allowedComponents = getallowedComponents(editor);
-    loadVariantPreferences().then(() => displayDialogue(editor));
+    previewCSS = getpreviewCSS(editor);
+    langStrings = await getAllStrings();
+    loadVariantPreferences(Components).then(() => displayDialogue(editor));
 };
 
 /**
@@ -77,10 +85,19 @@ const displayDialogue = async(editor) => {
         large: true,
     });
 
-    // Set modal size when no preview.
-    if (!previewC4L) {
-        editor.targetElm.closest('body').classList.add('c4l-modal-no-preview');
+    // Choose class to modal.
+    const modalClass = previewC4L ? 'c4l-modal' : 'c4l-modal-no-preview';
+
+    // Set class to modal.
+    editor.targetElm.closest('body').classList.add(modalClass);
+
+    // Inject custom component styles in editor.
+    if (previewCSS !== "") {
+        const styles = document.createElement('style');
+        styles.textContent = previewCSS;
+        editor.targetElm.closest('body').appendChild(styles);
     }
+
     modal.show();
 
     // Event modal listener.
@@ -192,7 +209,7 @@ const handleButtonFilterClick = (event, modal) => {
  */
 const handleModalHidden = (editor) => {
     editor.targetElm.closest('body').classList.remove('c4l-modal-no-preview');
-    saveVariantPreferences();
+    saveVariantPreferences(Components);
 };
 
 /**
@@ -206,10 +223,11 @@ const handleButtonClick = (event, editor, modal) => {
     const selectedButton = event.target.closest('button').dataset.id;
 
     // Component button.
-    if (Components?.[selectedButton]) {
+    const component = Components.find(element => element.name == selectedButton);
+    if (component != undefined) {
         const sel = editor.selection.getContent();
-        let componentCode = Components[selectedButton].code;
-        const placeholder = (sel.length > 0 ? sel : Components[selectedButton].text);
+        let componentCode = component.code;
+        const placeholder = (sel.length > 0 ? sel : component.text);
 
         // Create a new node to replace the placeholder.
         const randomId = generateRandomID();
@@ -219,12 +237,12 @@ const handleButtonClick = (event, editor, modal) => {
         componentCode = componentCode.replace('{{PLACEHOLDER}}', newNode.outerHTML);
 
         // Return active variants for current component.
-        const variants = getVariantsClass(Components[selectedButton].name);
+        const variants = getVariantsClass(component.name);
 
         // Apply variants to html component.
         if (variants.length > 0) {
             componentCode = componentCode.replace('{{VARIANTS}}', variants.join(' '));
-            componentCode = componentCode.replace('{{VARIANTSHTML}}', getVariantsHtml(Components[selectedButton].name));
+            componentCode = componentCode.replace('{{VARIANTSHTML}}', getVariantsHtml(component.name));
         } else {
             componentCode = componentCode.replace('{{VARIANTS}}', '');
             componentCode = componentCode.replace('{{VARIANTSHTML}}', '');
@@ -353,9 +371,10 @@ const getButtons = (editor) => {
     let componentCode = '';
     let placeholder = '';
     let variants = [];
+    let buttonText = '';
 
     // Iterate over components.
-    Components.forEach((component, index) => {
+    Components.forEach((component) => {
         if (!userStudent || (userStudent && allowedComponents.includes(component.name))) {
             if (previewC4L) {
                 placeholder = (sel.length > 0 ? sel : component.text);
@@ -385,13 +404,16 @@ const getButtons = (editor) => {
                 Contexts.push(component.type);
             }
 
+            buttonText = component.type == 'custom' ? component.buttonname : langStrings.get(component.name);
             buttons.push({
-                id: index,
-                name: langStrings.get(component.name),
+                id: component.name,
+                name: buttonText,
                 type: component.type,
+                icon: component.icon ?? '',
                 imageClass: component.imageClass,
-                classComponent: 'c4lv-' + component.name,
+                classComponent: compPrefix + component.name,
                 htmlcode: componentCode,
+                css: component.css ?? '',
                 variants: getVariantsState(component.name, component.variants),
             });
 
@@ -454,32 +476,32 @@ const getVariantsState = (component, elements) => {
  */
 const updateVariantComponentState = (variant, button, modal, show, updateHtml) => {
     const selectedVariant = 'c4l-' + variant.dataset.variant + '-variant';
-    const selectedButton = button.dataset.id;
+    const component = Components.find(element => element.name == button.dataset.id);
     const componentClass = button.dataset.classcomponent;
     const previewComponent = modal.getRoot()[0]
-        .querySelector('div[data-id="code-preview-' + selectedButton + '"] .' + componentClass);
+        .querySelector('div[data-id="code-preview-' + button.dataset.id + '"] .' + componentClass);
     const variantPreview = modal.getRoot()[0]
-        .querySelector('span[data-id="variantHTML-' + selectedButton + '"]');
+        .querySelector('span[data-id="variantHTML-' + button.dataset.id + '"]');
     let variantsHtml = '';
 
     if (previewComponent) {
         if (updateHtml) {
             if (variant.dataset.state == 'on') {
-                removeVariant(Components[selectedButton].name, variant.dataset.variant);
+                removeVariant(component.name, variant.dataset.variant);
                 updateVariantButtonState(variant, false);
                 previewComponent.classList.remove(selectedVariant);
             } else {
-                addVariant(Components[selectedButton].name, variant.dataset.variant);
+                addVariant(component.name, variant.dataset.variant);
                 updateVariantButtonState(variant, true);
                 previewComponent.classList.add(selectedVariant);
             }
 
             // Update variant preview HTML.
             if (variantPreview) {
-                variantPreview.innerHTML = getVariantsHtml(Components[selectedButton].name);
+                variantPreview.innerHTML = getVariantsHtml(component.name);
             }
         } else {
-            variantsHtml = getVariantsHtml(Components[selectedButton].name);
+            variantsHtml = getVariantsHtml(component.name);
             if (show) {
                 previewComponent.classList.add(selectedVariant);
                 variantsHtml += getVariantHtml(variant.dataset.variant);
@@ -493,13 +515,15 @@ const updateVariantComponentState = (variant, button, modal, show, updateHtml) =
             }
         }
     } else {
-        // Update variants preferences.
-        if (variant.dataset.state == 'on') {
-            removeVariant(Components[selectedButton].name, variant.dataset.variant);
-            updateVariantButtonState(variant, false);
-        } else {
-            addVariant(Components[selectedButton].name, variant.dataset.variant);
-            updateVariantButtonState(variant, true);
+        if (updateHtml) {
+            // Update variants preferences.
+            if (variant.dataset.state == 'on') {
+                removeVariant(component.name, variant.dataset.variant);
+                updateVariantButtonState(variant, false);
+            } else {
+                addVariant(component.name, variant.dataset.variant);
+                updateVariantButtonState(variant, true);
+            }
         }
     }
 };
@@ -548,7 +572,7 @@ const applyLangStrings = (text) => {
     const compRegex = /{{#([^}]*)}}/g;
 
     [...text.matchAll(compRegex)].forEach(strLang => {
-        text = text.replace('{{#' + strLang[1] +'}}', langStrings.get(strLang[1]));
+        text = text.replace('{{#' + strLang[1] + '}}', langStrings.get(strLang[1]));
     });
 
     return text;
@@ -588,14 +612,28 @@ const getAllStrings = async() => {
     const compRegex = /{{#([^}]*)}}/g;
 
     Components.forEach(element => {
-        keys.push(element.name);
+
+        // Only add name from standard components.
+        if (element.name.indexOf("customcomp") == -1) {
+            keys.push(element.name);
+        }
+
+        // Get lang strings from variants.
         element.variants.forEach(variant => {
             if (keys.indexOf(variant) === -1) {
                 keys.push(variant);
             }
         });
+
         // Get lang strings from components.
         [...element.code.matchAll(compRegex)].forEach(strLang => {
+            if (keys.indexOf(strLang[1]) === -1) {
+                keys.push(strLang[1]);
+            }
+        });
+
+        // Get lang strings from text placeholders.
+        [...element.text.matchAll(compRegex)].forEach(strLang => {
             if (keys.indexOf(strLang[1]) === -1) {
                 keys.push(strLang[1]);
             }
@@ -604,4 +642,42 @@ const getAllStrings = async() => {
 
     const stringValues = await getStrings(keys.map((key) => ({key, component})));
     return new Map(keys.map((key, index) => ([key, stringValues[index]])));
+};
+
+/**
+ * Add custom components to standard components.
+ */
+const addCustomComponents = () => {
+    if (customComponents.length > 0) {
+        customComponents.forEach(customcomp => {
+            if (Components.find(element => element.id == customcomp['id'] + 1000) == undefined) {
+                Components.push({
+                    id: customcomp['id'] + 1000,
+                    name: customcomp['name'],
+                    buttonname: customcomp['buttonname'],
+                    type: 'custom',
+                    imageClass: 'c4l-custom-icon',
+                    code: replaceCustomPlaceholders(customcomp),
+                    text: customcomp['text'].length > 0 ? customcomp['text'] : '{{#textplaceholder}}',
+                    variants: customcomp['variants'] ? ["full-width"] : [],
+                    icon: customcomp['icon'],
+                    css: customcomp['css']
+                });
+            }
+        });
+    }
+};
+
+/**
+ * Replace custom placeholders with values.
+ *
+ * @param  {object} component
+ * @return {string} HTML code.
+ */
+const replaceCustomPlaceholders = (component) => {
+    let html = component['code'];
+    const variants = component['variants'] ? " {{VARIANTS}}" : "";
+    html = html.replace('{{CUSTOMCLASS}}', compPrefix + component['name'] + ' ' + compPrefix + "custom-component" + variants);
+
+    return html;
 };

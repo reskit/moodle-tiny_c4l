@@ -82,7 +82,7 @@ if ($ADMIN->fulltree) {
     $name = 'tiny_c4l/customcompcount';
     $title = get_string('customcompcount', 'tiny_c4l');
     $description = get_string('customcompcountdesc', 'tiny_c4l');
-    $options = range(0, 12);
+    $options = range(0, 24);
     $options = array_combine($options, $options);
     $setting = new admin_setting_configselect($name, $title, $description, 0, $options);
     $setting->set_updatedcallback('purge_all_caches');

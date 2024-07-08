@@ -132,7 +132,7 @@ if ($ADMIN->fulltree) {
         $name = 'tiny_c4l/customcompname' . $componentindex;
         $title = get_string('customcompname', 'tiny_c4l', $componentindex);
         $description = get_string('customcompnamedesc', 'tiny_c4l');
-        $setting = new admin_setting_configtext_with_maxlength($name, $title, $description, '', PARAM_TEXT, null, 15);
+        $setting = new admin_setting_configtext_with_maxlength($name, $title, $description, '', PARAM_TEXT, null, 20);
         $settings->add($setting);
 
         // Icon.

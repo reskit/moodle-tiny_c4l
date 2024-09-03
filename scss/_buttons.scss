@@ -7,7 +7,7 @@
     border: 1px solid #dee2e6;
 }
 
-.c4l-buttons-filters {
+.c4l-buttons-filters, .c4l-buttons-flavors {
     display: none;
 }
 
@@ -35,7 +35,7 @@
     background-position-y: center;
 }
 
-.c4l-button-filter {
+.c4l-button-filter, .c4l-button-flavor {
     background-color: #fff;
     border: 1px solid #dfe2e5;
     padding: 10px 16px;
@@ -48,15 +48,19 @@
 }
 
 .c4l-button-filter:hover,
-.c4l-button-filter.c4l-button-filter-enabled {
+.c4l-button-flavor:hover,
+.c4l-button-filter.c4l-button-filter-enabled,
+.c4l-button-flavor.c4l-button-flavor-enabled {
     background-color: #e7ebef;
 }
 
-.c4l-button-filter:first-child {
+.c4l-button-filter:first-child,
+.c4l-button-flavor:first-child {
     border-radius: 6px 0 0 6px;
 }
 
-.c4l-button-filter:last-child {
+.c4l-button-filter:last-child,
+.c4l-button-flavor:last-child {
     border-radius: 0 6px 6px 0;
 }
 

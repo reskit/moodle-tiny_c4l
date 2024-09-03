@@ -1,0 +1,228 @@
+@font-face {
+  font-family: "mebisDruckschrift";
+  src: url("//2ttf.com/webfont/E359HAxTxQY/webfont.ttf") format("truetype");
+}
+
+.c4l-titel-container {
+  background-color: #57b0bf;
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.1) 2px, transparent 2px);
+  background-size: 20px 20px;
+  color: black;
+  padding: 20px;
+  text-align: center;
+  border: 4px solid black;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+  font-family: "mebisDruckschrift", Arial;
+  font-weight: bold;
+  font-size: 44px;
+  padding-top: 20px;
+}
+
+.c4l-titel-container.c4l-avatar1.c4l-titel::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -150px;
+  width: 160px;
+  height: 160px;
+  background-color: #f4c159;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  background-image: url("https://assets.codepen.io/7398902/Horst.png");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Spezifische Stile für die Klasse c4l_titel_frau1 */
+.c4l-titel-container.c4l-avatar1.c4l-titel.c4l_titel_frau1 {
+  background-color: #E37B59;
+  color: black;
+}
+
+.c4l-titel-container.c4l-avatar1.c4l-titel.c4l_titel_frau1::before {
+  background-image: url("https://assets.codepen.io/7398902/Frau1_Hallo.png");
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+
+
+/* Allgemeine Stilregeln für c4l-box */
+.c4l-box {
+  border-radius: 15px;
+  border: 4px solid black;
+  padding: 20px;
+  padding-left: 140px;
+  margin: 40px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: "mebisDruckschrift", Arial;
+  font-weight: bold;
+  font-size: 24px;
+  min-width: 400px;
+  max-width: 99%;
+  position: relative;
+}
+
+.c4l-box.c4l-avatar2 {
+  border-style: dotted;
+  text-align: right;
+  padding-right: 150px;
+  padding-left: 0px;
+}
+
+.c4l-box.c4l-tip { background-color: #FFEECC; }
+.c4l-box.c4l-szenario { background-color: #CEF8FF; }
+.c4l-box.c4l-problem { background-color: #FFD1BD; }
+.c4l-box.c4l-dontdo { background-color: #FFBCD0; }
+.c4l-box.c4l-feedback { background-color: #E7FAC3; }
+
+/* Avatar-Bilder für jede Box-Kategorie */
+.c4l-avatar1.c4l-tip::before,
+.c4l-avatar1.c4l-szenario::before,
+.c4l-avatar1.c4l-problem::before,
+.c4l-avatar1.c4l-dontdo::before,
+.c4l-avatar1.c4l-feedback::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: -20px;
+  width: 180px;
+  height: 180px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 2;
+}
+
+.c4l-avatar1.c4l-tip::before {background-image: url('https://assets.codepen.io/7398902/mDS_Horst_peace.png');}
+.c4l-avatar1.c4l-szenario::before {background-image: url('https://assets.codepen.io/7398902/mDS_Horst_talking.png');}
+.c4l-avatar1.c4l-problem::before {background-image: url('https://assets.codepen.io/7398902/mDS_Horst_what.png');}
+.c4l-avatar1.c4l-dontdo::before {background-image: url('https://assets.codepen.io/7398902/mDS_Horst_oh_no.png');}
+.c4l-avatar1.c4l-feedback::before {background-image: url('https://assets.codepen.io/7398902/mDS_Horst_gut_gemacht.png');}
+
+/* Neue Bilder für die Klasse Frau1 in verschiedenen Szenarien */
+.c4l-avatar1.frau1.c4l-tip::before {background-image: url('https://assets.codepen.io/7398902/Frau1_Tipp.png');}
+.c4l-avatar1.frau1.c4l-szenario::before {background-image: url('https://assets.codepen.io/7398902/Frau1_Szenario.png');}
+.c4l-avatar1.frau1.c4l-problem::before {background-image: url('https://assets.codepen.io/7398902/Frau1_Frage.png');}
+.c4l-avatar1.frau1.c4l-dontdo::before {background-image: url('https://assets.codepen.io/7398902/Frau1_dontdo.png');}
+.c4l-avatar1.frau1.c4l-feedback::before {background-image: url('https://assets.codepen.io/7398902/Frau1_Feedback.png');}
+
+.c4l-avatar2.mann1::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: 0;
+  width: 180px;
+  height: 180px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 2;
+}
+
+
+.c4l-avatar2.mann1.c4l-tip::before {background-image: url('https://assets.codepen.io/7398902/Mann1_Tipp.png');}
+.c4l-avatar2.mann1.c4l-szenario::before {background-image: url('https://assets.codepen.io/7398902/Mann1_Szenario.png');}
+.c4l-avatar2.mann1.c4l-problem::before {background-image: url('https://assets.codepen.io/7398902/Mann1_Frage.png');}
+.c4l-avatar2.mann1.c4l-dontdo::before {background-image: url('https://assets.codepen.io/7398902/Mann1_dontdo.png');}
+.c4l-avatar2.mann1.c4l-feedback::before {background-image: url('https://assets.codepen.io/7398902/Mann1_Feedback.png');}
+
+
+/* Basisstil für alle Buttons */
+.c4l-buttons, .c4l-navibutton {
+  margin: 10px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+  font-family: 'mebisDruckschrift', sans-serif;
+  font-size: 28px;
+  border: 4px solid black;
+  text-decoration: none;
+  color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #E37B59; /* Orange Farbe */
+  position: relative; /* Wichtig für die Positionierung von ::before */
+  min-width: 200px;
+  max-width: 300px;
+}
+
+/* Taskbutton spezifisch */
+.c4l-taskbutton {
+  padding: 10px 30px; /* Kleineres Padding für einen kürzeren Button */
+  font-size: 26px; /* Kleinere Schriftgröße */
+}
+
+/* Hover-Effekte für alle Buttons */
+.c4l-buttons:hover, .c4l-navibutton:hover {
+  background-color: #CCCCCC; /* Dunkleres Orange für Hover */
+  color: white;
+}
+
+/* Hintergrundbilder für spezifische Buttons */
+.c4l-buttons::before, .c4l-navibutton::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  width: 40px; /* Leicht verkleinerte Icons */
+  height: 40px;
+  background-size: cover;
+  background-position: center;
+  background-color: white;
+  font-size: 28px;
+}
+
+/* Spezifisches Hintergrundbild für den Taskbutton */
+.c4l-taskbutton::before {
+  background-image: url('https://assets.codepen.io/7398902/Frau1_Notiz.png');
+  left: 10px; /* Positioniert das Bild links im Button */
+}
+
+/* Navigationsbuttons spezifisch */
+.c4l-navibutton {
+  padding: 10px 20px; /* Reduziertes Padding für eine engere Passform */
+  font-size: 20px; /* Kleinere Schriftgröße, um mehr Text zu passen */
+}
+
+/* Spezifisches Hintergrundbild für die Navigationsbuttons */
+.c4l-navibutton-back::before, .c4l-navibutton-forward::before {
+  background-image: url('https://assets.codepen.io/7398902/Frau1_Szenario.png');
+}
+
+.c4l-navibutton-back::before {
+  right: 10px;
+}
+
+.c4l-navibutton-forward::before {
+  left: 10px;
+}
+
+/* Emojis für zusätzlichen visuellen Hinweis */
+.c4l-navibutton-back::after {
+  content: "⬅️"; /* Emoji für Zurück-Button */
+  position: absolute;
+  left: 10px;
+}
+
+.c4l-navibutton-forward::after {
+  content: "➡️"; /* Emoji für Vorwärts-Button */
+  right: 10px;
+}
+
+.c4l_titel_frau1 .c4l-button-text::before {
+  content: '';
+  background-image: url("https://assets.codepen.io/7398902/Frau1_Hallo.png");
+  background-size: contain;
+}

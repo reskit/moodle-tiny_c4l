@@ -64,6 +64,13 @@
                     </button>
                 {{/filters}}
             </div>
+            <div class="c4l-buttons-flavors">
+                {{#flavors}}
+                    <button class="c4l-button-flavor {{flavorClass}}" data-flavor="{{flavor}}" aria-controls="c4l-buttons-grid">
+                        {{name}}
+                    </button>
+                {{/flavors}}
+            </div>
             <div class="c4l-buttons-preview {{^preview}}c4l-no-preview{{/preview}}">
                 <div id="c4l-buttons-grid" class="c4l-buttons-grid">
                     {{#buttons}}

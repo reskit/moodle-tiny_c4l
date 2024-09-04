@@ -212,7 +212,7 @@ const updateComponentCode = (componentCode, selectedButton, placeholder) => {
     }
 
     if (currentFlavor) {
-        componentCode = componentCode.replace('{{FLAVOR}}', 'c4l_' + currentFlavor);
+        componentCode = componentCode.replace('{{FLAVOR}}', currentFlavor);
     } else {
         componentCode = componentCode.replace('{{FLAVOR}}', '');
     }

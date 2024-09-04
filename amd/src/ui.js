@@ -177,6 +177,13 @@ const handleButtonFlavorClick = (event, modal) => {
     const buttons = modal.getRoot()[0].querySelectorAll('.c4l-buttons-flavors button');
     buttons.forEach(node => node.classList.remove('c4l-button-flavor-enabled'));
     button.classList.add('c4l-button-flavor-enabled');
+    const componentButtons = modal.getRoot()[0].querySelectorAll('.c4l-buttons-preview button');
+    componentButtons.forEach(componentButton => {
+        console.log("new class")
+        console.log(currentFlavor)
+        // TODO remove old class :)
+        componentButton.querySelector('.c4l-button-text').classList.add(currentFlavor);
+    });
 };
 
 /**
@@ -390,7 +397,7 @@ const getButtons = async (editor) => {
             id: component.id, // TODO do dynamically, maybe we do not need an id
             name: component.displayname,
             type: component.compcat,
-            imageClass: component.imageclass,
+            imageClass: 'c4l-' + component.imageclass,
             htmlcode: component.code,
             variants: component.variants,
         });

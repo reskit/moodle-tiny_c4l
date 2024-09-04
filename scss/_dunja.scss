@@ -1552,3 +1552,32 @@
 .c4l-avatar2.mann1.c4l-problem::before {background-image: url('https://assets.codepen.io/7398902/Mann1_Frage.png');}
 .c4l-avatar2.mann1.c4l-dontdo::before {background-image: url('https://assets.codepen.io/7398902/Mann1_dontdo.png');}
 .c4l-avatar2.mann1.c4l-feedback::before {background-image: url('https://assets.codepen.io/7398902/Mann1_Feedback.png');}
+
+.c4l-titel-icon .c4l-button-text::before {
+  content: '';
+  background-image: url([[pix:tiny_c4l|c4l_titel_default_icon]]);
+  background-size: contain;
+}
+.c4l-titel-icon .c4l-button-text.cat_dog::before {
+  background-image: url([[pix:tiny_c4l|c4l_titel_cat_dog_icon]]);
+}
+
+.c4l-szenario-avatar1-icon .c4l-button-text::before {
+  content: '';
+  background-image: url([[pix:tiny_c4l|c4l_szenario_avatar1_default_icon]]);
+  background-size: contain;
+}
+
+.c4l-szenario-avatar1-icon .c4l-button-text.cat_dog::before {
+  background-image: url([[pix:tiny_c4l|c4l_szenario_avatar1_cat_dog_icon]]);
+}
+
+.c4l-szenario-avatar2-icon .c4l-button-text::before {
+  content: '';
+  background-image: url([[pix:tiny_c4l|c4l_szenario_avatar2_default_icon]]);
+  background-size: contain;
+}
+
+.c4l-szenario-avatar2-icon .c4l-button-text.cat_dog::before {
+  background-image: url([[pix:tiny_c4l|c4l_szenario_avatar2_cat_dog_icon]]);
+}

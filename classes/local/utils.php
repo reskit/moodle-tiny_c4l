@@ -37,7 +37,7 @@ class utils {
                     'name' => $record->name,
                     'displayname' => $record->displayname,
                     'compcat' => $record->compcat,
-                    'imageclass' => $record->imageclass . '_',
+                    'imageclass' => $record->imageclass,
                     'code' => $record->code,
                     'text' => $record->text,
                     'variants' => [

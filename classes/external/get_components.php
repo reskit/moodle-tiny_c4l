@@ -71,7 +71,6 @@ class get_components extends external_api {
                         'imageclass' => new external_value(PARAM_TEXT, 'the image class of the component'),
                         'code' => new external_value(PARAM_RAW, 'the image class of the component'),
                         'text' => new external_value(PARAM_TEXT, 'the image class of the component'),
-                        'flavor' => new external_value(PARAM_TEXT, 'the favor of the component'),
                         'variants' => new external_multiple_structure(
                                 new external_value(PARAM_TEXT, 'the variants of the image class'),
                         ),

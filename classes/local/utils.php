@@ -29,27 +29,22 @@ class utils {
     public static function get_all_components(): array {
         global $DB;
         $componentrecords = $DB->get_records('tiny_c4l_component');
-        $flavorrecords = $DB->get_records('tiny_c4l_flavor');
         $components = [];
         foreach ($componentrecords as $record) {
-            $availableflavors = empty($record->flavor) ? array_keys($flavorrecords) : explode(',', $record->flavors);
-            foreach ($availableflavors as $flavorid) {
-                if (in_array($flavorid, array_keys($flavorrecords))) {
-                    $components[] = [
-                            'id' => $record->id,
-                            'name' => $record->name,
-                            'displayname' => $record->displayname,
-                            'compcat' => $record->compcat,
-                            'imageclass' => $record->imageclass . '_' . $flavorrecords[$flavorid]->content,
-                            'code' => $record->code,
-                            'text' => $record->text,
-                            'flavor' => $flavorrecords[$flavorid]->content,
-                            'variants' => [
-                                    // TODO Get variants.
-                            ]
-                    ];
-                }
-            }
+            // TODO export which flavors are allowed
+            $components[] = [
+                    'id' => $record->id,
+                    'name' => $record->name,
+                    'displayname' => $record->displayname,
+                    'compcat' => $record->compcat,
+                    'imageclass' => $record->imageclass . '_',
+                    'code' => $record->code,
+                    'text' => $record->text,
+                    'variants' => [
+                        // TODO Get variants.
+                    ]
+            ];
+
         }
         return $components;
     }

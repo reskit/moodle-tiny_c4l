@@ -189,6 +189,36 @@ const handleModalHidden = (editor) => {
     saveVariantPreferences();
 };
 
+const updateComponentCode = (componentCode, selectedButton, placeholder) => {
+    componentCode = componentCode.replace('{{PLACEHOLDER}}', placeholder);
+
+    // Return active variants for current component.
+    const variants = getVariantsClass(components[selectedButton].name);
+
+    // Apply variants to html component.
+    if (variants.length > 0) {
+        componentCode = componentCode.replace('{{VARIANTS}}', variants.join(' '));
+        componentCode = componentCode.replace('{{VARIANTSHTML}}', getVariantsHtml(Components[selectedButton].name));
+    } else {
+        componentCode = componentCode.replace('{{VARIANTS}}', '');
+        componentCode = componentCode.replace('{{VARIANTSHTML}}', '');
+    }
+
+    if (currentFlavor) {
+        componentCode = componentCode.replace('{{FLAVOR}}', 'c4l_' + currentFlavor);
+    } else {
+        componentCode = componentCode.replace('{{FLAVOR}}', '');
+    }
+
+    // Apply random IDs.
+    componentCode = applyRandomID(componentCode);
+
+    // Apply lang strings.
+    componentCode = applyLangStrings(componentCode);
+
+    return componentCode;
+}
+
 /**
  * Handle a click in a component button.
  *
@@ -210,32 +240,7 @@ const handleButtonClick = async (event, editor, modal) => {
         const newNode = document.createElement('span');
         newNode.dataset.id = randomId;
         newNode.innerHTML = placeholder;
-        componentCode = componentCode.replace('{{PLACEHOLDER}}', newNode.outerHTML);
-
-        // Return active variants for current component.
-        const variants = getVariantsClass(components[selectedButton].name);
-
-        // Apply variants to html component.
-        if (variants.length > 0) {
-            componentCode = componentCode.replace('{{VARIANTS}}', variants.join(' '));
-            componentCode = componentCode.replace('{{VARIANTSHTML}}', getVariantsHtml(Components[selectedButton].name));
-        } else {
-            componentCode = componentCode.replace('{{VARIANTS}}', '');
-            componentCode = componentCode.replace('{{VARIANTSHTML}}', '');
-        }
-
-        if (currentFlavor) {
-            componentCode = componentCode.replace('{{FLAVOR}}', 'c4l_' + currentFlavor);
-        } else {
-            componentCode = componentCode.replace('{{FLAVOR}}', '');
-        }
-
-        // Apply random IDs.
-        componentCode = applyRandomID(componentCode);
-
-        // Apply lang strings.
-        componentCode = applyLangStrings(componentCode);
-
+        componentCode = updateComponentCode(componentCode, selectedButton, newNode.outerHTML);
         // Sets new content.
         editor.selection.setContent(componentCode);
 
@@ -261,6 +266,8 @@ const handleButtonMouseEvent = (event, modal, show) => {
     const selectedButton = event.target.closest('button').dataset.id;
     const node = modal.getRoot()[0].querySelector('div[data-id="code-preview-' + selectedButton + '"]');
     const previewDefault = modal.getRoot()[0].querySelector('div[data-id="code-preview-default"]');
+
+    node.innerHTML = updateComponentCode(components[selectedButton].code, selectedButton, 'Lorem ipsum');
 
     if (node) {
         if (show) {

@@ -113,6 +113,7 @@ class plugininfo extends plugin implements
         $customcomponents = [];
         if ($config->customcompcount > 0) {
             $context = \context_system::instance();
+            $customfiles = [];
             if ($config->customimagesbank) {
                 // Get filearea.
                 $fs = get_file_storage();
@@ -120,7 +121,6 @@ class plugininfo extends plugin implements
                 // Get all files from filearea.
                 $files = $fs->get_area_files($context->id, 'tiny_c4l', 'customimagesbank',
                         false, 'itemid', false);
-                $customfiles = [];
                 foreach ($files as $file) {
                     $customfiles[$file->get_filename()] = $file;
                 }
@@ -135,7 +135,6 @@ class plugininfo extends plugin implements
 
                     // Component parameters.
                     $compicon  = "customcompicon{$i}";
-                    $compimage = "customcompimage{$i}";
                     $comptext  = "customcomptext{$i}";
                     $compvar   = "customcompvariant{$i}";
                     $compsort  = "customcompsortorder{$i}";

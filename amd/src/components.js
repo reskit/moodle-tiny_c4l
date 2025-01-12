@@ -164,7 +164,7 @@ const components = [
         imageClass: "c4l-attention-icon",
         code:
             `<p class="c4l-spacer"></p><div class="c4lv-attention {{VARIANTS}}" aria-label="{{#attention}}">
-            "{{PLACEHOLDER}}</div><p><br></p>`,
+            {{PLACEHOLDER}}</div><p><br></p>`,
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
         variants: ["full-width"],
     },

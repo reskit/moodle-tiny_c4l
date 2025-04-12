@@ -481,7 +481,7 @@ const updateVariantComponentState = (variant, button, modal, show, updateHtml) =
     const previewComponent = modal.getRoot()[0]
         .querySelector('div[data-id="code-preview-' + button.dataset.id + '"] .' + componentClass);
     const variantPreview = modal.getRoot()[0]
-        .querySelector('span[data-id="variantHTML-' + button.dataset.id + '"]');
+        .querySelector('span[data-id="variantHTML-' + component.id + '"]');
     let variantsHtml = '';
 
     if (previewComponent) {

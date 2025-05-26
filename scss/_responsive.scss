@@ -1,4 +1,12 @@
 /* Media queries */
+@media only screen {
+    .c4l-modal.tox-fullscreen,
+    .c4l-modal-no-preview.tox-fullscreen {
+        .modal-body {
+            margin-top: 1rem;
+        }
+    }
+}
 
 @media only screen and (min-width: 576px) {
     .c4l-modal.modal-open .modal-dialog,
@@ -179,6 +187,10 @@
 }
 
 @media only screen and (min-width: 992px) {
+    .c4l-modal.tox-fullscreen .modal-body {
+        max-width: 800px;
+    }
+
     .c4l-modal-no-preview.modal-open .modal-dialog {
         max-width: 550px;
     }

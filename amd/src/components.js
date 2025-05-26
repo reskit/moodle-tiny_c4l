@@ -29,7 +29,7 @@ const components = [
         imageClass: "c4l-keyconcept-icon",
         code:
             '<p class="c4l-spacer"></p><div class="c4lv-keyconcept {{VARIANTS}}" aria-label="{{#keyconcept}}">' +
-            "{{PLACEHOLDER}}</div><p><br></p>",
+            "{{PLACEHOLDER}}</div>",
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
         variants: ["full-width"],
     },
@@ -40,7 +40,7 @@ const components = [
         imageClass: "c4l-tip-icon",
         code:
             `<p class="c4l-spacer"></p><div class="c4lv-tip {{VARIANTS}}" aria-label="{{#tip}}">
-            {{PLACEHOLDER}}</div><p><br></p>`,
+            {{PLACEHOLDER}}</div>`,
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
         variants: ["full-width"],
     },
@@ -52,7 +52,7 @@ const components = [
         code:
             `<p class="c4l-spacer"></p><div class="c4lv-reminder {{VARIANTS}}"
              aria-label="{{#reminder}}">
-            {{PLACEHOLDER}}</div><p><br></p>`,
+            {{PLACEHOLDER}}</div>`,
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
         variants: ["full-width"],
     },
@@ -68,7 +68,7 @@ const components = [
             <p>{{PLACEHOLDER}}</p>
             </div></div>
             {{VARIANTSHTML}}
-            </div><p><br></p>`,
+            </div>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus.",
@@ -87,7 +87,7 @@ const components = [
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Phasellus a posuere nibh, eu mollis lacus.
             Praesent dictum in velit sed dapibus. Orci varius natoque penatibus et magnis dis parturient montes,
-            nascetur ridiculus mus.</div></div><p><br></p>`,
+            nascetur ridiculus mus.</div></div>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus." +
@@ -102,7 +102,7 @@ const components = [
         code:
             `<p class="c4l-spacer"></p><div class="c4lv-readingcontext {{VARIANTS}}"
             aria-label="{{#readingcontext}}">
-            <p>{{PLACEHOLDER}}</p>{{VARIANTSHTML}}</div><p><br></p>`,
+            <p>{{PLACEHOLDER}}</p>{{VARIANTSHTML}}</div>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus leo, hendrerit ac sem vitae," +
             " posuere egestas nisi. Lorem ipsum dolor sit amet. " +
@@ -117,7 +117,7 @@ const components = [
         code:
             `<p class="c4l-spacer"></p><div class="c4lv-example {{VARIANTS}}"
             aria-label="{{#example}}"><h1>Lorem ipsum dolor sit amet</h1>
-             <p>{{PLACEHOLDER}}</p></div><p><br></p>`,
+             <p>{{PLACEHOLDER}}</p></div>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
             " Phasellus a posuere nibh, eu mollis lacus." +
@@ -133,7 +133,7 @@ const components = [
         code:
             `<p class="c4l-spacer"></p><figure class="c4lv-figure {{VARIANTS}}"
             aria-label="{{#figure}}"><img src="" alt="Lorem ipsum dolor sit amet">
-            {{VARIANTSHTML}}</figure><p><br></p>`,
+            {{VARIANTSHTML}}</figure>`,
         text: "Consectetur adipiscing elit.",
         variants: ["full-width", "caption"],
     },
@@ -164,7 +164,7 @@ const components = [
         imageClass: "c4l-attention-icon",
         code:
             `<p class="c4l-spacer"></p><div class="c4lv-attention {{VARIANTS}}" aria-label="{{#attention}}">
-            {{PLACEHOLDER}}</div><p><br></p>`,
+            {{PLACEHOLDER}}</div>`,
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
         variants: ["full-width"],
     },
@@ -198,7 +198,7 @@ const components = [
         code:
             `<p class="c4l-spacer"></p><p class="c4lv-proceduralcontext {{VARIANTS}}"
             aria-label="{{#proceduralcontext}}" >
-            {{PLACEHOLDER}}</p><p><br></p>`,
+            {{PLACEHOLDER}}</p>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus." +
@@ -218,7 +218,7 @@ const components = [
             <ul class="c4l-learningoutcomes-list"><li>{{PLACEHOLDER}}</li><li>Curabitur non nulla sit amet
             nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</li>
             <li> Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit.
-             Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</li></ul></div><p><br></p>`,
+             Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</li></ul></div>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta, neque id feugiat consectetur, " +
             "enim ipsum tincidunt nunc, id suscipit mauris urna sit amet lectus.",
@@ -243,7 +243,7 @@ const components = [
         code:
             `<p class="c4l-spacer"></p><div class="c4lv-expectedfeedback {{VARIANTS}}"
             aria-label="{{#expectedfeedback}}">
-            <p>{{PLACEHOLDER}}</p></div><p><br></p>`,
+            <p>{{PLACEHOLDER}}</p></div>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus.",
@@ -256,7 +256,7 @@ const components = [
         imageClass: "c4l-allpurposecard-icon",
         code:
             `<p class="c4l-spacer"></p><div class="c4lv-allpurposecard {{VARIANTS}}"
-            aria-label="{{#allpurposecard}}"><p>{{PLACEHOLDER}}</p></div><p><br></p>`,
+            aria-label="{{#allpurposecard}}"><p>{{PLACEHOLDER}}</p></div>`,
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus a posuere nibh, eu mollis lacus." +
             " Praesent dictum in velit sed dapibus." +

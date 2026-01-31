@@ -40,6 +40,13 @@ if ($ADMIN->fulltree) {
     $setting = new admin_setting_configcheckbox('tiny_c4l/enablepreview', $name, $desc, $default);
     $settings->add($setting);
 
+    // Configure component docs.
+    $name = get_string('enabledocs', 'tiny_c4l');
+    $desc = get_string('enabledocs_desc', 'tiny_c4l');
+    $default = 1;
+    $setting = new admin_setting_configcheckbox('tiny_c4l/enabledocs', $name, $desc, $default);
+    $settings->add($setting);
+
     // Configure available students' components.
     $components = [
         'keyconcept' => get_string('keyconcept', 'tiny_c4l'),

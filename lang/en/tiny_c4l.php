@@ -182,6 +182,7 @@ $string['evaluative'] = 'Evaluative';
 $string['example'] = 'Example';
 $string['expectedfeedback'] = 'Expected feedback';
 $string['figure'] = 'Figure';
+$string['furtherreading'] = 'Further reading';
 $string['full-width'] = 'Full width';
 $string['generalsettings'] = 'General';
 $string['gradingvalue'] = 'Grading value';

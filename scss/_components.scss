@@ -25,7 +25,9 @@
     + .c4l-learningoutcomes,
     + .c4lv-learningoutcomes,
     + .c4l-conceptreview,
-    + .c4lv-conceptreview {
+    + .c4lv-conceptreview,
+    + .c4l-furtherreading,
+    + .c4lv-furtherreading {
         margin: 0 auto;
     }
 
@@ -802,5 +804,70 @@
         position: absolute;
         top: 24px;
         left: -3px;
+    }
+}
+
+/* Further reading */
+
+.c4l-furtherreading,
+.c4lv-furtherreading {
+    min-width: 200px;
+    max-width: 95%;
+    background-color: #fff;
+    padding: 32px 54px 36px 54px;
+    margin: 36px auto;
+    position: relative;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.13);
+
+    .c4l-further-reading-title {
+        color: #0271BF;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin: 0 0 16px 0;
+    }
+
+    p:last-of-type {
+        margin-bottom: 0;
+    }
+
+    &::before {
+        content: url([[pix:tiny_c4l|c4l_furtherreading]]);
+        position: absolute;
+        top: 24px;
+        left: -3px;
+    }
+
+    .c4l-furtherreading-list {
+        margin-top: 18px;
+        margin-bottom: 18px;
+        padding-left: 32px;
+    }
+
+    .c4l-furtherreading-list > li {
+        position: relative;
+    }
+
+    .c4l-furtherreading-list > li:not(:last-child) {
+        margin-bottom: 21px;
+    }
+
+    .c4l-furtherreading-list li::before {
+        background-image: url([[pix:tiny_c4l|c4l_furtherreading_list_item]]);
+        background-size: 9px 11px;
+        display: inline-block;
+        width: 9px;
+        height: 11px;
+        content: "";
+        justify-self: center;
+        position: absolute;
+        left: -32px;
+        top: 7px;
+    }
+
+    .c4l-furtherreading-list li::marker {
+        color: transparent;
     }
 }

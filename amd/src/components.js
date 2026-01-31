@@ -407,6 +407,24 @@ const components = [
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
         variants: ["full-width"],
     },
+    {
+        id: "19",
+        name: "furtherreading",
+        type: "contextual",
+        imageClass: "c4l-furtherreading-icon",
+        code:
+            `<p class="c4l-spacer"></p>
+            <div class="c4lv-furtherreading {{VARIANTS}}" aria-label="{{#furtherreading}}">
+            <h6 class="c4l-further-reading-title">{{#furtherreading}}</h6>
+            <ul class="c4l-furtherreading-list"><li>{{PLACEHOLDER}}</li><li>Curabitur non nulla sit amet
+            nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.</li>
+            <li> Nulla porttitor accumsan tincidunt. Curabitur aliquet quam id dui posuere blandit.
+             Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</li></ul></div>`,
+        text:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta, neque id feugiat consectetur, " +
+            "enim ipsum tincidunt nunc, id suscipit mauris urna sit amet lectus.",
+        variants: ["full-width"],
+    },
 ];
 
 export default {

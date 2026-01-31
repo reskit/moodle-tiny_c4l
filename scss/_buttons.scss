@@ -367,6 +367,14 @@
     content: url([[pix:tiny_c4l|c4l_conceptreview_icon]]);
 }
 
+.c4l-furtherreading-icon::before {
+    content: '';
+}
+
+.c4l-furtherreading-icon .c4l-button-text::before {
+    content: url([[pix:tiny_c4l|c4l_furtherreading_icon]]);
+}
+
 /* Evaluative components buttons */
 
 .c4l-gradingvalue-icon::before {

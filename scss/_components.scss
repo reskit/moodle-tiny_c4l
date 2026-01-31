@@ -23,14 +23,15 @@
     + .c4l-expectedfeedback,
     + .c4lv-expectedfeedback,
     + .c4l-learningoutcomes,
-    + .c4lv-learningoutcomes {
+    + .c4lv-learningoutcomes,
+    + .c4l-conceptreview,
+    + .c4lv-conceptreview {
         margin: 0 auto;
     }
 
     + .c4l-dodontcards .c4l-dodontcards-do,
     + .c4lv-dodontcards .c4l-dodontcards-do {
         margin-top: 0;
-
     }
 
     + .c4l-dodontcards .c4l-dodontcards-dont,
@@ -767,5 +768,39 @@
         content: counter(section) ". ";
         font-weight: 700;
         color: #497ae9;
+    }
+}
+
+/* Concept review */
+
+.c4l-conceptreview,
+.c4lv-conceptreview {
+    min-width: 200px;
+    max-width: 95%;
+    background-color: #fff;
+    padding: 32px 54px 36px 54px;
+    margin: 36px auto;
+    position: relative;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.13);
+
+    .c4l-concept-review-title {
+        color: #B00CA9;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin: 0 0 16px 0;
+    }
+
+    p:last-of-type {
+        margin-bottom: 0;
+    }
+
+    &::before {
+        content: url([[pix:tiny_c4l|c4l_conceptreview]]);
+        position: absolute;
+        top: 24px;
+        left: -3px;
     }
 }

@@ -38,6 +38,7 @@ $string['c4l:use'] = 'Use TinyMCE C4L';
 $string['c4l:viewplugin'] = 'View C4L plugin';
 $string['caption'] = 'Caption';
 $string['comfort-reading'] = 'Comfort reading';
+$string['conceptreview'] = 'Concept review';
 $string['contextual'] = 'Contextual';
 $string['custom'] = 'Custom';
 $string['customcompcode'] = 'HTML code component {$a}';

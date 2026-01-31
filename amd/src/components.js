@@ -396,6 +396,17 @@ const components = [
         },
         variants: ["full-width"],
     },
+    {
+        id: "18",
+        name: "conceptreview",
+        type: "contextual",
+        imageClass: "c4l-conceptreview-icon",
+        code:
+            `<p class="c4l-spacer"></p><div class="c4lv-conceptreview {{VARIANTS}}" aria-label="{{#conceptreview}}">
+            <h6 class="c4l-concept-review-title">{{#conceptreview}}</h6>{{PLACEHOLDER}}</div>`,
+        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
+        variants: ["full-width"],
+    },
 ];
 
 export default {

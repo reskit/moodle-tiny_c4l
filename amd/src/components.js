@@ -405,6 +405,13 @@ const components = [
             `<p class="c4l-spacer"></p><div class="c4lv-conceptreview {{VARIANTS}}" aria-label="{{#conceptreview}}">
             <h6 class="c4l-concept-review-title">{{#conceptreview}}</h6>{{PLACEHOLDER}}</div>`,
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor odio vel turpis consequat sodales.",
+        docs: {
+            description: "{{#docs_conceptreview_desc}}",
+            useCases: [
+                "{{#docs_conceptreview_use1}}",
+                "{{#docs_conceptreview_use2}}",
+            ],
+        },
         variants: ["full-width"],
     },
     {
@@ -423,6 +430,15 @@ const components = [
         text:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut porta, neque id feugiat consectetur, " +
             "enim ipsum tincidunt nunc, id suscipit mauris urna sit amet lectus.",
+        docs: {
+            description: "{{#docs_furtherreading_desc}}",
+            useCases: [
+                "{{#docs_furtherreading_use1}}",
+                "{{#docs_furtherreading_use2}}",
+                "{{#docs_furtherreading_use3}}",
+                "{{#docs_furtherreading_use4}}",
+            ],
+        },
         variants: ["full-width"],
     },
 ];

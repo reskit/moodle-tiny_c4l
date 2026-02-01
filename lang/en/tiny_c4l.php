@@ -76,6 +76,8 @@ $string['custompreviewcssdesc'] = 'CSS used to preview components inside the edi
 $string['do-card'] = 'Do card';
 $string['docs'] = 'When to use';
 $string['docs_usecases'] = 'Use cases';
+
+// Docs: All Purpose card.
 $string['docs_allpurposecard_desc'] = 'Provides a piece of content with its own visual context, to make it specific or different.';
 $string['docs_allpurposecard_use1'] = 'In theoretical content, it sets a separated context from the main thread.';
 $string['docs_allpurposecard_use2'] = 'In quizzes or other assessing/practising environments that include both theory and practice, it may be used as a container for the theory.';
@@ -84,6 +86,11 @@ $string['docs_allpurposecard_use2'] = 'In quizzes or other assessing/practising 
 $string['docs_attention_desc'] = 'Attracts the learner\'s attention to some relevant issue or information.';
 $string['docs_attention_use1'] = 'To warn the learner of a relevant aspect that he must consider related to a learning subject.';
 $string['docs_attention_use2'] = 'In the context of a predefined learning flow, it attracts the learner\'s attention over a recommended (or expected) way to proceed in a certain context.';
+
+// Docs: Concept Review.
+$string['docs_conceptreview_desc'] = 'Retrieves a previously learned concept that may be useful for the learner to better understand a new concept being introduced.';
+$string['docs_conceptreview_use1'] = 'It helps the learner recall the relevance of a previously learned concept, making them more conscious of its role within the overall learning path.';
+$string['docs_conceptreview_use2'] = 'When working with new content that involves a high cognitive load, allowing the educator to provide quick access to prior knowledge.';
 
 // Docs: Do/Don\'t cards.
 $string['docs_dodontcards_desc'] = 'A comparative display where the learner can find the correct and incorrect ways to do something or conceive a particular idea in a joint visual context.';
@@ -116,6 +123,13 @@ $string['docs_figure_use1'] = 'To illustrate a concept mentioned in the content.
 $string['docs_figure_use2'] = 'To add precision or detail to a particular concept or idea.';
 $string['docs_figure_use3'] = 'To help reduce the complexity of a concept that requires a significant level of abstraction to be comprehended.';
 
+// Docs: Further Reading.
+$string['docs_furtherreading_desc'] = 'A curated list of complementary resources that allow the learner to deepen, extend, or reinforce the content.';
+$string['docs_furtherreading_use1'] = 'To offer optional resources for learners who wish to explore a topic in greater depth.';
+$string['docs_furtherreading_use2'] = 'To complement the main content with alternative perspectives, explanations, or formats.';
+$string['docs_furtherreading_use3'] = 'To support different learning preferences by providing varied types of resources.';
+$string['docs_furtherreading_use4'] = 'To point to authoritative materials that reinforce key ideas.';
+
 // Docs: Grading value.
 $string['docs_gradingvalue_desc'] = 'Displays the relative value of the grade for a particular task.';
 $string['docs_gradingvalue_use1'] = 'Aimed only at practical contexts, establishes the partial value of the current task regarding the total grade.';
@@ -134,6 +148,9 @@ $string['docs_keyconcept_use3'] = 'In Science materials, to display formulas or 
 $string['docs_learningoutcomes_desc'] = 'Displays the expected Learning Outcomes for a learner to gain after completing a course or activity.';
 $string['docs_learningoutcomes_use1'] = 'To display Learning Goals (the overall intended outcomes of a course or program).';
 $string['docs_learningoutcomes_use2'] = 'To display Learning Objectives (what a learner is expected to gain after engaging in a particular learning activity).';
+
+// Docs: No docs available.
+$string['docs_nodocsavailable_desc'] = 'No documentation available for this component.';
 
 // Docs: Procedural context.
 $string['docs_proceduralcontext_desc'] = 'Provides the learner with a detailed description of a procedure due to following in a particular context.';

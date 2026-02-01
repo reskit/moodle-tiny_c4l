@@ -636,17 +636,23 @@ const applyLangStrings = (text) => {
  */
 const processDocsData = (docs) => {
     if (!docs || typeof docs !== 'object') {
-        return null;
+        return {
+            description: applyLangStrings('{{#docs_nodocsavailable_desc}}'),
+            useCases: [],
+            hasUseCases: false,
+        };
     }
 
     const result = {
         description: docs.description ? applyLangStrings(docs.description) : '',
         useCases: [],
+        hasUseCases: false,
     };
 
     // Process use cases.
-    if (docs.useCases && Array.isArray(docs.useCases)) {
+    if (docs.useCases && Array.isArray(docs.useCases) && docs.useCases.length > 0) {
         result.useCases = docs.useCases.map(item => ({text: applyLangStrings(item)}));
+        result.hasUseCases = true;
     }
 
     return result;
@@ -684,6 +690,9 @@ const applyRandomID = (text) => {
 const getAllStrings = async() => {
     const keys = [];
     const compRegex = /{{#([^}]*)}}/g;
+
+    // Add fallback docs string.
+    keys.push('docs_nodocsavailable_desc');
 
     Components.forEach(element => {
 

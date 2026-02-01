@@ -125,6 +125,7 @@
                             <div data-id="code-docs-{{id}}" class="c4l-docs-content c4l-hidden">
                                 {{#docsData}}
                                 <p class="c4l-docs-description">{{{description}}}</p>
+                                {{#hasUseCases}}
                                 <div class="c4l-docs-section">
                                     <h5 class="c4l-docs-heading">{{#str}} docs_usecases, tiny_c4l {{/str}}</h5>
                                     <ul class="c4l-docs-list">
@@ -133,6 +134,7 @@
                                         {{/useCases}}
                                     </ul>
                                 </div>
+                                {{/hasUseCases}}
                                 {{/docsData}}
                             </div>
                             {{/buttons}}

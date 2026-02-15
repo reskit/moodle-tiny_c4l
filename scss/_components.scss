@@ -604,6 +604,111 @@
     margin-left: 0;
 }
 
+/* AI Use Allowed */
+
+.c4l-aiuseallowed,
+.c4lv-aiuseallowed {
+    font-size: 12px;
+    color: #127A1D;
+    background-color: #edf7f0;
+    padding: 6px 14px;
+    font-weight: 700;
+    margin-left: 6px;
+    margin-bottom: 24px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 32px;
+    position: relative;
+    border-radius: 5px;
+
+    span {
+        font-weight: 600;
+        font-size: 12px;
+    }
+
+    &::after {
+        content: url([[pix:tiny_c4l|c4l_aiuseallowed]]);
+        position: absolute;
+        left: 10px;
+        top: 3px;
+    }
+}
+
+.c4lv-aiuseallowed.c4l-align-left-variant {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+/* AI Use Not Allowed */
+
+.c4l-aiusenotallowed,
+.c4lv-aiusenotallowed {
+    font-size: 12px;
+    color: #DF1801;
+    background-color: #FFF2F2;
+    padding: 6px 14px;
+    font-weight: 700;
+    margin-left: 6px;
+    margin-bottom: 24px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 32px;
+    position: relative;
+    border-radius: 5px;
+
+    span {
+        font-weight: 600;
+        font-size: 12px;
+    }
+
+    &::after {
+        content: url([[pix:tiny_c4l|c4l_aiusenotallowed]]);
+        position: absolute;
+        left: 10px;
+        top: 3px;
+    }
+}
+
+.c4lv-aiusenotallowed.c4l-align-left-variant {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+/* AI Use Reported */
+
+.c4l-aiusereported,
+.c4lv-aiusereported {
+    font-size: 12px;
+    color: #B45400;
+    background-color: #FFF8E7;
+    padding: 6px 14px;
+    font-weight: 700;
+    margin-left: 6px;
+    margin-bottom: 24px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 32px;
+    position: relative;
+    border-radius: 5px;
+
+    span {
+        font-weight: 600;
+        font-size: 12px;
+    }
+
+    &::after {
+        content: url([[pix:tiny_c4l|c4l_aiusereported]]);
+        position: absolute;
+        left: 10px;
+        top: 3px;
+    }
+}
+
+.c4lv-aiusereported.c4l-align-left-variant {
+    margin-right: auto;
+    margin-left: 0;
+}
+
 /* Expected Feedback */
 
 .c4l-expectedfeedback,

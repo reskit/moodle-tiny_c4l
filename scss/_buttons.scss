@@ -385,6 +385,30 @@
     content: url([[pix:tiny_c4l|noun_project_icons/c4l_gradingvalue_icon]]);
 }
 
+.c4l-aiuseallowed-icon::before {
+    content: '';
+}
+
+.c4l-aiuseallowed-icon .c4l-button-text::before {
+    content: url([[pix:tiny_c4l|c4l_aiuseallowed_icon]]);
+}
+
+.c4l-aiusenotallowed-icon::before {
+    content: '';
+}
+
+.c4l-aiusenotallowed-icon .c4l-button-text::before {
+    content: url([[pix:tiny_c4l|c4l_aiusenotallowed_icon]]);
+}
+
+.c4l-aiusereported-icon::before {
+    content: '';
+}
+
+.c4l-aiusereported-icon .c4l-button-text::before {
+    content: url([[pix:tiny_c4l|c4l_aiusereported_icon]]);
+}
+
 .c4l-expectedfeedback-icon::before {
     content: '';
 }

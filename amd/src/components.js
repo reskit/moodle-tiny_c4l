@@ -441,6 +441,63 @@ const components = [
         },
         variants: ["full-width"],
     },
+    {
+        id: "20",
+        name: "aiuseallowed",
+        type: "evaluative",
+        imageClass: "c4l-aiuseallowed-icon",
+        code:
+            `<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-aiuseallowed {{VARIANTS}}"
+             aria-label="{{#aiuseallowed}}">{{PLACEHOLDER}}</div></div>`,
+        text: "Use of AI is <strong>allowed</strong>",
+        docs: {
+            description: "{{#docs_aiuseallowed_desc}}",
+            useCases: [
+                "{{#docs_aiuseallowed_use1}}",
+                "{{#docs_aiuseallowed_use2}}",
+            ],
+        },
+        variants: ["align-left"],
+    },
+    {
+        id: "21",
+        name: "aiusenotallowed",
+        type: "evaluative",
+        imageClass: "c4l-aiusenotallowed-icon",
+        code:
+            `<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-aiusenotallowed {{VARIANTS}}"
+             aria-label="{{#aiusenotallowed}}">{{PLACEHOLDER}}</div></div>`,
+        text: "Use of AI is <strong>not allowed</strong>",
+        docs: {
+            description: "{{#docs_aiusenotallowed_desc}}",
+            useCases: [
+                "{{#docs_aiusenotallowed_use1}}",
+                "{{#docs_aiusenotallowed_use2}}",
+                "{{#docs_aiusenotallowed_use3}}",
+            ],
+        },
+        variants: ["align-left"],
+    },
+    {
+        id: "22",
+        name: "aiusereported",
+        type: "evaluative",
+        imageClass: "c4l-aiusereported-icon",
+        code:
+            `<p class="c4l-spacer"></p><div class="c4l-inline-group"><div class="c4lv-aiusereported {{VARIANTS}}"
+             aria-label="{{#aiusereported}}">{{PLACEHOLDER}}</div></div>`,
+        text: "Use of AI must be <strong>reported</strong>",
+        docs: {
+            description: "{{#docs_aiusereported_desc}}",
+            useCases: [
+                "{{#docs_aiusereported_use1}}",
+                "{{#docs_aiusereported_use2}}",
+                "{{#docs_aiusereported_use3}}",
+                "{{#docs_aiusereported_use4}}",
+            ],
+        },
+        variants: ["align-left"],
+    },
 ];
 
 export default {

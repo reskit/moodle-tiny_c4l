@@ -74,6 +74,9 @@ if ($ADMIN->fulltree) {
         'duedate' => get_string('duedate', 'tiny_c4l'),
         'proceduralcontext' => get_string('proceduralcontext', 'tiny_c4l'),
         'gradingvalue' => get_string('gradingvalue', 'tiny_c4l'),
+        'aiuseallowed' => get_string('aiuseallowed', 'tiny_c4l'),
+        'aiusenotallowed' => get_string('aiusenotallowed', 'tiny_c4l'),
+        'aiusereported' => get_string('aiusereported', 'tiny_c4l'),
         'expectedfeedback' => get_string('expectedfeedback', 'tiny_c4l'),
         'learningoutcomes' => get_string('learningoutcomes', 'tiny_c4l'),
     ];

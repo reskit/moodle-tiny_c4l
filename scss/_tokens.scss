@@ -230,6 +230,23 @@
     --c4l-shadow:           transparent;
     --c4l-shadow-xsoft:     transparent;
 
+    /* UI */
+    /* For compatibility with versions prior to Moodle 5.3, colors are hardcoded */
+    --c4l-ui-accent:        #f8f9fa; // var(--bs-gray-900)
+    --c4l-ui-border:        #495057; // var(--bs-border-color)
+    --c4l-ui-button-border: #495057; // var(--bs-border-color)
+    --c4l-ui-divider:       #495057; // var(--bs-border-color)
+    --c4l-ui-panel-border:  #495057; // var(--bs-border-color)
+    --c4l-ui-page:          #1d2125; // var(--bs-modal-bg)
+    --c4l-ui-page-border:   #495057; // var(--bs-border-color)
+    --c4l-ui-raised:        #1d2125; // var(--bs-gray-100)
+    --c4l-ui-surface:       #292e33; // var(--bs-gray-200)
+    --c4l-ui-tab-border:    #495057; // var(--bs-border-color)
+    --c4l-ui-text:          rgba(222, 226, 230, 0.75); // var(--bs-secondary-color)
+    --c4l-ui-text-strong:   #dee2e6; // var(--bs-gray-700)
+    --c4l-ui-variant-bg:    #1d2125; // var(--bs-gray-100)
+    --c4l-ui-variant-edge:  #495057; // var(--bs-border-color)
+    --c4l-ui-variant-sep:   #495057; // var(--bs-border-color)
 }
 
 /* ================================================================== *

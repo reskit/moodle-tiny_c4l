@@ -31,8 +31,8 @@ use editor_tiny\plugin_with_menuitems;
  */
 class plugininfo extends plugin implements
     plugin_with_buttons,
-    plugin_with_menuitems,
-    plugin_with_configuration {
+    plugin_with_configuration,
+    plugin_with_menuitems {
     /**
      * Get the editor buttons for this plugins
      *
@@ -104,7 +104,7 @@ class plugininfo extends plugin implements
     /**
      * Get the custom components.
      *
-     * @param  stdClass $config tiny_c4l config
+     * @param  \stdClass $config tiny_c4l config
      * @return array
      */
     public static function get_custom_components(\stdClass $config) {

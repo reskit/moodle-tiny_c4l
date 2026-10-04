@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'tiny_c4l';
-$plugin->release = '3.3.1';
+$plugin->release = '3.3.2';
 $plugin->requires = 2023100900;
 $plugin->maturity = MATURITY_STABLE;
-$plugin->version = 2026100100;
+$plugin->version = 2026100400;
